@@ -1,0 +1,412 @@
+html{
+    box-sizing: border-box;
+    background-color: #fff;
+    margin: 0;
+}
+:root{
+    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+*{
+    box-sizing: inherit;
+}
+.underline{
+    border-right: 2px solid #ccc ;
+}
+.category-all{
+    background-color: #fff;
+    height: 100%;
+    border-radius: 32px 0px;
+    border: 1px solid #e7e8e9;
+}
+.category-all ul{
+    margin: 0px;
+    padding: 0px;
+}
+.category-all li{
+    margin: 0px;
+}
+.category{
+    padding: 20px 5px;
+    display: flex;
+    align-items: center;
+    margin: 30px 10px;
+}
+.category a{
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    padding-left: 4px;
+}
+.category span{
+    font-size: 20px;
+}
+.account-body{
+    border-radius: 3px;
+    margin: 10px 0;
+    font-family: var(--font-family-monospace);
+}
+
+.account-me{
+    background-color: #fff;
+    height: 100%;
+}
+.account-tt{
+    margin-top: 20px;
+    padding: 0 10px;
+}
+.account-title{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 900;
+    color: #333;
+}
+
+.information{
+    margin: 20px;
+}
+.information-name{
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    justify-content: space-between;
+}
+.information-name input{
+    height: 36px;
+    border-radius: 4px;
+    padding: 10px 12px;
+    line-height: 20px;
+    width: 70%;
+    outline: none;
+    border: 1px solid rgb(196, 196, 207);
+}
+.information-name label{
+    font-size: 16px;
+    max-width: 30%;
+    color: rgb(55, 63, 60);
+    padding-right: 25px;
+}
+.information-birthday{
+    margin: 40px 0;
+}
+.information-birthday label{
+    font-size: 16px;
+    padding-right: 25px;
+    color: rgb(55, 63, 60);
+}
+.information-birthday select{
+    width: 100px;
+    border: 1px solid rgb(204, 204, 204);
+    height: 34px;
+    padding: 6px 12px;
+    line-height: 34px;
+    outline: none;
+    border-radius: 4px;
+    margin: 0px 12px 0px 0px;
+    background: 0px center;
+    box-shadow: none;
+}
+
+.information-sex{
+    display: flex;
+}
+.information-sex label{
+    font-size: 16px;
+    padding-right: 25px;
+    color: rgb(55, 63, 60);
+}
+.infotmation-save input{
+    margin-top: 20px;
+    border: 0px;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    background-color: rgb(30 28 28);
+    cursor: pointer;
+}
+.form-upload__img{
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+    margin: 0 auto;
+}
+.account-tt-info-mobile,
+.account-tt-info-email,
+.account-tt-info-security,
+.account-tt-info-privacy{
+    margin: 18px 0px;
+}
+.account-tt-info-fb{
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0px;
+}
+.account-tt-info-fb  span{
+    display: flex;
+    align-items: center;
+}
+.account-tt-info-fb  button{
+    border: none;
+    padding: 10px;
+    color: white;
+    background: #1e1c1c;
+    border-radius: 5px;
+}
+
+/* Footer */
+.account-footer{
+    background-color: #fbfbfb;
+}
+.account-footer_titel{
+    margin-top: 50px;
+    font-weight: 700;
+    color: rgba(0,0,0,.54);
+}
+.account-footer_list li{
+    margin: 20px 10px;
+   
+}
+.account-footer_list a{
+   text-decoration: none;
+   color: rgba(0,0,0,.54);
+}
+.account-footer-security{
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(0,0,0,.54);
+}
+ /* Mobile Navbar */
+    .mobile-search,
+    .mobile-acc,
+    .mobile-info,
+    .navbar-logo,
+    .mobile-info1{
+        display: none;
+    }
+.mobile-search span{ 
+    color: #fff;
+}
+.nav__bars-btn{
+    color: #fff;
+    margin-right: 10px;
+    display: none;
+}
+.nav__bas-over-lay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 100;
+    display: none;
+    animation: fadeIN linear 0.2s;
+}
+.nav-mobile-list{
+    margin-top: 60px;
+}
+.nav-mobile{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 100%;
+    background-color: #333;
+    z-index: 10;
+    z-index: 101;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform linear 0.2s , opacity linear 0.2s;
+}
+.nav-mobile-li span{
+    margin: 10px;
+    color: #fff;
+}
+.nav-mobile-link{
+    text-decoration: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    color:#fff ;
+}
+.nav-mobile-close{
+    position: absolute;
+    margin-right: 10px;
+    right: 0;
+    font-size: 2.4rem;
+    color:#fff ;
+}
+.nav-input:checked ~ .nav__bas-over-lay {
+    display: block;
+}
+.nav-input:checked ~ .nav-mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+.navbar-logo img{
+    width: 88px;
+    background: #fff;
+    display: none;
+}
+@media (max-width:739px) {
+    .mobile-search,
+    .navbar-logo,
+    .mobile-acc,
+    .mobile-info,
+    .mobile-info1{
+        display: block;
+    }
+    .app_body{
+        background-color: #fff;
+    }
+    header .clearfix{
+        background-color: #000;
+    }
+    .navbar-logo{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        background: #000;
+    }
+    .category-all{
+        display: none;
+    }
+    .account-me{
+        display: none;
+    }
+    .mobile-search span{
+        font-size: 23px;
+        padding: 0 5px;
+        margin-right: 60px;
+    }
+    .navbar-logo span {
+        color: #fff;
+    }
+    .nav__bars-btn{
+        display: block;
+        right: 0;
+        position: absolute;
+        font-size: 30px;
+        top: 0;
+    }
+    .navbar-logo img{
+        display: block;
+    }
+    .clearfix{
+        height: 50px;
+        max-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .navbar-m{
+        background-color: #666;
+    }
+    .navigation ul,
+    .navigation a{
+        display: none;
+    }
+    .navigation .nav-list img{
+        display: none;
+    }
+    .header{
+        display: none;
+    }
+    footer{
+        display: none;
+    }
+    /*  */
+    .mobile-acc-img{
+        background-color: #333;
+    }
+    .mobile-info{
+        background-color: #fff;
+        padding: 10px;
+    }
+    .acc-img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 15px;
+    }
+    .mobile-acc_change span {
+        color: #fff;
+        text-align: center;
+    }
+    .mobile-acc_change{
+        text-align: center;
+        background: rgb(105 103 103 / 50%);
+        margin-top: 13px;
+    }
+    .mobile-acc-img img{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .info-name{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+    }
+    .ti-angle-right{
+        font-size: 10px;
+        color: #000;
+    }
+    .mobile-info1{
+        background: #fff;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .account-body{
+        display: none;
+    }
+}
+
+@media (min-width:740px) and (max-width:1023px){
+    .navbar-logo span {
+        color: #fff;
+    }
+    .navigation ul,
+    .navigation a{
+        display: none;
+    }
+    .navigation .nav-list img{
+        display: none;
+    }
+    .header{
+        display: none;
+    }
+    .app_body{
+        background-color: #fff;
+    }
+    header .clearfix{
+        background-color: #000;
+    }
+    .navbar-logo{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        background: #000;
+    }
+    .category-all{
+        display: none;
+    }
+    .category-all{
+        display: none;
+    }
+    .account_infomation{
+        padding: 0 10px;
+    }
+}

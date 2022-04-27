@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{
+    --main-color: #323434;
+    --color-dark: #1D2231;
+    --text-grey: #8390a2;
+}
+
+
+* {
+    font-family: 'Poppins' , sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+/* SIDEBAR ( THANH BÊN ) */
+#sidebar-toggle{
+    display: none;
+}
+.sidebar{
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background: var(--main-color);
+    color: #fff;
+    overflow-y: auto;
+    transition: width 500ms;
+}
+.sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0rem 1rem;
+}
+.sidebar-menu {
+    padding: 1rem;
+}
+.sidebar li{
+    margin-bottom: 1.2rem;
+}
+.sidebar a{
+  color: #fff;
+  font-size: 0.9rem;
+}
+.sidebar li span:hover{
+    color: rgba(0, 0, 0,0.3);
+}
+/* .sidebar li:first-child a{
+    background: rgba(0, 0, 0,0.5 );
+} */
+.sidebar a span:last-child{
+    padding-right: 0.6rem;
+}
+/* PHẦN THU DANH MỤC */
+#sidebar-toggle:checked ~ .sidebar{
+    width: 60px;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span:last-child,
+#sidebar-toggle:checked ~ .sidebar li span:last-child{
+    display: none;
+}
+#sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+}
+#sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+    right: 0;
+}
+/* MAIN CONTENT */
+.main-content{
+  position: relative;
+  margin-left: 240px;
+  transition: margin-left 500ms;
+}
+/* PHẦN HEADER TRONG MAIN CONTENT */
+header{
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 240px;
+    z-index: 100;
+    background: #fff;
+    /* width: calc(100% - 240px); */
+    height: 60px;
+    display: flex;
+    padding: 0rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--text-grey);
+    transition: left 500ms; 
+}
+/* PHẦN THANH TÌM KIẾM */
+.search-wrapper{
+    display: flex;
+    align-items: center;
+}
+.search-wrapper input{
+    border: 0;
+    outline: 0;
+    padding: 1rem;
+    height: 38px;
+    width: 100%;
+}
+
+.social-icons{
+    display:  flex;
+    align-items: center;
+}
+.social-icons span,
+.social-icons div{
+    padding: 0px 20px;
+}
+.social-icons div{
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/244034837_1333840880405800_3044962670342461838_n.jpg);
+    border-radius: 50%;
+}
+
+.notify{
+    background-color: #1D2231;
+}
+.ti-search{
+    margin-right: 5px;
+}
+
+/* PHẦN  TỔNG QUAN  */
+main{
+    margin-top: 60px;
+    background: #f1f5f9;
+    min-height: 90vs;
+    padding: 1rem 3rem;
+}
+
+.dash-title{
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+
+}
+.dash-cards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 5rem;
+}
+.card-single{
+        background: var(--main-color);
+        border-radius: 7px;   
+        box-shadow: 2px 2px 2px rgba(0, 0, 0,0.3); 
+}
+.card-body{
+    padding: 1.3rem  1rem;
+    display: flex;
+    align-items: center;
+}
+.card-body span{
+    font-size: 1.7rem;
+    color: #fff;
+    padding-left: 1.5rem;
+}
+.card-body h5{
+    color: #fff;
+    font-size: 1rem;
+    padding: 0 10px;
+}
+.card-body h4{
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0 10px;
+    margin-top: 0.2rem;
+}
+.card-footer{
+    padding: 0.2rem 1rem;
+    background: #f9fafc;
+
+}
+.card-footer a{
+    color: var(--main-color);
+}
+
+.recent{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+}
+
+/* PHẦN BẢNG HOẠT ĐỘNG */
+.table-responsive{
+    overflow-x: auto;
+}
+.activity-grid{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-column-gap: 1.5rem;
+}
+.activity-card{
+    margin-bottom: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+
+.activity-card{
+    background: #fff;
+    border-radius: 7px;   
+}
+.activity-card h3{
+    color: var(--text-grey);
+    padding: 1rem;
+}
+.activity-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.activity-card thead{
+    background: var(--main-color);
+    text-align: left;
+}
+td{
+    font-size: 0.85rem;
+    padding: 1rem 0.5rem;
+    color: var(--color-dark);
+}
+th{
+    font-size: 1rem;
+    padding: 1rem 0.5rem;
+    color: #fff;
+}
+tr{
+    border-bottom: 1px solid var(--main-color);
+}
+/* PHẦN SỐ LƯỢNG NGƯỜI DÙNG WEB */
+.summary-card{
+    background: var(--main-color);
+    box-shadow: 2px 2px 2px #ccc;
+    border-radius: 7px;
+}
+.summary-single{
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+}
+.summary-single span{
+    font-size: 1.5rem;
+    color: #fff;
+    padding-left: 1rem;
+    padding: 0 10px;
+
+}
+
+.summary-single h5{
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem ;  
+    padding: 0 10px;
+}
+.summary-single small{
+    font-weight: 700;
+    padding: 0 10px;
+    color: #fff;
+}
+
+/* PHẦN BDAY ( CHÚC MỪNG SINH NHẬT ) */
+
+.badge{
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+}
+.badge.success{
+    background: #DEF7EC;
+    color: var(--main-color);
+}
+.badge.warning{
+    background: #F0F6B2;
+    color: orange;
+}
+.td-team{
+    display: flex;
+    align-items: center;
+}
+.img-1,
+.img-2,
+.img-3{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    margin-left: -10px;
+    border: 3px solid #efefef;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img-1{
+    background-image: url(../img/tuan.jpg);
+}
+.img-2{
+    background-image: url(../img/ql.jpg);
+}
+.img-3{
+    background-image: url(../img/quan.jpg);
+}
+.bday-card{
+    background-color: var(--main-color);
+    padding: 1rem;
+    margin-top: 20px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px #ccc;
+}
+.bday-flex{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bday-img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../img/244034837_1333840880405800_3044962670342461838_n.jpg);
+    padding-right: 1rem;
+}
+.bday-info{
+    margin-left: 10px;
+}
+.bday-info{
+    color: #fff;
+}
+.text-center{
+    text-align: center;
+}
+.text-center button{
+    background: var(--main-color);
+    color: #fff;
+    border: 1px solid var(--main-color);
+    padding: 0.4rem 1rem;
+}
+/* PHẦN FIX CHO TRANG WEB PHÙ HỢP VỚI TỪNG GIAO DIỆN  */
+
+@media only screen and (max-width:1200px) {
+    .sidebar{
+        z-index: 1000;
+        width: 60px;
+    }
+    .sidebar .sidebar-header h3 span,
+    .sidebar li span:last-child{
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li{
+        display: flex;
+        justify-content: center;
+    }
+    .main-content{
+        margin-left: 60px;
+    }
+    .main-content header {
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+    #sidebar-toggle:checked ~.sidebar{
+        width: 240px;
+    }
+    #sidebar-toggle:checked~.sidebar .sidebar-header h3 span ,
+    #sidebar-toggle:checked~.sidebar li span:last-child{
+        display: inline;
+    }
+    #sidebar-toggle:checked~.sidebar .sidebar-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    #sidebar-toggle:checked~.sidebar li{
+        display: block;
+    }
+    #sidebar-toggle:checked~.main-content{
+        margin-left: 60px;
+    }
+    #sidebar-toggle:checked~.main-content header {
+        left: 60px;
+    }
+}
+@media only screen and (max-width: 860px){
+    .dash-cards{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .card-single{
+        margin-bottom: 1rem;
+    }
+    .activity-grid{
+        display: block;
+    }
+    .summary{
+        margin-top: 1.5rem;
+    }
+}
+@media only screen and (max-width:600px) {
+    .dash-cards{
+        grid-template-columns: 100%;
+    }
+}
+@media only screen and (max-width:450px) {
+    /* .search{
+        display: none;
+    } */
+    .sidebar{
+        z-index: 1000;
+    }
+    main{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

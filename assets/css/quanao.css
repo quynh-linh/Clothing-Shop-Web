@@ -1,0 +1,427 @@
+:root {
+    --main-color: #5cc1e3;
+}
+
+.btn{
+    min-width: 124px;
+    height: 36px;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 0 8px;
+    cursor: pointer;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6rem;
+    background-color: #576062;
+ }
+/*Tìm kiếm nâng cao*/
+.app_search{
+    background-color: #f5f5f5;
+}
+.tim-kiem-nang-cao{
+    background-color: white;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.boloc-top{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding-top: 15px;
+}
+.boloc-top span{
+   font-weight: 600;
+   padding-left: 4px;
+   font-size: 20px;
+}
+.icon-boloc{
+  font-size: 25px;
+}
+/*Danh mục*/
+.dmuc{
+    margin: 0 20px;
+}
+.h4{
+font-size: 14px;
+font-weight: 600;
+margin-top: 15px;
+margin-bottom: 15px;
+}
+
+.danhmuc li,
+.thuonghieu li {
+    padding-bottom: 20px;
+    text-decoration: none;
+}
+.thuonghieu a {
+    text-decoration: none;
+    color: #0b1b20;
+}
+.danhmuc a {
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+}
+
+.icon-danhmuc{
+margin-right: 5px;
+cursor: pointer;
+}
+
+.btn-more-danhmuc{
+margin-left: 22px;
+}
+
+.btn-more-danhmuc a{
+text-decoration: none;
+color: #000;
+}
+
+.btn-more-danhmuc a:hover{
+color: #0852c0;
+}
+/*THƯƠNG HIỆU*/
+.t_hieu ,
+.khoanggia{
+    margin: 0 20px;
+}
+.t_hieu-color{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.t_hieu-color-1 ,
+.t_hieu-color-2 ,
+.t_hieu-color-3 ,
+.t_hieu-color-4 {
+    border-radius: 50%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: navajowhite;
+}
+.t_hieu-color-1{
+    background-color: red;
+    color: red;
+}
+.t_hieu-color-2{
+    background-color: blue;
+    color: blue;
+}
+.t_hieu-color-3{
+    background-color: yellow;
+    color: yellow;
+}
+.t_hieu-color-4{
+    background-color: green;
+    color: green;
+}
+/*tag phổ biến*/
+.tag-list {
+    margin: 0 20px;
+}
+.tag-list p {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 15px;
+}
+.tag-list ul li {
+    padding-bottom: 20px;
+    margin-right: 10px;
+}
+.tag-list ul li a {
+background-color: #576062;
+border-radius: 2px;
+color: #fff;
+display: inline-block;
+font-size: 15px;
+letter-spacing: 1px;
+padding: 4px 10px 3px;
+text-decoration: none;
+transition: 0.3s background-color;
+}
+.tag-list ul li a:hover {
+opacity: 0.8;
+}
+
+.icon-exit:hover{
+color: #f20c0c;
+}
+/* Home sort + filter */
+
+.home-filter{
+    background-color: white;
+    display: flex;
+    padding: 12px 22px;
+    border-radius: 2px;
+    align-items: center;
+    margin-right: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.home-filter__label{
+    font-size: 17px;
+    color: #555;
+    margin-right: 16px;
+}
+
+.home-filter-btn{
+    margin-right: 12px ;
+    min-width: 90px;
+}
+
+.home-filter__page{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    background-color: #f7f7f7;
+}
+
+.home-filter__page-num{
+    font-size: 16px;
+    color: var(--text-color);
+    margin-right: 22px;
+    padding-left: 5px;
+}
+
+.home-filter__page-current{
+    color: rgb(11 27 32);
+}
+
+.home-filter__page-control{
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    width: 72px;
+    height: 36px;
+}
+
+.home-filter__page-btn{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: var(--white-color);
+}
+
+.home-filter__page-btn:first-child{
+    border-right: 1px solid rgb(184, 183, 183);
+}
+
+.home-filter__page-icon{
+    margin: auto;
+    font-size: 14px;
+    color: #555;
+}
+
+.home-filter__page-btn--disabled{
+    background-color: #f9f9f9;
+}
+
+.home-filter__page-btn--disabled
+.home-filter__page-icon{
+    color: #ccc;
+    cursor: default;
+}
+/* Selection */
+.select-input{
+    position: relative;
+    min-width: 200px;
+    padding: 0 8px;
+    height: 36px;
+    color: #fff;
+    border-radius: 3px;
+    background-color:#576062;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.select-input__label{
+    font-size: 17px;
+
+}
+
+.select-input__icon {
+    font-size: 1.4rem;
+    color: rgb(131,131,131);
+    position: relative;
+    top: 1px;
+}
+
+.select-input__list{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 37px;
+    border-radius: 2px;
+    color: #000;
+    background-color: white;
+    list-style: none;
+    display: none; 
+}
+
+.select-input__list::before{
+    content: "";
+     display: block;
+     position: absolute;
+     top: -8px;
+     right: 0;
+     width: 200px;
+     height: 14px;
+}
+
+.select-input:hover 
+.select-input__list{
+    display: block;
+    
+}
+.select-input__list li{
+    width: 100%;
+    padding: 2px 5px;
+}
+.select-input__list li:hover{
+    background-color:#ccc;
+}
+
+.select-input__link{
+    text-decoration: none;
+    font-size: 17px;
+    color: var(--text-color);
+    display: block;
+    padding: 8px 0;
+}
+/*  home-product  */
+#new , #selling{
+    display: none;
+}
+#new , #selling , #trend{
+    --webkit-animation: slidedown 0.3s ease-out;
+    --moz-animation: slidedown 0.3s ease-out;
+    --webkit-animation: slidedown 1s ease-in;
+    --moz-animation: slidedown 1s ease-in;
+}
+@keyframes slidedown {
+    0%{opacity: 0;}
+    20%{opacity:1;}
+}
+.first-active{
+    background-color:#0b1b20;
+}
+.home-product-item{
+    position: relative;
+    margin-top: 20px;
+    background-color: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 2px 2px 0 #ccc;
+    transition: transform linear 0.2s   ;
+}
+.home-product-item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 2px 20px 0 #ccc;
+    cursor: pointer;
+}
+.home-product-item img{
+    object-fit: fill;
+   width: 100%;
+}
+.home-product-item_name{
+    line-height: 1.8rem;
+    font-size: 15px;
+    height: 3.6rem;
+    overflow: hidden; 
+    /* Khi doi tuong con choi ra ngoai doi tuong chua se xu ly nhu nao */
+    margin: 10px;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical ;
+      /*  cái hướng của chúng ta theo chiều nào */
+    -webkit-line-clamp: 2;
+}
+.home-product-item_price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home-product-item_price-old{
+    text-decoration: line-through;
+    font-size: 15px;
+}
+.home-product-item_price-current{
+    margin-left: 10px;
+    color: #0b1b20;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* Forward */
+.foward-btn{
+    background-color: #848687;
+    border-radius: 3px;
+    height: 29px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 30px;
+    align-items: center;
+}
+.home-foward{
+    margin: 30px 0;
+    justify-content: center;
+    align-items: center;
+}
+.home-foward span{
+    padding: 0 30px;
+}
+.home-foward a{
+    text-decoration: none;
+    color: #100f0f;
+    cursor: pointer;
+}
+#number-page{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.home-ul{
+    display: flex;
+    align-items: center;
+}
+li{
+    list-style: none;
+}
+/* Footer */
+.account-footer{
+    background-color: #fbfbfb;
+}
+.account-footer_titel{
+    margin-top: 50px;
+    font-weight: 700;
+    color: rgba(0,0,0,.54);
+}
+.account-footer_list li{
+    margin: 20px 10px;
+   
+}
+.account-footer_list a{
+   text-decoration: none;
+   color: rgba(0,0,0,.54);
+}
+.account-footer-security{
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(0,0,0,.54);
+}
+/* MOBILE */
+.navbar-logo,
+.mobile-sp{
+    display: none;
+}

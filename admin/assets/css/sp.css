@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{
+    --main-color: #323434;
+    --color-dark: #1D2231;
+    --text-grey: #8390a2;
+}
+* {
+    font-family: 'Poppins' , sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+/* SIDEBAR ( THANH BÊN ) */
+#sidebar-toggle{
+    display: none;
+}
+.sidebar{
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background: var(--main-color);
+    color: #fff;
+    overflow-y: auto;
+    transition: width 500ms;
+}
+.sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0rem 1rem;
+}
+.sidebar-menu {
+    padding: 1rem;
+}
+.sidebar li{
+    margin-bottom: 1.2rem;
+}
+.sidebar a{
+  color: #fff;
+  font-size: 0.9rem;
+}
+.sidebar li span:hover{
+    color: rgba(0, 0, 0,0.3);
+}
+/* .sidebar li:first-child a{
+    background: rgba(0, 0, 0,0.5 );
+} */
+.sidebar a span:last-child{
+    padding-right: 0.6rem;
+}
+/* PHẦN THU DANH MỤC */
+#sidebar-toggle:checked ~ .sidebar{
+    width: 60px;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span:last-child,
+#sidebar-toggle:checked ~ .sidebar li span:last-child{
+    display: none;
+}
+#sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+}
+#sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+    right: 0;
+}
+/* MAIN CONTENT */
+.main-content{
+  position: relative;
+  margin-left: 240px;
+  transition: margin-left 500ms;
+}
+.success{
+    color: green;
+    display: flex;
+    text-align: center;
+}
+/* PHẦN HEADER TRONG MAIN CONTENT */
+header{
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 240px;
+    z-index: 100;
+    background: #fff;
+    /* width: calc(100% - 240px); */
+    height: 60px;
+    display: flex;
+    padding: 0rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--text-grey);
+    transition: left 500ms; 
+}
+/* PHẦN THANH TÌM KIẾM */
+.search-wrapper{
+    display: flex;
+    align-items: center;
+}
+.search-wrapper input{
+    border: 0;
+    outline: 0;
+    padding: 1rem;
+    height: 38px;
+    width: 100%;
+}
+
+.social-icons{
+    display:  flex;
+    align-items: center;
+
+    
+}
+.social-icons span,
+.social-icons div{
+    margin-left: 1.2rem;
+}
+.social-icons div{
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/ql.jpg);
+    border-radius: 50%;
+}
+.ti-search{
+    margin-right: 5px;
+}
+
+/* PHẦN  TỔNG QUAN  */
+main{
+    margin-top: 60px;
+    background: #f1f5f9;
+    min-height: 90vs;
+    padding: 1rem 3rem;
+}
+/* PHẦN BẢNG HOẠT ĐỘNG */
+.table-responsive{
+    overflow: scroll;
+    height: 500px;
+}
+.activity-more{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+.activity-more span{
+    background-color: rgb(24, 22, 22);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+}
+.activity-more h4{
+    color: #1D2231;
+}
+.activity-more a:hover{
+   cursor: pointer;
+   color: var(--text-grey);
+}
+.activity-header{
+    display: flex;
+    justify-content: space-between;
+}
+.activity-grid{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 1.5rem;
+}
+.activity-card{
+    margin-bottom: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 2px 2px 2px #6e5353;
+}
+
+.activity-card{
+    background: #fff;
+    border-radius: 7px;   
+}
+.activity-card h3{
+    color: var(--text-grey);
+    padding: 1rem;
+}
+.activity-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.activity-card thead{
+    background: var(--main-color);
+    text-align: left;
+}
+tr{
+    border-bottom: 1px solid var(--main-color);
+    text-align: center;
+}
+th{
+    font-size: 12px;
+    padding: 1rem 0.5rem;
+    color: #efefef;
+    font-weight: 400;
+}
+td{
+    font-size: 12px;
+    padding: 1rem 0.5rem;
+    color: var(--color-dark);
+}
+.td-team{
+    display: flex;
+    align-items: center;
+}
+.img-link:hover{
+    color: orange;
+}
+.img-1,
+.img-2,
+.img-3,
+.img-4,
+.img-5{
+    height: 80px;
+    width: 80px;
+    border: 3px solid #efefef;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img-1{
+    background-image: url(../img/giaybongda.jfif);
+}
+.img-2{
+    background-image: url(../img/aothethao.jfif);
+}
+.img-3{
+    background-image: url(../img/maychay.jfif);
+}
+.img-4{
+    background-image: url(../img/gangtay.jfif);
+}
+.img-5{
+    background-image: url(../img/giaythethao.jfif);
+}
+/* TĂNG GIẢM SỐ LƯỢNG */
+
+.td-button{
+    margin: 0 4px;
+}
+
+.button-sl{
+    text-align: center;
+}
+.ti-minus:hover{
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+.ti-plus:hover{
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+/*  */
+.form_title{
+    font-size: 20px;
+    text-align: initial;
+}
+.form input {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 6px;
+    outline: none;
+}
+.form select , textarea {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 6px;
+}
+/* PHẦN FIX CHO TRANG WEB PHÙ HỢP VỚI TỪNG GIAO DIỆN  */
+
+@media only screen and (max-width:1200px) {
+    .sidebar{
+        width: 60px;
+    }
+    .sidebar .sidebar-header h3 span,
+    .sidebar li span:last-child{
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li{
+        display: flex;
+        justify-content: center;
+    }
+    .main-content{
+        margin-left: 60px;
+    }
+    .main-content header {
+            left: 60px;
+            width: calc(100% - 60px);
+    }
+    #sidebar-toggle:checked ~.sidebar{
+        width: 240px;
+    }
+    #sidebar-toggle:checked~.sidebar .sidebar-header h3 span ,
+    #sidebar-toggle:checked~.sidebar li span:last-child{
+        display: inline;
+    }
+    #sidebar-toggle:checked~.sidebar .sidebar-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    #sidebar-toggle:checked~.sidebar li{
+        display: block;
+    }
+    #sidebar-toggle:checked~.main-content{
+        margin-left: 60px;
+    }
+    #sidebar-toggle:checked~.main-content header {
+        left: 60px;
+    }
+}
+
+@media only screen and (max-width: 860px){
+    .activity-grid{
+        display: block;
+    }
+    th,td{
+        font-size: 0.5rem;
+    }
+    .sidebar{
+        z-index: 1000;
+    }
+}
+@media only screen and (max-width:600px) {
+    .sidebar{
+        z-index: 1000;
+    }
+    th,td{
+        font-size: 0.5rem;
+    }
+    .activity-card h3,
+    .activity-more h4{
+        font-size: 0.5rem;
+    }
+    .activity-more{
+        padding: 0 3px;
+    }
+    .activity-more span{
+        background: white;
+        zoom: 0.8;
+        color: black;
+        border: 1px solid;
+        text-align: center;
+    }
+    
+}
+@media only screen and (max-width:450px) {
+    main{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    th,td{
+        font-size: 0.5rem;
+    }
+    .activity-card h3,
+    .activity-more h4{
+        font-size: 0.5rem;
+    }
+    .activity-more{
+        padding: 0 3px;
+    }
+    .sidebar{
+        z-index: 1000;
+    }
+}

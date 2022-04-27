@@ -1,0 +1,58 @@
+.info-1,
+.info-2,
+.info-3{
+    padding: 0 10px;
+    margin-top: 20px;
+}
+.info{
+    margin: 0 10px;
+}
+.info-all{
+    background-color: #fff;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 35%);
+}
+.ti-facebook{
+    background-color: rgb(44, 95, 204);
+    color: #fff;
+    border-radius: 50%;
+}
+.ti-instagram{
+    background-color: rgb(212, 93, 159);
+    color: #fff;
+    border-radius: 50%;
+}
+.ti-google{
+    background-color: rgb(212, 93, 93);
+    color: #fff;
+    border-radius: 50%;
+}
+.ti-mobile{
+    color: blue;
+}
+.ti-comment-alt{
+    color: rgb(131, 131, 6);
+}
+.list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-item{
+    display: flex;
+    margin: 10px 0;
+}
+.ti-lock{
+    color: red;
+}
+.status button{
+    width: 100px;
+    cursor: pointer;
+}
+@media only screen and (max-width:600px) {
+    .status button{
+        width: 73px;
+    }
+    .info{
+        margin: 0;
+    }
+}

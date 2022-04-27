@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{
+    --main-color: #323434;
+    --color-dark: #1D2231;
+    --text-grey: #8390a2;
+}
+
+
+* {
+    font-family: 'Poppins' , sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+/* SIDEBAR ( THANH BÊN ) */
+#sidebar-toggle{
+    display: none;
+}
+.sidebar{
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background: var(--main-color);
+    color: #fff;
+    overflow-y: auto;
+    transition: width 500ms;
+}
+.sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0rem 1rem;
+}
+.sidebar-menu {
+    padding: 1rem;
+}
+.sidebar li{
+    margin-bottom: 1.2rem;
+}
+.sidebar a{
+  color: #fff;
+  font-size: 0.9rem;
+}
+.sidebar li span:hover{
+    color: rgba(0, 0, 0,0.3);
+}
+/* .sidebar li:first-child a{
+    background: rgba(0, 0, 0,0.5 );
+} */
+.sidebar a span:last-child{
+    padding-right: 0.6rem;
+}
+/* PHẦN THU DANH MỤC */
+#sidebar-toggle:checked ~ .sidebar{
+    width: 60px;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span:last-child,
+#sidebar-toggle:checked ~ .sidebar li span:last-child{
+    display: none;
+}
+#sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+}
+#sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+    right: 0;
+}
+/* MAIN CONTENT */
+.main-content{
+  position: relative;
+  margin-left: 240px;
+  transition: margin-left 500ms;
+}
+/* PHẦN HEADER TRONG MAIN CONTENT */
+header{
+    position: fixed;
+    top:0;
+    left: 240px;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    /* width: calc(100% - 240px); */
+    height: 60px;
+    display: flex;
+    padding: 0rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--text-grey);
+    transition: left 500ms; 
+}
+/* PHẦN THANH TÌM KIẾM */
+.search-wrapper{
+    display: flex;
+    align-items: center;
+}
+.search-wrapper input{
+    border: 0;
+    outline: 0;
+    padding: 1rem;
+    height: 38px;
+    width: 100%;
+}
+
+.social-icons{
+    display:  flex;
+    align-items: center;
+
+    
+}
+.social-icons span,
+.social-icons div{
+    margin-left: 1.2rem;
+}
+.social-icons div{
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/ql.jpg);
+    border-radius: 50%;
+}
+.ti-search{
+    margin-right: 5px;
+}
+
+/* PHẦN  TỔNG QUAN  */
+main{
+    margin-top: 60px;
+    background: #f1f5f9;
+    padding: 1rem 3rem;
+}
+
+.revenue{
+    background: var(--main-color);
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 30%);
+    height: 130px;
+}
+.revenua-money{
+    margin-left: 10px;
+    background: rgb(50, 174, 212);
+    border-radius: 50%;
+    font-size: 60px;
+    font-weight: 600;
+    color: #c5bcbc;
+}
+.revenua-alt{
+    margin-left: 10px;
+    background: orange;
+    border-radius: 50%;
+    font-size: 60px;
+    font-weight: 600;
+    color: #c5bcbc;
+}
+.result small{
+    color: #fff;
+}
+.result p{
+    color: #fff;
+}
+.revenua-up{
+    margin-left: 10px;
+    background: rgb(34, 223, 91);
+    border-radius: 50%;
+    font-size: 60px;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+.result {
+    margin-left: 20px;
+    font-size: 20px;    
+}
+.result p{
+   color: rgb(50, 174, 212);
+}
+/*  */
+.filter{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+.filter p {
+    font-size: 25px;
+    padding-left: 10px;
+    color: var(--text-grey);
+}
+.filter-calendar select{
+    font-size: 17px;
+    background-color: var(--main-color);
+    color: #fff;
+    border-radius: 3px;
+}
+.filter-calendar span{
+    padding-right: 10px;
+    font-size: 20px;
+}
+.table-responsive{
+    margin-top: 10x;
+    overflow-x: scroll;
+    box-shadow: 2px 2px 2px #323434;
+}
+table{
+    width: 100%;
+    background: #fff;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+table,th,td{
+    border: 1px solid black;
+}
+thead{
+    text-align: left;
+    background-color: var(--main-color);
+    color: #fff;
+    border-collapse: collapse;
+}
+/* PHẦN FIX CHO TRANG WEB PHÙ HỢP VỚI TỪNG GIAO DIỆN  */
+
+@media only screen and (max-width:1200px) {
+    .sidebar{
+        width: 60px;
+        z-index: 100;
+    }
+    .sidebar .sidebar-header h3 span,
+    .sidebar li span:last-child{
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li{
+        display: flex;
+        justify-content: center;
+    }
+    .main-content{
+        margin-left: 60px;
+    }
+    .main-content header {
+            left: 60px;
+            width: calc(100% - 60px);
+    }
+    .filter{
+        width: 100%;
+    }
+    .table-responsive{
+        top: 20px;
+        position: relative;
+    }
+    #sidebar-toggle:checked ~.sidebar{
+        width: 240px;
+    }
+    #sidebar-toggle:checked~.sidebar .sidebar-header h3 span ,
+    #sidebar-toggle:checked~.sidebar li span:last-child{
+        display: inline;
+    }
+    #sidebar-toggle:checked~.sidebar .sidebar-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    #sidebar-toggle:checked~.sidebar li{
+        display: block;
+    }
+    #sidebar-toggle:checked~.main-content{
+        margin-left: 60px;
+    }
+    #sidebar-toggle:checked~.main-content header {
+        left: 60px;
+    }
+}
+@media only screen and (max-width: 860px){
+    .dash-cards{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .card-single{
+        margin-bottom: 1rem;
+    }
+
+    .activity-grid{
+        display: block;
+    }
+    .summary{
+        margin-top: 1.5rem;
+    }
+    .sidebar{
+        z-index: 1000;
+    }
+}
+@media only screen and (max-width:600px) {
+    .sidebar{
+        z-index: 1000;
+    }
+    .dash-cards{
+        grid-template-columns: 100%;
+    }
+    .filter{
+        display: none;
+    }
+    .table-responsive{
+        top: 20px;
+        position: relative;
+    }
+}
+@media only screen and (max-width:450px) {
+    
+    main{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
