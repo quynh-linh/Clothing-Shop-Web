@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 03, 2022 lúc 04:34 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 8.1.2
+-- Thời gian đã tạo: Th4 27, 2022 lúc 01:04 PM
+-- Phiên bản máy phục vụ: 10.4.24-MariaDB
+-- Phiên bản PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,11 +37,12 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`catId`, `catName`) VALUES
-(33, 'Áo'),
-(34, 'Áo Khoác'),
-(35, 'Quần&amp;JUMPSUIT'),
-(36, 'Chân Váy'),
-(37, 'Đầm');
+(40, 'ÁO'),
+(41, 'ÁO KHOÁC'),
+(42, 'QUẦN &amp; JUMPSUIT'),
+(43, 'CHÂN VÁY'),
+(44, 'ĐẦM'),
+(45, 'ĐỒ LÓT');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,7 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`adminId`, `adminName`, `adminEmail`, `adminUser`, `adminPass`, `level`) VALUES
-(0, 'QuỳnhLinh', 'dd@gmail.com', 'linh22', '202cb962ac59075b964b07152d234b70', ''),
+(1, 'QuỳnhLinh', 'dd@gmail.com', 'linh22', '202cb962ac59075b964b07152d234b70', ''),
 (5, 'My Tom', 'linh@gmail.com', 'tom2105', 'c56d0e9a7ccec67b4ea131655038d604', '12');
 
 -- --------------------------------------------------------
@@ -82,7 +83,23 @@ CREATE TABLE `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brandId`, `brandName`) VALUES
-(5, 'IVY moda');
+(14, 'Gucci'),
+(15, 'IVY moda'),
+(16, 'Chanel'),
+(17, 'Hermès'),
+(18, 'Gucci'),
+(19, 'Louis Vuitton'),
+(20, 'Prada'),
+(21, 'Dior'),
+(22, 'Burberry'),
+(23, 'Dolce &amp; Gabbana'),
+(24, 'Ralph Lauren'),
+(25, 'Versace'),
+(26, 'Armani'),
+(27, 'Givenchy'),
+(28, 'FENDI'),
+(29, 'Yves Saint Laurent'),
+(30, 'Bottega Veneta');
 
 -- --------------------------------------------------------
 
@@ -95,17 +112,29 @@ CREATE TABLE `tbl_cart` (
   `productId` int(11) NOT NULL,
   `sessionId` varchar(255) NOT NULL,
   `productName` varchar(255) NOT NULL,
+  `size` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `quantity` int(255) NOT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Đang đổ dữ liệu cho bảng `tbl_cart`
+-- Cấu trúc bảng cho bảng `tbl_order`
 --
 
-INSERT INTO `tbl_cart` (`cartID`, `productId`, `sessionId`, `productName`, `price`, `quantity`, `image`) VALUES
-(7, 13, 'rksjrm07mpje733092gnt1gala', 'Đầm đuôi cá họa tiết hoa nhí', '1590000', 2, 'c69002fd9d.jpg');
+CREATE TABLE `tbl_order` (
+  `orderId` int(11) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `size` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `thanhtien` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `order_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -121,29 +150,86 @@ CREATE TABLE `tbl_product` (
   `product_desc` text NOT NULL,
   `type` int(11) NOT NULL,
   `price` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `typeProductId` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `product_desc`, `type`, `price`, `image`) VALUES
-(9, 'Áo thun sweater phối ngọc', 33, 5, 'Áo thun cổ tròn, tay dài. Bo gấu ở cổ và tay áo. Mặt trước phối hạt giả ngọc trai tạo điểm nhấn. Dễ dàng mix đồ với quần dài, zuýp bò...để có ngay set đồ ưng ý đi chơi, hẹn hò, đi làm mà vẫn cá tính.\r\nMàu sắc: Cam - Đen\r\nMẫu mặc size S:\r\nChiều cao: 1m66\r\nCân nặng: 48kg\r\nSố đo 3 vòng: 78-61-88', 1, '297000', 'a46bc22bf3.jpg'),
-(10, 'Áo thun Be Good', 33, 5, 'Áo thun cổ tròn, tay dài. 2 túi có nắp in chữ phía trước. Bo gấu ở cổ và tay áo bằng chun gân co giãn. Gấu áo có dây kéo rút. Vải thun dập nổi.\r\n\r\nDễ dàng mix đồ với quần dài, zuýp bò...để có ngay set đồ ưng ý đi chơi, hẹn hò, đi làm mà vẫn cá tính.\r\n\r\nMàu sắc: Bạc - Xanh Oliu\r\n\r\nMẫu mặc size S:\r\n\r\nChiều cao: 1m66\r\nCân nặng: 48kg\r\nSố đo 3 vòng: 78-61-88 cm', 1, '316000', 'c6fc5f5e76.jpg'),
-(11, 'Áo thun gân bo gấu', 33, 5, 'Áo thun cổ tròn, tay dài bo gấu dài tạo bồng. Gấu áo bo. \r\n\r\nChiếc áo mang phong cách trẻ trung và dễ phối đồ. Chất liệu thun gân ôm nhẹ sẽ giúp nàng cảm thấy thoải mái và dễ chịu khi diện. Có thể thoải mái mix match mẫu áo kiểu này với nhiều món đồ thời trang khác nhau mà vẫn đẹp, sành điệu khi xuống phố.\r\n\r\nMàu sắc: Gold - Đen\r\n\r\nMẫu mặc size S:\r\n\r\nChiều cao: 1m66\r\nCân nặng: 48kg\r\nSố đo 3 vòng: 78-61-88', 1, '311000', 'a587d29260.jpg'),
-(12, 'Đầm lệch vai ánh nhũ', 33, 5, 'Đầm lệch vai. Tay hến. Eo chiết, có đai chần chun co giãn - mặt kim loại phía trước. Tùng váy dài qua gối. Cài bằng khóa kéo ẩn sau lưng.\r\n\r\nVải lụa 2 lớp, cách điệu họa tiết có ánh nhũ bắt sáng. Thiết kế nổi bật với chi tiết vai lệch trendy.  Diện mẫu đầm này nàng sẽ trở thành quý cô sành điệu trong mọi buổi tiệc, cũng như nổi bật hơn trong mọi cuộc gặp gỡ đấy.\r\n\r\nMàu sắc: Đỏ ruby - Xanh Tím Than\r\n\r\nMẫu mặc size S:\r\n\r\nChiều cao: 1m66\r\nCân nặng: 48kg\r\nSố đo 3 vòng: 78-61-88 cm', 1, '1790000', '59221fff87.jpg'),
-(13, 'Đầm đuôi cá họa tiết hoa nhí', 33, 5, 'Đầm cổ V có dây thắt phía trước, dáng ôm đuôi cá. Tay ngắn được rút dây kéo 2 bên. Mặt trước chần chun nhún tạo kiểu. Cài bằng dây kéo khóa ẩn sau lưng. Vải họa tiết hoa nhí\r\n\r\nĐiểm độc đáo của là phần tay bồng khiến thiết kế thêm phần nhẹ nhàng, giấu khéo nhược điểm bắp tay to. Thanh lịch và ngọt ngào, đây chắc chắn sẽ là mẫu đầm sẽ giúp nàng tỏa sáng khi diện đấy.\r\n\r\nMàu sắc: Họa tiết Vàng Nghệ - Họa tiết Tím Lavender\r\n\r\nMẫu mặc size S:\r\n\r\nChiều cao: 1m68\r\nCân nặng: 52kg\r\nSố đo 3 vòng: 83-62-95cm', 1, '1590000', 'c69002fd9d.jpg'),
-(14, 'Áo thun Symphony', 33, 5, 'Áo phông chất thun, dáng Regular, độ dài thoải mái. Tay cộc, cổ tròn. Phía trước in lệch chữ Symphony. Phía sau in hình thiên nhiên khổ lớn.\r\n\r\nMột mẫu áo năng động, phối hình in sáng màu phù hợp cho chàng trẻ trung. Thiết kế có độ rộng thoải mái, cover tốt những khuyết điểm mà người mặc chưa tự tin.\r\n\r\nMàu sắc: Ghi khói - Đen\r\n\r\nMẫu mặc size L:\r\n\r\nChiều cao: 1m85\r\nCân nặng: 75kg\r\nSố đo 3 vòng: 100-78-95 cm', 0, '650000', '6cb7ad6c0e.jpg'),
-(15, 'Áo thun Symphony', 33, 5, 'Áo phông chất thun, dáng Regular, độ dài thoải mái. Tay cộc, cổ tròn. Phía trước in lệch chữ Symphony. Phía sau in hình thiên nhiên khổ lớn.\r\n\r\nMột mẫu áo năng động, phối hình in sáng màu phù hợp cho chàng trẻ trung. Thiết kế có độ rộng thoải mái, cover tốt những khuyết điểm mà người mặc chưa tự tin.\r\n\r\nMàu sắc: Ghi khói - Đen\r\n\r\nMẫu mặc size L:\r\n\r\nChiều cao: 1m85\r\nCân nặng: 75kg\r\nSố đo 3 vòng: 100-78-95 cm', 0, '650000', '35f5838404.jpg'),
-(16, 'Quần Tây cơ bản', 35, 5, 'Quần Tây cơ bản có độ dài ngang mắt cá chân. Phía trước có khuy cài phối màu từ IVY moda. Đai quần có đỉa. Đằng trước quần có 2 túi chéo. Đằng sau quần có 2 túi ngang.\r\n\r\nMột chiếc quần cơ bản sẽ giúp hoàn thiện mọi set đồ trong bất kỳ trường hợp nào. Nếu chàng băn khoăn không biết mặc gì hôm nay, hãy chọn chiếc quần Tây cơ bản này. Chất liệu đứng form và mềm, nhẹ, thấm hút mồ hôi tốt. Chiều dài ngang mắt cá chân giúp vóc dáng của người mặc trông cao ráo hơn.\r\n\r\nMàu sắc: Ghi khói - Đen\r\n\r\nMẫu mặc size L:\r\n\r\nChiều cao: 1m85\r\nCân nặng: 75kg\r\nSố đo 3 vòng: 100-78-95 cm', 0, '1150000', 'b404a8c4bd.jpg'),
-(17, 'Quần dài fit dáng', 35, 5, 'Quần dài, ống ôm nhẹ. Độ dài chạm mắt cá chân. Đai quần có khuy cài và đỉa. Khóa dạng kéo. Đằng sau có 2 túi giả.\r\n\r\nMột chiếc quần fit dáng là item mà mọi chàng trai không thể bỏ qua. Thiết kế ôm nhẹ tôn dáng khiến đôi chân người mặc trông dài và thon hơn rất nhiều. Sắc tối dễ mix-match cùng nhiều thiết kế áo khác. Với những chàng trai trẻ trung, đây sẽ là chiếc quần phù hợp cho cả ngày đi chơi và đi làm.\r\n\r\nMàu sắc: Kẻ chì - Kẻ xanh tím than\r\n\r\nMẫu mặc size L:\r\n\r\nChiều cao: 1m85\r\nCân nặng: 75kg\r\nSố đo 3 vòng: 100-78-95 cm', 0, '1150000', '7684ebc61b.jpg'),
-(19, 'Áo thun Anti-Haven ', 33, 5, 'Áo thun dáng Regular, độ dài vừa phải, tay cộc, cổ tròn. Phía trước in hình và chữ bắt mắt, trẻ trung.\r\n\r\nĐây là một chiếc áo thun cơ bản, năng động dành cho các chàng trai mùa hè. Gam đen dễ phối được kết hợp cùng hình in sáng màu trẻ trung. Dáng Regular vừa vặn giúp người mặc trông gọn gàng hơn.\r\n\r\nMàu sắc: Đen\r\n\r\nMẫu mặc size L:\r\n\r\nChiều cao: 1m85\r\nCân nặng: 75kg\r\nSố đo 3 vòng: 100-78-95 cm', 0, '650000', 'a16572f96f.jpg'),
-(20, 'Đầm thun họa tiết da báo', 37, 5, 'Đầm thun cổ tròn, tay ngắn, viền bằng chun co giãn.  Eo chiết bằng chun nhúm có dây kéo rút. Vải họa tiết da báo trendy.\r\n\r\nMàu sắc: Họa tiết ', 2, '380000', '21f75c343a.jpg'),
-(21, 'Quần sooc hoa thắt nơ', 35, 5, 'Quần sooc hoa cạp chun co giãn. Ống dài ngang đùi. 2 túi chéo 2 bên. Dây kéo rút 2 bên có dây thắt nơ.\r\n\r\nMàu sắc: Họa tiết Hồng san hô - Họa tiết Xanh Tím Than - Họa tiết Hồng Phấn', 2, '300000', '0dc8d9e2a2.jpg'),
-(22, 'Đầm 2 dây', 37, 5, 'Đầm 2 dây bé gái. Diềm bèo. Phần áo được chần chun co giãn đều. Tùng xòe, có 2 túi vuông. Chất vải thô, có lớp lót rời bên trong.\r\n\r\nMàu sắc: Họa tiết Tím Đậm\r\n\r\nMẫu mặc size 8-9:\r\n\r\nChiều cao 1m29\r\nCân nặng 29,5kg', 2, '650000', 'cd21d6fdd7.jpg'),
-(23, 'Áo thun tay bèo', 33, 5, 'Áo thun cổ đức có 2 khuy cài, tay ngắn được diềm bèo. Dáng áo xuông. Thêu họa tiết nổi thân áo.\r\n\r\nMàu sắc: Vàng Nghệ', 2, '550000', '3a27f8a245.jpg'),
-(24, 'Combo 2 áo thun cổ sen ', 33, 5, 'Combo 2 áo (1 màu hồng + 1 màu trắng)\r\n\r\nÁo thun cổ sen có 2 khuy cài, tay ngắn  vai xếp nếp có bo gấu. Dáng áo xuông. Xẻ gấu 2 bên.', 2, '540000', 'fba8a526f6.jpg');
+INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `product_desc`, `type`, `price`, `image`, `typeProductId`) VALUES
+(39, 'Quần đẹp', 45, 27, 'Khá là đẹp', 0, '9000', '33f1677582.jpg', 48);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_type_product`
+--
+
+CREATE TABLE `tbl_type_product` (
+  `typeProductID` int(100) NOT NULL,
+  `typeProductName` varchar(255) NOT NULL,
+  `catID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_type_product`
+--
+
+INSERT INTO `tbl_type_product` (`typeProductID`, `typeProductName`, `catID`) VALUES
+(28, 'Áo thun', 40),
+(29, 'Áo sơ mi', 40),
+(30, 'Áo peplum', 40),
+(31, 'Áo kiểu', 40),
+(32, 'Áo croptop', 40),
+(33, 'Áo len', 40),
+(34, 'Áo khoác', 41),
+(35, 'Áo blazer', 41),
+(36, 'Áo vest', 41),
+(37, 'Áo măng tô', 41),
+(38, 'Quần jeans', 42),
+(39, 'Quần dài', 42),
+(40, 'Quần lửng/short', 42),
+(41, 'Jumpsuit', 42),
+(42, 'Chân Váy', 43),
+(43, 'Chân váy xếp ly', 43),
+(44, 'Chân váy chữ A', 43),
+(45, 'Đầm', 44),
+(46, 'Đầm maxi/voan', 44),
+(47, 'Đầm thun', 44),
+(48, 'Senora - Đầm dạ hội', 44),
+(49, 'Đồ lót', 45),
+(50, 'Áo bra', 45),
+(51, 'Quần lót', 45),
+(52, 'Pyjama', 45),
+(53, 'Bikini', 45);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_uer`
+--
+
+CREATE TABLE `tbl_uer` (
+  `userId` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `userPassword` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `gioiTinh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sdt` int(11) NOT NULL,
+  `ngaySinh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `diaChi` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_uer`
+--
+
+INSERT INTO `tbl_uer` (`userId`, `name`, `username`, `userPassword`, `email`, `gioiTinh`, `sdt`, `ngaySinh`, `diaChi`) VALUES
+(3, 'Nguyễn Thanh Quỳnh Linh', 'linh2106', '202cb962ac59075b964b07152d234b70', 'linh@gmail.com', 'Nam', 981984623, '22/06/2002', 'Phường 4 , Quận 5 , Thành phố hồ chí minh'),
+(4, 'thuy', 'thuy122', '202cb962ac59075b964b07152d234b70', 'vswefwe', 'nu', 2147483647, '22/06/2002', 'feafeqw');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -171,13 +257,38 @@ ALTER TABLE `tbl_brand`
 -- Chỉ mục cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  ADD PRIMARY KEY (`cartID`);
+  ADD PRIMARY KEY (`cartID`),
+  ADD KEY `productId` (`productId`);
+
+--
+-- Chỉ mục cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD PRIMARY KEY (`orderId`),
+  ADD KEY `productId` (`productId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Chỉ mục cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  ADD PRIMARY KEY (`productId`);
+  ADD PRIMARY KEY (`productId`),
+  ADD KEY `brandId` (`brandId`),
+  ADD KEY `catId` (`catId`),
+  ADD KEY `tbl_product_ibfk_3` (`typeProductId`);
+
+--
+-- Chỉ mục cho bảng `tbl_type_product`
+--
+ALTER TABLE `tbl_type_product`
+  ADD PRIMARY KEY (`typeProductID`),
+  ADD KEY `tbl_type_product_ibfk_1` (`catID`);
+
+--
+-- Chỉ mục cho bảng `tbl_uer`
+--
+ALTER TABLE `tbl_uer`
+  ADD PRIMARY KEY (`userId`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -187,25 +298,80 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brandId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `brandId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `productId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `productId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_type_product`
+--
+ALTER TABLE `tbl_type_product`
+  MODIFY `typeProductID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_uer`
+--
+ALTER TABLE `tbl_uer`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  ADD CONSTRAINT `tbl_cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD CONSTRAINT `tbl_order_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_order_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `tbl_uer` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`brandId`) REFERENCES `tbl_brand` (`brandId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_product_ibfk_2` FOREIGN KEY (`catId`) REFERENCES `category` (`catId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_product_ibfk_3` FOREIGN KEY (`typeProductId`) REFERENCES `tbl_type_product` (`typeProductID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_type_product`
+--
+ALTER TABLE `tbl_type_product`
+  ADD CONSTRAINT `tbl_type_product_ibfk_1` FOREIGN KEY (`catID`) REFERENCES `category` (`catId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
