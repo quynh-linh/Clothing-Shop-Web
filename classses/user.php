@@ -77,11 +77,38 @@
                 }
             }
         }
-        public function show_User()
+        public function show_User($userId)
         {
-            $query = "SELECT *  FROM tbl_uer"; 
+            $query = "SELECT *  FROM tbl_uer WHERE userId = '$userId'"; 
             $result = $this->db->select($query);
             return $result;
         }
+
+        public function update_user($user_Id,$data){
+            // kết nối với cơ sở dữ liệu
+            $name = mysqli_real_escape_string($this->db->link, $data["name"]);
+            $email = mysqli_real_escape_string($this->db->link, $data["email"]);
+            $phone = mysqli_real_escape_string($this->db->link, $data["phone"]);
+            $sex = mysqli_real_escape_string($this->db->link, $data["sex"]);
+            $date = mysqli_real_escape_string($this->db->link, $data["date"]);
+            $address = mysqli_real_escape_string($this->db->link, $data["address"]);
+            if ( $name=="" ||  $email=="" ||  $phone=="" ||  $sex=="" ||  $date=="" ||  $address=="") {
+                $alert = "<span class='error'>Nhập đầy đủ thông tin</span>";
+                return $alert;
+            } else {
+                    $update_user = "UPDATE tbl_uer SET name='$name', email='$email', sdt='$phone', gioiTinh='$sex', ngaySinh='$date', diaChi='$address' WHERE userId='$user_Id'";
+                    $result_check = $this->db->update($update_user);
+                    if ($result_check) {
+                        $alert = "<span class='success'> Update Successfully </span>";
+                        return $alert;
+                    } else {
+                            $alert = "<span class='error'> Update Fail  </span>";
+                            return $alert;
+                        }
+            }
+        }
+                
+            
+        
     }
 ?>

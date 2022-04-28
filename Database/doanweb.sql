@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2022 lúc 01:04 PM
--- Phiên bản máy phục vụ: 10.4.24-MariaDB
--- Phiên bản PHP: 7.4.28
+-- Host: 127.0.0.1
+-- Generation Time: Apr 28, 2022 at 01:24 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `doanweb`
+-- Database: `doanweb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -33,7 +33,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`catId`, `catName`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `category` (`catId`, `catName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_admin`
+-- Table structure for table `tbl_admin`
 --
 
 CREATE TABLE `tbl_admin` (
@@ -60,7 +60,7 @@ CREATE TABLE `tbl_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_admin`
+-- Dumping data for table `tbl_admin`
 --
 
 INSERT INTO `tbl_admin` (`adminId`, `adminName`, `adminEmail`, `adminUser`, `adminPass`, `level`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `tbl_admin` (`adminId`, `adminName`, `adminEmail`, `adminUser`, `adm
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_brand`
+-- Table structure for table `tbl_brand`
 --
 
 CREATE TABLE `tbl_brand` (
@@ -79,7 +79,7 @@ CREATE TABLE `tbl_brand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_brand`
+-- Dumping data for table `tbl_brand`
 --
 
 INSERT INTO `tbl_brand` (`brandId`, `brandName`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `tbl_brand` (`brandId`, `brandName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_cart`
+-- Table structure for table `tbl_cart`
 --
 
 CREATE TABLE `tbl_cart` (
@@ -115,13 +115,21 @@ CREATE TABLE `tbl_cart` (
   `size` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `quantity` int(255) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_cart`
+--
+
+INSERT INTO `tbl_cart` (`cartID`, `productId`, `sessionId`, `productName`, `size`, `price`, `quantity`, `image`, `userId`) VALUES
+(58, 39, 'o0ql3llj162iim4vn9df8oh8la', 'Quần đẹp', 'M', '9000', 1, '33f1677582.jpg', 4);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_order`
+-- Table structure for table `tbl_order`
 --
 
 CREATE TABLE `tbl_order` (
@@ -136,10 +144,17 @@ CREATE TABLE `tbl_order` (
   `order_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_order`
+--
+
+INSERT INTO `tbl_order` (`orderId`, `productId`, `size`, `price`, `image`, `quantity`, `thanhtien`, `userId`, `order_time`) VALUES
+(17, 39, 'S', '9000', '33f1677582.jpg', 8, 72000, 3, '2022-04-28 11:20:30');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_product`
+-- Table structure for table `tbl_product`
 --
 
 CREATE TABLE `tbl_product` (
@@ -155,7 +170,7 @@ CREATE TABLE `tbl_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_product`
+-- Dumping data for table `tbl_product`
 --
 
 INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `product_desc`, `type`, `price`, `image`, `typeProductId`) VALUES
@@ -164,7 +179,7 @@ INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `prod
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_type_product`
+-- Table structure for table `tbl_type_product`
 --
 
 CREATE TABLE `tbl_type_product` (
@@ -174,7 +189,7 @@ CREATE TABLE `tbl_type_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_type_product`
+-- Dumping data for table `tbl_type_product`
 --
 
 INSERT INTO `tbl_type_product` (`typeProductID`, `typeProductName`, `catID`) VALUES
@@ -208,7 +223,7 @@ INSERT INTO `tbl_type_product` (`typeProductID`, `typeProductName`, `catID`) VAL
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_uer`
+-- Table structure for table `tbl_uer`
 --
 
 CREATE TABLE `tbl_uer` (
@@ -224,44 +239,45 @@ CREATE TABLE `tbl_uer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_uer`
+-- Dumping data for table `tbl_uer`
 --
 
 INSERT INTO `tbl_uer` (`userId`, `name`, `username`, `userPassword`, `email`, `gioiTinh`, `sdt`, `ngaySinh`, `diaChi`) VALUES
-(3, 'Nguyễn Thanh Quỳnh Linh', 'linh2106', '202cb962ac59075b964b07152d234b70', 'linh@gmail.com', 'Nam', 981984623, '22/06/2002', 'Phường 4 , Quận 5 , Thành phố hồ chí minh'),
+(3, 'Nguyễn Thanh Quỳnh Linh', 'linh2106', '202cb962ac59075b964b07152d234b70', 'linh@gmail.com', 'Nam', 11111111, '22/06/2002', 'Phường 4 , Quận 5 , Thành phố hồ chí minh'),
 (4, 'thuy', 'thuy122', '202cb962ac59075b964b07152d234b70', 'vswefwe', 'nu', 2147483647, '22/06/2002', 'feafeqw');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`catId`);
 
 --
--- Chỉ mục cho bảng `tbl_admin`
+-- Indexes for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`adminId`);
 
 --
--- Chỉ mục cho bảng `tbl_brand`
+-- Indexes for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
   ADD PRIMARY KEY (`brandId`);
 
 --
--- Chỉ mục cho bảng `tbl_cart`
+-- Indexes for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
   ADD PRIMARY KEY (`cartID`),
-  ADD KEY `productId` (`productId`);
+  ADD KEY `productId` (`productId`),
+  ADD KEY `userId` (`userId`);
 
 --
--- Chỉ mục cho bảng `tbl_order`
+-- Indexes for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
   ADD PRIMARY KEY (`orderId`),
@@ -269,7 +285,7 @@ ALTER TABLE `tbl_order`
   ADD KEY `userId` (`userId`);
 
 --
--- Chỉ mục cho bảng `tbl_product`
+-- Indexes for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD PRIMARY KEY (`productId`),
@@ -278,89 +294,89 @@ ALTER TABLE `tbl_product`
   ADD KEY `tbl_product_ibfk_3` (`typeProductId`);
 
 --
--- Chỉ mục cho bảng `tbl_type_product`
+-- Indexes for table `tbl_type_product`
 --
 ALTER TABLE `tbl_type_product`
   ADD PRIMARY KEY (`typeProductID`),
   ADD KEY `tbl_type_product_ibfk_1` (`catID`);
 
 --
--- Chỉ mục cho bảng `tbl_uer`
+-- Indexes for table `tbl_uer`
 --
 ALTER TABLE `tbl_uer`
   ADD PRIMARY KEY (`userId`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_admin`
+-- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
   MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_brand`
+-- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
   MODIFY `brandId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_cart`
+-- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_order`
+-- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_product`
+-- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   MODIFY `productId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_type_product`
+-- AUTO_INCREMENT for table `tbl_type_product`
 --
 ALTER TABLE `tbl_type_product`
   MODIFY `typeProductID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_uer`
+-- AUTO_INCREMENT for table `tbl_uer`
 --
 ALTER TABLE `tbl_uer`
   MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `tbl_cart`
+-- Constraints for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  ADD CONSTRAINT `tbl_cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_cart_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `tbl_uer` (`userId`);
 
 --
--- Các ràng buộc cho bảng `tbl_order`
+-- Constraints for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
   ADD CONSTRAINT `tbl_order_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_order_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `tbl_uer` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `tbl_product`
+-- Constraints for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`brandId`) REFERENCES `tbl_brand` (`brandId`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -368,7 +384,7 @@ ALTER TABLE `tbl_product`
   ADD CONSTRAINT `tbl_product_ibfk_3` FOREIGN KEY (`typeProductId`) REFERENCES `tbl_type_product` (`typeProductID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `tbl_type_product`
+-- Constraints for table `tbl_type_product`
 --
 ALTER TABLE `tbl_type_product`
   ADD CONSTRAINT `tbl_type_product_ibfk_1` FOREIGN KEY (`catID`) REFERENCES `category` (`catId`) ON DELETE CASCADE ON UPDATE CASCADE;
