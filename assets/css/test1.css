@@ -107,6 +107,10 @@ html{
     background: 0px center;
     box-shadow: none;
 }
+.success{
+    color: green;
+    font-weight: 800;
+}
 
 .information-sex{
     display: flex;
