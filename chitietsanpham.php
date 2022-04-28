@@ -23,17 +23,23 @@
 		$id = $_GET['productId'];
 	} 
     // Thêm sản phẩm vào giỏ hàng
-	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) { 
-		$quantity = $_POST['quantity'];
+	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+        if( Session::get('user_login')==false){
+            echo '<script type ="text/JavaScript">';  
+            echo 'alert("Bạn phải đăng nhập mới được mua hàng")';  
+            echo '</script>'; 
+        } else{
+            $quantity = $_POST['quantity'];
         if($_POST['size']!=""){
             $size=$_POST['size'];
-            $addToCart = $cat -> addProduct_cart($id,$quantity,$size); 
+            $addToCart = $cat -> addProduct_cart($id,$quantity,$size,Session::get('user_id')); 
         }else{
             echo '<script type ="text/JavaScript">';  
             echo 'alert("Bạn chưa chọn size")';  
             echo '</script>'; 
         }
-        
+        }
+		
     }
 ?>
 
@@ -158,7 +164,7 @@
                                         if (isset($addToCart)) {
                                             $size=$_POST['size'];
                                             $quantity = $_POST['quantity'];
-                                            $updateCart = $cat-> updateQuantityandSize($size, $quantity, $id);
+                                            $updateCart = $cat-> updateQuantityandSize($size, $quantity, $id,Session::get('user_id'));
                                             echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
                                         }
                                     ?>

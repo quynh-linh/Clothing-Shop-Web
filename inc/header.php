@@ -470,14 +470,17 @@
                                 <i class="header__cart-icon ti-shopping-cart-full"></i>
                                 <span class="header_cart_quantity">
                                     <?php 
-                                        $check_cart = $cat->checkCart();
-                                        if ($check_cart) {
+
+                                        $check_cart = $cat->checkCart(Session::get('user_id'));
+                                        if ($check_cart && Session::get('user_login')) {
                                             $sum = Session::get("sum");
                                             echo $sum;
-                                        } else {
+                                        } else if ($check_cart== false && Session::get('user_login')){
                                             echo '0';
                                         }
-                                       
+                                       if( Session::get('user_login')==false){
+                                            echo '0';
+                                        }
                                     ?>
                                 </span>
                         </div>
@@ -485,9 +488,10 @@
                             <h5 class="header__cart-list-title" id="style_1">Thông tin sản phẩm</h5>
                             <?php
                                 $cart = new cart();
-                                $getCart = $cart->showCart();
-                                if ($getCart) {
-                                    while ($result = $getCart->fetch_assoc()) {
+                                $getCart = $cart->showCart(Session::get('user_id'));
+                                if( Session::get('user_id')){
+                                    if ($getCart) {
+                                        while ($result = $getCart->fetch_assoc()) {
 							?>
                             <div class="header__cart-list-cart">
                                 <img src="./admin/upload/<?php echo $result['image'] ?>" alt="">
@@ -506,6 +510,14 @@
                             </span>
                             <?php
                                 }
+                                    }else{
+                            ?>
+                            <img src="assets/img/giohangtrong.png" alt="" class="header__cart-list--no-cart-img">
+                            <span class="header__cart-list--no-cart-msg">
+                                Chưa có sản phẩm
+                            </span>
+                            <?php
+                                    }
                             ?>
                             <div class="header__cart-list-submit">
                                 <a href="giohang.php">
@@ -540,7 +552,7 @@
                                 " href="">Địa chỉ của tôi</a>
                             </li>
                             <li class="nav-user_menu-item">
-                                <a style="color: #ffffff;  font-size: 14px; font-weight: 600; text-decoration: none; font-family: var(--font-family-monospace);
+                                <input type="button" name="logout"><a style="color: #ffffff;  font-size: 14px; font-weight: 600; text-decoration: none; font-family: var(--font-family-monospace);
                                 " href="?action=logout">Đăng xuất</a>
                             </li>
                         </ul>
@@ -550,11 +562,17 @@
                     }
                     else {
                 ?>
-                    <a href="">Đăng nhập/Đăng ký</a>
+                    <a href="./login.php" style="text-decoration:none; color:black;">Đăng nhập</a>
                 <?php
                     } 
                 ?>
             </ul>
         </li>
     </ul>
+    <?php
+        if (isset($_GET['action']) && $_GET['action']){
+            Session::destroy();
+        }
+    ?>
+
 </header>

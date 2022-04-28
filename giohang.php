@@ -18,17 +18,17 @@
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['click_+'])) {
 		$cartId = $_POST['cartId']; 
 		$quantity = $_POST['quantity_+'];
-        $update_quantity = $cat-> updateQuantity($cartId, $quantity);
+        $update_quantity = $cat-> updateQuantity($cartId, $quantity,Session::get('user_id'));
     }
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['click_-'])) {
 		$cartId = $_POST['cartId']; 
 		$quantity = $_POST['quantity_-'];
-        $update_quantity = $cat-> updateQuantity($cartId, $quantity);
+        $update_quantity = $cat-> updateQuantity($cartId, $quantity,Session::get('user_id'));
     }
 	// Xóa sản phẩm ra khỏi giỏ hàng
 	if (isset($_GET['cartID'])) {
 		$cartId = $_GET['cartID']; 
-		$delProductCart = $cat->del_ProductCart($cartId);
+		$delProductCart = $cat->del_ProductCart($cartId,Session::get('user_id'));
 	}
 	if (!$_GET['id']) {
 		echo "<meta http-equiv='refresh' content='0;URL=?id=live'>";
@@ -51,6 +51,7 @@
 										<tr>
 											<th>Ảnh sản phẩm</th>
 											<th>Tên Sản Phẩm</th>
+											<th>Size</th>
 											<th>Giá</th>
 											<th>Số lượng</th>
 											<th>Số tiền</th>
@@ -59,7 +60,7 @@
 									</thead>
 									<tbody>
 										<?php
-											$getProductCat = $cat->getProductCart();
+											$getProductCat = $cat->getProductCart(Session::get('user_id'));
 											if ($getProductCat) {
 												$dem=0;
 												$subTotal = 0;
@@ -75,6 +76,9 @@
 											</td>
 											<td>
 												<span><?php echo $result_ProductCat['productName'] ?></span>
+											</td>
+											<td>
+											<?php echo $result_ProductCat['size'] ?>
 											</td>
 											<td>
 												<div class="cart-btn">
@@ -136,7 +140,7 @@
 							<div class="col m-12 l-12">
 							<div class="cart-voucher">
 								<?php
-									$check_cart = $cat->checkCart();
+									$check_cart = $cat->checkCart(Session::get('user_id'));
 									if ($check_cart) {
 								?>
 								<table>

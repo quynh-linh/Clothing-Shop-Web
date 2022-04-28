@@ -39,12 +39,12 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $getOrderHistory = $cat->getOrderHistory();
+                                                $getOrderHistory = $cat->getOrderHistory(Session::get('user_id'));
                                                 if ($getOrderHistory) {
                                                     $i=0;
                                                     $total=0;
                                                     while ($result_OrderHistory = $getOrderHistory->fetch_assoc()) {
-                                                        $total+=$result_OrderHistory['thanhtien'];
+                                                        $total+= $result_OrderHistory['thanhtien'];
                                             ?>
                                             <tr>
                                                 <td ><?=($i=$i+1);?></td>
@@ -82,14 +82,13 @@
                                                         ?>
                                                 </td>
                                             </tr>
-                                            <?php
-                                                        
-                                                    }
-                                                }
-                                            ?>
                                             <tr>
                                                 <th colspan="2">Tổng giá trị</th>
                                                 <th><?php echo number_format($total, 0, ',', '.')." "."đ" ; ?></th>
+                                                <?php 
+                                                        }
+                                                    }
+                                                ?>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -16,9 +16,8 @@
 </head>
 <?php
     if (isset($_GET['orderid']) && $_GET['orderid']=='order'){
-        $idUser=1;
-        $inserOder=$cat->insertOder($idUser);
-        $delCart=$cat->del_Cart();
+        $inserOder=$cat->insertOder(Session::get('user_id'));
+        $delCart=$cat->del_Cart(Session::get('user_id'));
         header('Location:index.php');
     }
 ?>
@@ -49,7 +48,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $getProductCat = $cat->getProductCart();
+                                                $getProductCat = $cat->getProductCart(Session::get('user_id'));
                                                 if ($getProductCat) {
                                                     $dem=0;
                                                     $subTotal = 0;
@@ -110,7 +109,7 @@
                                     </table>
                                     <div class="cart-voucher">
                                     <?php
-                                        $check_cart = $cat->checkCart();
+                                        $check_cart = $cat->checkCart(Session::get('user_id'));
                                         if ($check_cart) {
                                     ?>
                                     <table>
@@ -169,30 +168,36 @@
                                 </div>
                         </div>
                         <div class="box_right">
-                        <table>
-                                        
+                                <?php
+                                        $userId=Session::get('user_id');
+                                        $infor_user = $user->show_User($userId);
+                                        while ($result_infor_user = $infor_user->fetch_assoc()){
+                                ?>
+                        <table> 
                                         <tbody>
                                             <tr style="line-height:50px;">
-                                                <td style="width:20%">Tên:</td>
-                                                <td></td>
+                                                <td>Tên: </td>
+                                                <td><?php echo $result_infor_user['name']?></td>
                                             </tr>
                                             <tr style="line-height:50px;">
-                                                <td>Email:</td>
-                                                <td></td>
+                                                <td>Email: </td>
+                                                <td><?php echo $result_infor_user['email']?></td>
                                             </tr>
                                             <tr style="line-height:50px;">
-                                                <td>SĐT:</td>
-                                                <td></td>
+                                                <td>SĐT: </td>
+                                                <td><?php echo $result_infor_user['sdt']?></td>
                                             </tr>
                                             <tr style="line-height:50px;">
-                                                <td>Địa chỉ:</td>
-                                                <td></td>
+                                                <td>Address: </td>
+                                                <td><?php echo $result_infor_user['diaChi']?></td>
                                             </tr>
                                             <tr style="line-height:50px;">
-                                                <td colspan="2" style="cursor:pointer;">Cập nhật thông tin</td>
+                                                <td colspan="2" style="cursor:pointer;"><a href="account.php" style="text-decoration:none;color:black; ">Chỉnh sửa thông tin</a></td>
                                             </tr>
-                                        </tbody>
-                                       
+                                        </tbody>  
+                                <?php 
+                                        } 
+                                ?>        
                         </table>
                                         
                         </div>

@@ -14,6 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin tài khoản </title>
 </head>
+<?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])){
+        $idUser=Session::get('user_id');
+        $update_user=$user->update_user($idUser,$_POST);
+        echo $update_user;
+    }
+?>
+
+
 <body>
     <div class="content">   
         <div class="grid">
@@ -88,37 +97,54 @@
                                     <div class="account-tt">
                                         <span class="account-title">Thông tin cá nhân</span>
                                     </div>
+                                    <?php
+                                        $userId=Session::get('user_id');
+                                        $infor_user = $user->show_User($userId);
+                                        while ($result_infor_user = $infor_user->fetch_assoc()){
+                                    ?>
+                    <form action="" method="post">
                                     <div class="information">
                                         <div class="information-name">
                                             <label>Họ & Tên</label>
-                                            <input type="text" placeholder="Thêm họ tên">
+                                            <input type="text" name="name" value="<?php echo $result_infor_user['name']?>">
                                         </div>
                                         <div class="information-name">
                                             <label>Số điện thoại</label>
-                                            <input type="text" placeholder="Thêm Nickname">
+                                            <input type="text" name="phone" value="<?php echo $result_infor_user['sdt']?>">
                                         </div>
                                         <div class="information-name">
                                             <label>Email</label>
-                                            <input type="text" placeholder="Thêm Nickname">
+                                            <input type="text" name="email" value="<?php echo $result_infor_user['email']?>">
                                         </div>
                                         <div class="information-name">
                                             <label>Ngày sinh</label>
-                                            <input type="text" placeholder="Thêm Nickname">
+                                            <input type="text" name="date" value="<?php echo $result_infor_user['ngaySinh']?>">
+                                        </div>
+                                        <div class="information-name">
+                                            <label>Địa chỉ</label>
+                                            <input type="text" name="address" value="<?php echo $result_infor_user['diaChi']?>">
                                         </div>
                                          <div class="information-sex">
                                              <label>Giới tính</label>
-                                             <form action="form_action.asp" method="get">
-                                                 <input type="radio" name="Nam" id="Boy" >
+                                             <?php if($result_infor_user['gioiTinh']=="Nam" || $result_infor_user['gioiTinh']=="nam"){ ?>
+                                                 <input type="radio" checked="true" name="sex" id="Boy" value="Nam">
                                                  <label for="Nam">Nam</label>
-                                                 <input type="radio" name="Nu" id="Girl" >
+                                                 <input type="radio" name="sex" id="Girl" value="Nữ">
                                                  <label for="Nu">Nữ</label>
-                                                 <input type="radio" name="Nam" id="khac" >
-                                                 <label for="Khac">Khác</label>
-                                             </form>
+                                                 <?php 
+                                                        }else{ 
+                                                 ?> 
+                                                 <input type="radio" name="sex" id="Boy" value="Nam">
+                                                 <label for="Nam">Nam</label>
+                                                 <input type="radio" checked="true" name="sex" id="Girl" value="Nữ">
+                                                 <label for="Nu">Nữ</label>
+                                                 <?php } ?>
                                          </div>
                                          <div class="infotmation-save">
-                                            <input type="submit" value="Lưu thay đổi">
+                                            <input type="submit" name="save" value="Lưu thay đổi">
                                          </div>
+                                         <?php } ?>
+                    </form>
                                     </div>
                                 </div>
                                 <div class="col l-5">
