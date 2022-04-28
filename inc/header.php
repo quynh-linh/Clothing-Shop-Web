@@ -450,7 +450,7 @@
             <div class="header__logo">
                 <div class="logo">
                  <a href="index.php">
-                    <img src="./assets/img/horizontal_on_white_by_logaster (1).png" alt="">
+                    <img src="./assets/img/banner/messilogopng_350x.webp" alt="">
                  </a>
                 </div>
             </div>
