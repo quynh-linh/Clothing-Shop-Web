@@ -126,7 +126,7 @@
 											<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 											<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
 											<div class="home-product-item_price">
-												<span class="home-product-item_price-current"><?php echo $result['price']."đ" ?></span>
+												<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
 											</div>
 										</div>
 									</a>
@@ -150,7 +150,7 @@
 											<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 											<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
 											<div class="home-product-item_price">
-												<span class="home-product-item_price-current"><?php echo $result['price']."đ" ?></span>
+												<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
 											</div>
 										</div>
 									</a>

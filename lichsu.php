@@ -109,9 +109,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                                 <tbody>
                                     <?php
                                     $getOrderHistory = $cat->getOrderHistory(Session::get('user_id'));
+                                    $total = 0;
                                     if ($getOrderHistory) {
                                         $i = 0;
-                                        $total = 0;
+                                        
                                         while ($result_OrderHistory = $getOrderHistory->fetch_assoc()) {
                                             $total += $result_OrderHistory['thanhtien'];
                                     ?>
