@@ -11,6 +11,7 @@
 <?php include '../classses/brand.php';?>
 <?php include '../classses/category.php';?>
 <?php include '../classses/product.php';?>
+<?php include '../classses/typeProduct.php';?>
 <?php
     // isset($_POST['submit']) nếu người dùng nhấn vào submit thì mới thêm còn lại thì không
     $product = new product();
@@ -109,6 +110,33 @@
                         </select>
                     </td>
                 </tr>
+                <tr>
+                    <td class="form_title">
+                        <label>Kiểu sản phẩm</label>
+                    </td>
+                    <td>
+                        <select id="select" name="typeProduct">
+                            <option>Lựa chọn kiểu sản phẩm</option>
+                            <?php
+                                $typeProduct = new typeProduct();
+                                $typeProductlist = $typeProduct ->show_type_product();
+                                if ($typeProductlist) {
+                                    while ($result = $typeProductlist ->fetch_assoc()) {
+                            ?>
+                            <option 
+                            <?php 
+                                if ($result['typeProductID'] == $result_product['typeProductId']) {
+                                    echo 'selected';
+                                }
+                            ?> 
+                            value="<?php echo $result['typeProductID'] ?>"><?php echo $result["typeProductName"] ?></option>
+                            <?php
+                                    }
+                                }
+                            ?>
+                        </select>
+                    </td>
+                </tr>
 				 <tr>
                     <td class="form_title" style="vertical-align: top; padding-top: 9px;">
                         <label>Mô tả sản phẩm</label>
@@ -138,7 +166,7 @@
 				
 				<tr>
                     <td class="form_title">
-                        <label>Kiểu sản phẩm</label>
+                        <label>Loại sản phẩm</label>
                     </td>
                     <td>
                         <select id="select" name="type">

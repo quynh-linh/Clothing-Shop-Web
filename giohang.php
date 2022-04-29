@@ -159,7 +159,7 @@ if (!$_GET['id']) {
 									<span class="ti-arrow-left" style="padding: 0 10px;">
 
 									</span>
-								Tiếp tục mua hàng
+									Tiếp tục mua hàng
 								</a>
 							</div>
 
@@ -176,8 +176,8 @@ if (!$_GET['id']) {
 											<span>Tổng sản phẩm</span>
 										</span>
 										<span class="sum-product"><?php
-																	Session::set('sum', $dem);
-																	echo $dem ?>
+											Session::set('sum', $dem);
+											echo $dem ?>
 										</span>
 									</div>
 									<div style="display: flex;justify-content: space-between; margin: 20px 0;">
@@ -209,6 +209,7 @@ if (!$_GET['id']) {
 									</div>
 								<?php
 								} else {
+									
 								}
 								?>
 							</div>
