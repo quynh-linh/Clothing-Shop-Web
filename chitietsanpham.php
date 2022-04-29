@@ -51,13 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     <!--sanpham-->
     <div class="PC">
         <div class="grid wide">
-            <div class="app_details">
-                <div class="row">
-                    <?php
-                    $get_productDetails = $product->getProduct_Details($id);
-                    if ($get_productDetails) {
-                        while ($result_Details = $get_productDetails->fetch_assoc()) {
-                    ?>
+            <?php
+            $get_productDetails = $product->getProduct_Details($id);
+            if ($get_productDetails) {
+                while ($result_Details = $get_productDetails->fetch_assoc()) {
+            ?>
+                    <div class="app_details">
+                        <div class="row">
+
                             <div class="col l-6 " style="font-family: var(--font-family-monospace);">
                                 <div class="app_details-img">
                                     <img src="./admin/upload/<?php echo $result_Details['image'] ?>" alt="" class="content-img">
@@ -139,9 +140,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <span><?php echo number_format($result_Details['price'], 0, ',', '.') . "" . "đ"  ?></span>
                                             </div>
                                             <div style="text-align: center;/* display: flex; */margin: 40px;align-items: center;/* justify-content: stretch; */display: flex;justify-content: center;">
-                                            <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                                <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
                                             </div>
-                                            
+
                                         </form>
                                         <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
                                         <div>
@@ -158,172 +159,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             </div>
-                    <?php
-                        }
-                    }
-                    ?>
-                </div>
-            </div>
-
-            <div class="app_content">
-                <div class="home-title">
-                    <h4 class="home-title-all">CHI TIẾT SẢN PHẨM</h4>
-                    <span>Nike Sportswear Essential Women's Bike Shorts</span>
-                </div>
-                <div class="home-title-boder"></div>
-                <div class="home-title-edit">
-                    <div class="home-title-edit-social">
-                        <i class="fas fa-user-edit"></i>
-                        MÔ TẢ SẢN PHẨM
-                    </div>
-                    <div class="home-title-content">
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Có chân đế cao su kèm theo sử dụng trong trường hợp nền nhà trơn hoặc tránh xước gạch men.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Tay cầm có đệm mút giúp êm tay hơn trong quá trình luyện tập.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Chất liệu: nhựa ABS Cao Cấp chịu lực cực tốt và cực bền.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Kích thước sản phẩm: Chiều dài 62cm x 19cm x 2cm.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Tải trọng tối đa 150kg.
-                        </div>
-                    </div>
-                </div>
-                <div class="home-title-edit">
-                    <div class="home-title-edit-social">
-                        <i class="fas fa-user-edit"></i>
-                        THÔNG TIN CHI TIẾT SẢN PHẨM
-                    </div>
-                    <div class="home-title-content">
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Luyện tập các cơ: Cơ ngực, cơ vai, cơ lưng, cơ bắp tay với các vị trí được thể hiện trên bảng tập.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Bảng tập chia theo màu với từng vài tập các loại cơ khác nhau (có 4 màu chính: Xanh Lá, Xanh Dương, Vàng, Đỏ)
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Thiết kế nhỏ gọn, kiểu dáng đơn giản, tiện lợi, có thể tháo lắp dễ dàng.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            An toàn khi sử dụng và có độ bền cao theo thời gian.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Màu xanh dương (blue): Sử dụng để luyện tập, Cơ vai.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Màu Đỏ/hồng (red/bink): Sử dụng để luyện tập, Cơ ngực.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Màu Vàng (yellow): Sử dụng để luyện tập, Cơ tay.
-                        </div>
-                        <div class="home-title-content__form">
-                            <i class="fas fa-arrow-circle-right"></i>
-                            Màu xanh lá (green): Sử dụng để luyện tập, Cơ xô, liên sườn.
-                        </div>
-                    </div>
-                    <div class="home-title-boder"></div>
-                    <div class="home-title-edit">
-                        <div class="home-title-edit-social">
-                            <i class="fas fa-user-edit"></i>
-                            CHÍNH SÁCH ĐỔI TRẢ HÀNG
-                        </div>
-                        <div class="home-title-content">
-                            <div class="home-title-content__form">
-                                <i class="fas fa-arrow-circle-right"></i>
-                                TRƯỜNG HỢP CHẤP NHẬN ĐỔI TRẢ
-                            </div>
-                            <div class="home-title-content__form">
-                                <i class="fas fa-arrow-circle-right"></i>
-                                Đổi trả trong trường hợp sai hàng, hỏng hàng, hàng không đủ số lượng
-                            </div>
-                        </div>
-                    </div>
-                    <div class="home-title-edit">
-                        <div class="home-title-edit-social">
-                            <i class="fas fa-user-edit"></i>
-                            TRƯỜNG HỢP KHÔNG CHẤP NHẬN ĐỔI TRẢ
-                        </div>
-                        <div class="home-title-content">
-                            <div class="home-title-content__form">
-                                <i class="fas fa-arrow-circle-right"></i>
-                                Hỏng hàng do quá trình sử dụng của khách hàng
-                            </div>
-                            <div class="home-title-content__form">
-                                <i class="fas fa-arrow-circle-right"></i>
-                                Sai hàng, thiếu hàng, lỗi hàng nhưng khách hàng không quay video
-                            </div>
-                        </div>
-                    </div>
-                    <div class="home-title-boder"></div>
-                    <div class="home-title-insurence">
-                        <div class="home-title-insurence__social">
-                            <i class="fas fa-bolt"></i>
-                            CHÍNH SÁCH BÁN HÀNG HTSPORT CAM KẾT
-                        </div>
-
-                        <div class="home-title-final">
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Về sản phẩm: Shop cam kết cả về CHẤT LIỆU cũng như HÌNH DÁNG ( đúng với những gì được nêu bật trong phần mô tả và hình ảnh sản phẩm).
-                            </div>
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Về giá cả: Shop nhập với số lượng nhiều và trực tiếp từ hãng nên giá sẽ luôn TỐT NHẤT và CHẤT LƯỢNG nhất
-                            </div>
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Về dịch vụ: Shop sẽ cố gắng trả lời hết những thắc mắc xoay quanh sản phẩm các bạn cứ Inbox cho shop
-                            </div>
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Thời gian chuẩn bị hàng: Hàng có sẵn, thời gian chuẩn bị tối ưu nhất.
-                            </div>
 
                         </div>
-                        <div class="home-title-boder"></div>
                     </div>
-                    <div class="home-title-insurence">
-                        <div class="home-title-insurence__social">
-                            <i class="fas fa-bolt"></i>
-                            QUYỀN LỢI CỦA KHÁCH HÀNG
-                        </div>
-                        <div class="home-title-final">
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Cam kết 100% đổi hàng trong vòng 3 ngày theo chính sách Shop nếu sản phẩm khách đặt lỗi do nhà sản xuất
-                            </div>
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Shop hỗ trợ đổi sang sản phẩm khác cùng giá hoặc cao hơn nếu khách có nhu cầu đổi mẫu khác.
-                            </div>
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Nếu có bất kì khiếu nại cần Shop hỗ trợ về sản phẩm, khi mở sản phẩm các bạn vui lòng quay lại video quá trình mở sản phẩm để được đảm bảo 100% đổi lại sản phẩm mới nếu Shop giao bị lỗi.
-                            </div>
-                            <div class="home-title-final__form">
-                                <i class="fas fa-check"></i>
-                                Các bạn nhận được sản phẩm, vui lòng đánh giá giúp Shop để hưởng thêm nhiều ưu đãi hơn
-                            </div>
+
+                    <div class="app_content">
+                        <div class="home-title">
+                            <h4 class="home-title-all">CHI TIẾT SẢN PHẨM</h4>
+                            <span><?php echo $result_Details['product_desc'] ?></span>
                         </div>
                     </div>
-                </div>
+            <?php
+                }
+            }
+            ?>
+            <div>
+                <h3>Sản phẩm liên quan</h1>
+                    <div class="row">
+                        <div class="col l-2-4">
+
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
