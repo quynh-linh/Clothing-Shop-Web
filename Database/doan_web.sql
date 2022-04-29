@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 28, 2022 lúc 08:21 PM
+-- Thời gian đã tạo: Th4 29, 2022 lúc 07:41 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.28
 
@@ -138,6 +138,13 @@ CREATE TABLE `tbl_order` (
   `order_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `tbl_order`
+--
+
+INSERT INTO `tbl_order` (`orderId`, `productId`, `size`, `price`, `image`, `quantity`, `thanhtien`, `userId`, `order_time`) VALUES
+(24, 50, 'M', '1000', 'e6ff4b0900.jpg', 3, 3000, 4, '2022-04-29 02:11:47');
+
 -- --------------------------------------------------------
 
 --
@@ -161,13 +168,7 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `product_desc`, `type`, `price`, `image`, `typeProductId`) VALUES
-(40, 'MESSI LEGEND 10 GRAPHIC HOODIE', 41, 31, 'Once a legend, always a legend.\r\n\r\nCelebrate Leo\'s legendary career at Barcelona with the Legend 10 capsule collection. One of his most iconic moments at Barca memorialized forever on t-shirts and hoodies.\r\n\r\nThank you, Leo.\r\n\r\nWho knew that the softest hoodie you\'ll ever own comes with such a cool design. You won\'t regret buying this classic streetwear piece of apparel with a convenient pouch pocket and warm hood for chilly evenings.\r\n\r\n• 100% cotton face\r\n• 65% ring-spun cotton, 35% polyester\r\n• Front pouch pocket\r\n• Self-fabric patch on the back\r\n• Matching flat drawstrings\r\n• 3-panel hood', 0, '5500000', '5f9e40a0ca.webp', 34),
-(41, 'MESSI LEGEND 10 GRAPHIC HOODIE', 41, 31, 'Once a legend, always a legend.\r\n\r\nCelebrate Leo\'s legendary career at Barcelona with the Legend 10 capsule collection. One of his most iconic moments at Barca memorialized forever on t-shirts and hoodies.\r\n\r\nThank you, Leo.\r\n\r\nWho knew that the softest hoodie you\'ll ever own comes with such a cool design. You won\'t regret buying this classic streetwear piece of apparel with a convenient pouch pocket and warm hood for chilly evenings.\r\n\r\n• 100% cotton face\r\n• 65% ring-spun cotton, 35% polyester\r\n• Front pouch pocket\r\n• Self-fabric patch on the back\r\n• Matching flat drawstrings\r\n• 3-panel hood', 0, '5500000', 'd8415a1c47.webp', 34),
-(42, 'MESSI LEGEND GRAPHIC T-SHIRT', 40, 31, 'Messi Legend Painting is now available on t-shirt. \r\n\r\nApril 23, 2017. The date that Leo Messi changed the celebration game forever after he secured a priceless 3-2 victory over Real Madrid. After scoring the late winning goal, Leo raised his shirt in celebration to the crowd: a truly legendary moment. \r\n\r\nThis t-shirt is everything you\'ve dreamed of and more. It feels soft and lightweight, with the right amount of stretch. It\'s comfortable and flattering for both men and women.\r\n\r\n• 100% combed and ring-spun cotton (Heather colors contain polyester)\r\n• Heather colors are 52% combed and ring-spun cotton, 48% polyester\r\n• Athletic Heather are 90% combed and ring-spun cotton, 10% polyester\r\n• Fabric weight: 4.2 oz (142 g/m2)\r\n• Pre-shrunk fabric\r\n• Shoulder-to-shoulder taping\r\n• Side-seamed', 0, '4000000', 'd4eb3c2c80.webp', 28),
-(43, 'MESSI LEGEND 10 GRAPHIC T-SHIRT', 40, 31, 'Once a legend, always a legend.\r\n\r\nCelebrate Leo\'s legendary career at Barcelona with the Legend 10 capsule collection. One of his most iconic moments at Barca memorialized forever on t-shirts and hoodies.\r\n\r\nThank you, Leo.\r\n\r\nThis t-shirt is everything you\'ve dreamed of and more. It feels soft and lightweight, with the right amount of stretch. It\'s comfortable and flattering for both men and women.\r\n\r\n• 100% combed and ring-spun cotton (Heather colors contain polyester)\r\n• Heather colors are 52% combed and ring-spun cotton, 48% polyester\r\n• Athletic Heather is 90% combed and ring-spun cotton, 10% polyester\r\n• Fabric weight: 4.2 oz (142 g/m2)\r\n• Pre-shrunk fabric\r\n• Side-seamed construction\r\n• Shoulder-to-shoulder taping', 0, '3000000', 'a724fe8c0a.webp', 28),
-(44, 'MESSI SILHOUETTE GRAPHIC HOODIE', 41, 31, 'If you know Leo, you know his iconic celebration after he scores: pointing each of his index fingers up to the sky. For many, this has turned into a symbol of celebration, success, hope, and more. What does it mean to you?\r\n\r\nWho knew that the softest hoodie you\'ll ever own comes with such a cool design. You won\'t regret buying this classic streetwear piece of apparel with a convenient pouch pocket and warm hood for chilly evenings.\r\n\r\n• 100% cotton face\r\n• 65% ring-spun cotton, 35% polyester\r\n• Front pouch pocket\r\n• Self-fabric patch on the back\r\n• Matching flat drawstrings\r\n• 3-panel hood', 0, '10000000', 'd185ca7e43.webp', 34),
-(45, 'ICONIC MESSI PORTRAIT WOMEN\'S GRAPHIC T-SHIRT', 40, 31, 'The much anticipated limited-edition Leo Messi portrait graphic tee is here, now available in women\'s sizes. Iconic Messi portrait graphic tee in honor of Leo\'s legendary career.\r\n\r\nYour typical 100% cotton t-shirt.\r\n\r\n• 100% jersey knit\r\n• Pre-shrunk\r\n• Seamless, double-need ⅞” collar\r\n• Taped neck and shoulders\r\n• Classic fit', 1, '5000000', '4aa6267446.webp', 28),
-(46, 'SIXTH BALLON D\'OR GRAPHIC WOMEN\'S GRAPHIC T-SHIRT', 40, 31, 'Now available in women\'s sizes.\r\n\r\n2009. 2010. 2011. 2012. 2015. 2019 = The years that Leo was awarded the iconic Ballon d\'Or trophy! Celebrate this historic accomplishment with the Sixth Ballon d\'Or Graphic T-Shirt - showcasing the six trophies on the front of the shirt, for everyone to see.\r\n\r\nThis t-shirt is everything you\'ve dreamed of and more. It feels soft and lightweight, with the right amount of stretch.\r\n\r\nYour typical 100% cotton t-shirt.\r\n\r\n• 100% jersey knit\r\n• Pre-shrunk\r\n• Seamless, double-need ⅞” collar\r\n• Taped neck and shoulders\r\n• Classic fit', 1, '7000000', '78fc3013d5.webp', 28);
+(50, 'qưdqwd', 45, 18, 'dqwdqwdqwd', 0, '1000', 'e6ff4b0900.jpg', 44);
 
 -- --------------------------------------------------------
 
@@ -284,7 +285,7 @@ ALTER TABLE `tbl_product`
   ADD PRIMARY KEY (`productId`),
   ADD KEY `brandId` (`brandId`),
   ADD KEY `catId` (`catId`),
-  ADD KEY `tbl_product_ibfk_3` (`typeProductId`);
+  ADD KEY `typeProductId` (`typeProductId`);
 
 --
 -- Chỉ mục cho bảng `tbl_type_product`
@@ -325,19 +326,19 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `productId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `productId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_type_product`
@@ -359,7 +360,8 @@ ALTER TABLE `tbl_uer`
 -- Các ràng buộc cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  ADD CONSTRAINT `tbl_cart_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `tbl_uer` (`userId`);
+  ADD CONSTRAINT `tbl_cart_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `tbl_uer` (`userId`),
+  ADD CONSTRAINT `tbl_cart_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`);
 
 --
 -- Các ràng buộc cho bảng `tbl_order`
@@ -372,9 +374,9 @@ ALTER TABLE `tbl_order`
 -- Các ràng buộc cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`brandId`) REFERENCES `tbl_brand` (`brandId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`brandId`) REFERENCES `tbl_brand` (`brandId`),
   ADD CONSTRAINT `tbl_product_ibfk_2` FOREIGN KEY (`catId`) REFERENCES `category` (`catId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_product_ibfk_3` FOREIGN KEY (`typeProductId`) REFERENCES `tbl_type_product` (`typeProductID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_product_ibfk_3` FOREIGN KEY (`typeProductId`) REFERENCES `tbl_type_product` (`typeProductID`);
 
 --
 -- Các ràng buộc cho bảng `tbl_type_product`
