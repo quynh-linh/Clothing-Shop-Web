@@ -1,0 +1,15 @@
+.QLdonhang{
+    padding:10px 10px 0 10px;
+    font-size:17px;
+    cursor:pointer;
+    border:1px solid black;
+    border-bottom:none;
+    border-radius:15px 15px 0 0;
+}
+table{
+    font-size :15px;
+}
+table td, table th {
+    padding-left:15px;
+    padding-right:15x;
+}

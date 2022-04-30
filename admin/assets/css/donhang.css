@@ -23,7 +23,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 100;
+    z-index: 0;
     background: var(--main-color);
     color: #fff;
     overflow-y: auto;
@@ -321,4 +321,20 @@ td{
     .sidebar{
         z-index: 1000;
     }
+}
+
+.QLdonhang{
+    padding:10px 10px 0 10px;
+    font-size:17px;
+    cursor:pointer;
+    border:1px solid black;
+    border-bottom:none;
+    border-radius:15px 15px 0 0;
+}
+table{
+    width:100%;
+}
+.table td,.table th{
+    padding-left:50px;
+    padding-right:50px;
 }

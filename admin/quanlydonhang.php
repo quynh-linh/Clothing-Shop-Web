@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="assets/css/donhang.css">
     <title>Quản lý đơn hàng</title>
 </head>
+
+<?php include '../classses/order.php' ?>
 <body>
     <?php include './inc/sidebar.php' ?>
     <div class="main-content">
@@ -32,110 +34,120 @@
                                 </select>
                             </div>
                         </div>
+
+                        <ul style="display:flex;">
+                                <li class="QLdonhang">Chờ xác nhận</li>
+                                <li class="QLdonhang">Đã giao</li>
+                                <li class="QLdonhang">Đã hủy</li>
+                        </ul>
+
                     <div class="table-responsive">
-                        <table>
+                    <table class="table table_0">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Tài khoản</th>
+                                    <th>Xem chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $order=new order();
+                                    $getOrderHistory0 = $order->admin_getOrder(0);
+                                    if ($getOrderHistory0) {
+                                        $i = 0;
+                                        while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
+                                ?>
+                                <tr>
+                                    <td><?= ($i = $i + 1); ?></td>
+                                    <td><?= $result_OrderHistory0['name']; ?></td>
+                                    <td>
+                                        <?= $result_OrderHistory0['username']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory0['userId']?>&action=0">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                </tbody>
+                        </table>
+
+                        <table class="table table_1">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Mã đơn hàng</th>
                                     <th>Tên khách hàng</th>
-                                    <th>Ngày đặt</th>
-                                    <th>Hình thức</th>
-                                    <th>Trạng thái</th>
+                                    <th>Tài khoản</th>
                                     <th>Xem chi tiết</th>
-                                    <th>Tác vụ</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                    $order=new order();
+                                    $getOrderHistory1 = $order->admin_getOrder(1);
+                                    $total1 = 0;
+                                    if ($getOrderHistory1) {
+                                        $i = 0;
+                                        while ($result_OrderHistory1 = $getOrderHistory1->fetch_assoc()) {
+                                ?>
                                 <tr>
                                     <td>
                                         <input type="radio" name="animal" id="check" >
                                     </td>
-                                    <td>MDL-21</td>
-                                    <td>Nguyễn văn A</td>
+                                    <td><?= ($i = $i + 1); ?></td>
+                                    <td><?= $result_OrderHistory1['name']; ?></td>
                                     <td>
-                                        20-11-2021
+                                        <?= $result_OrderHistory1['username']; ?>
                                     </td>
                                     <td>
-                                        Chuyển khoản
-                                    </td>
-                                    <td>
-                                        <span class="td-delivering">Đang giao</span>
-                                    </td>
-                                    <td>
-                                    <a href="">Xem chi tiết</a>
-                                    </td>
-                                    <td>
-                                    <span class="ti-check_success ti-check"></span>
+                                    <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory1['userId']?>&action=1">Xem chi tiết</a>
                                     </td>
                                 </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                </tbody>
+                        </table>
+
+                        <table class="table table_2">
+                            <thead>
                                 <tr>
-                                <td>
-                                    <input type="radio" name="animal" id="check" >
-                                </td>
-                                <td>MDL-22</td>
-                                <td>Nguyễn văn B</td>
-                                <td>
-                                    20-11-2021
-                                </td>
-                                <td>
-                                    Chuyển khoản
-                                </td>
-                                <td>
-                                    <span class="td-not-give">Chưa giao</span>
-                                </td>
-                                <td>
-                                <a href="">Xem chi tiết</a>
-                                </td>
-                                <td>
-                                    <span class="ti-close_warning ti-close"></span>
-                                </td>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Tài khoản</th>
+                                    <th>Xem chi tiết</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $order=new order();
+                                    $getOrderHistory2 = $order->admin_getOrder(-1);
+                                    $total2 = 0;
+                                    if ($getOrderHistory2) {
+                                        $i = 0;
+                                        while ($result_OrderHistory2 = $getOrderHistory2->fetch_assoc()) {
+                                ?>
                                 <tr>
-                                <td>
-                                    <input type="radio" name="animal" id="check" >
-                                </td>
-                                <td>MDL-23</td>
-                                <td>Nguyễn văn C</td>
-                                <td>
-                                    20-11-2021
-                                </td>
-                                <td>
-                                    Chuyển khoản
-                                </td>
-                                <td>
-                                    <span class="td-not-give">Chưa giao</span>
-                                </td>
-                                <td>
-                                <a href="">Xem chi tiết</a>
-                                </td>
-                                <td>
-                                    <span class="ti-close_warning ti-close"></span>
-                                </td>
+                                    <td><?= ($i = $i + 1); ?></td>
+                                    <td><?= $result_OrderHistory2['name']; ?></td>
+                                    <td>
+                                        <?= $result_OrderHistory2['username']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory2['userId']?>&action=-1">Xem chi tiết</a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                <td>
-                                    <input type="radio" name="animal" id="check" >
-                                </td>
-                                <td>MDL-24</td>
-                                <td>Nguyễn văn D</td>
-                                <td>
-                                    20-11-2021
-                                </td>
-                                <td>
-                                    Chuyển khoản
-                                </td>
-                                <td>
-                                    <span class="td-delivering">Đang giao</span>
-                                </td>
-                                <td>
-                                <a href="">Xem chi tiết</a>
-                                </td>
-                                <td>
-                                    <span class="ti-check_success ti-check"></span>
-                                </td>
-                                </tr>
-                            </tbody>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -143,5 +155,7 @@
             </section>
         </main>
     </div>
+    
 </body>
+<script src="././assets/js/donhang.js"></script>
 </html>

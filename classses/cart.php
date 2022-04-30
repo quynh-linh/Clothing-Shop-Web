@@ -100,26 +100,6 @@
 			$result = $this->db->select($query);
 			return $result;
 		}
-        /*chèn data vào bảng tbl_order*/
-        public function insertOder($userId){
-			$sId = session_id();
-			$query = "SELECT * FROM tbl_cart WHERE sessionId = '$sId' AND userId='$userId'";
-			$getProduct = $this->db->select($query);
-			if($getProduct){
-                while($result= $getProduct->fetch_assoc()){
-                    $productId = $result['productId'];
-                    $size=$result['size'];
-                    $price = $result['price'];
-                    $image = $result['image'];
-                    $quantity = $result['quantity'];
-                    $thanhtien= $result['quantity'] * $result['price'];
-                    $query_order= "INSERT INTO tbl_order(productId,size,price,image,quantity,thanhtien,userId) VALUES('$productId',
-                    '$size','$price','$image','$quantity','$thanhtien','$userId')";
-                    $insert_order=$this->db->insert($query_order);
-                    
-                }
-            }
-		}
         /*Xóa data của bảng tbl_cart*/
         public function del_Cart($userId){
             $sesId = session_id();
@@ -132,16 +112,6 @@
                 return $msg;
             }
        }
-
-        // hiển thị  sản phẩm ra trang lich su
-        public function getOrderHistory($userId){
-            $query = "SELECT od.* , pd.productName 
-            FROM tbl_order AS od
-            INNER JOIN tbl_product AS pd ON od.productId =pd.productId
-            WHERE userId='$userId'";
-            $result = $this->db->select($query);
-            return $result;
-         } 
         public function showCart($userId)
         {
             $query = "SELECT ct.* , pd.productName , pd.price , pd.image

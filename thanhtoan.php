@@ -17,9 +17,9 @@
 </head>
 <?php
 if (isset($_GET['orderid']) && $_GET['orderid'] == 'order') {
-    $inserOder = $cat->insertOder(Session::get('user_id'));
+    $inserOder = $order->insertOder(Session::get('user_id'));
     $delCart = $cat->del_Cart(Session::get('user_id'));
-    header('Location:index.php');
+    header('Location:lichsu.php');
 }
 ?>
 

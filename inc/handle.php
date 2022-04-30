@@ -16,6 +16,7 @@
 	$product = new product();
     $brand = new brand();
     $user = new user();
+    $order = new order();
 ?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");

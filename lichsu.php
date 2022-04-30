@@ -12,14 +12,17 @@
     <link rel="stylesheet" href="assets/css/thanhtoan.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/test1.css">
+    <link rel="stylesheet" href="assets/css/lichsu.css">
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
 </head>
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
-    $idUser = Session::get('user_id');
-    $update_user = $user->update_user($idUser, $_POST);
+
+if ( isset($_GET['orderID'])) {
+    $userId = Session::get('user_id');
+    $orderId=$_GET['orderID'];
+    $update_status = $order->update_Status_Order($orderId,$userId,-1);
 }
 ?>
 
@@ -50,6 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                                 <li class="category">
                                     <span class="ti-comments"></span>
                                     <a href=""> Thông báo của tôi</a>
+                                </li>
+                                <li class="category">
+                                    <span class="ti-printer"></span>
+                                    <a href="tinhtrangdonhang.php"> Tình trạng đơn hàng</a>
                                 </li>
                                 <li class="category">
                                     <span class="ti-printer"></span>
@@ -92,8 +99,91 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                     </div>
                     <div class="col m-12 l-9">
                         <h3 style="font-weight: 500;font-size: 24px;line-height: 32px;text-transform: uppercase;color: #221f20;display: flex;align-items: center;">Quản lí đơn hàng</h3>
+                            <ul style="display:flex;">
+                                <li class="QLdonhang">Chờ xác nhận</li>
+                                <li class="QLdonhang">Đã giao</li>
+                                <li class="QLdonhang">Đã hủy</li>
+                            </ul>
                         <div class="col l-12">
-                            <table>
+
+
+                            <table class="table table_0">
+                                <thead>
+                                    <tr>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Ảnh</th>
+                                        <th>Tên</th>
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Số tiền</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Tình trạng </th>
+                                        <th>Hủy đơn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $getOrderHistory0 = $order->getOrderHistory(Session::get('user_id'),0);
+                                    $total0 = 0;
+                                    if ($getOrderHistory0) {
+                                        $i = 0;
+                                        while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
+                                            $total0 += $result_OrderHistory0['thanhtien'];
+                                    ?>
+                                            <tr>
+                                                <td><?= ($i = $i + 1); ?></td>
+                                                <td>
+                                                    <div class="cart-td_title">
+                                                        <a href="chitietsanpham.php?productId=<?php echo $result_OrderHistory0['productId']; ?>"><img style="cursor:pointer;" src="./admin/upload/<?php echo $result_OrderHistory0['image'] ?>" alt="" class="app_cart-img"></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><?php echo $result_OrderHistory0['productName'] ?></span>
+                                                </td>
+                                                <td><?php echo $result_OrderHistory0['size'] ?></td>
+                                                <td>
+                                                    <div class="cart-btn">
+                                                        <span><?php echo number_format($result_OrderHistory0['price'], 0, ',', '.') . "" . "đ" ?></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <form action="" method="post">
+                                                        <!-- hidden loại type không hiên thị -->
+
+                                                        <input style="border: none;background: none;" type="button" name="quantity" value="<?php echo $result_OrderHistory0['quantity'] ?>" width="30px" />
+                                                        <!-- <input type="submit" name="submit" value="Update"/> -->
+                                                    </form>
+                                                </td>
+
+                                                <td>
+                                                    <span class="cart-current"><?php
+                                                                                echo number_format($result_OrderHistory0['thanhtien'], 0, ',', '.') . " " . "đ";
+                                                                                ?></span>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    echo $result_OrderHistory0['order_time'];
+                                                    ?>
+                                                </td>
+                                                <td style="color:red;cursor:pointer">Đang chờ xác nhận</td>
+                                                <td>
+													<a onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này')" href="?orderID=<?php echo $result_OrderHistory0['orderId'] ?>" class="ti-close"><?php ?></a>
+												</td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                                <td colspan="3">
+                                <div class="cart-sum" style="padding: 20px;font-size: 25px;">
+                                    <span>Tổng tiền:</span>
+                                    <span><?php echo number_format($total0, 0, ',', '.') . " " . "đ"; ?></span>
+                                </div>
+                            </table>
+
+                            <table class="table table_1">
                                 <thead>
                                     <tr>
                                         <th>Mã đơn hàng</th>
@@ -108,64 +198,138 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $getOrderHistory = $cat->getOrderHistory(Session::get('user_id'));
-                                    $total = 0;
-                                    if ($getOrderHistory) {
+                                    $getOrderHistory1 = $order->getOrderHistory(Session::get('user_id'),1);
+                                    $total1 = 0;
+                                    if ($getOrderHistory1) {
                                         $i = 0;
-                                        
-                                        while ($result_OrderHistory = $getOrderHistory->fetch_assoc()) {
-                                            $total += $result_OrderHistory['thanhtien'];
+                                        while ($result_OrderHistory1 = $getOrderHistory1->fetch_assoc()) {
+                                            $total1 += $result_OrderHistory1['thanhtien'];
                                     ?>
                                             <tr>
                                                 <td><?= ($i = $i + 1); ?></td>
                                                 <td>
                                                     <div class="cart-td_title">
-                                                        <a href="chitietsanpham.php?productId=<?php echo $result_OrderHistory['productId']; ?>"><img style="cursor:pointer;" src="./admin/upload/<?php echo $result_OrderHistory['image'] ?>" alt="" class="app_cart-img"></a>
+                                                        <a href="chitietsanpham.php?productId=<?php echo $result_OrderHistory1['productId']; ?>"><img style="cursor:pointer;" src="./admin/upload/<?php echo $result_OrderHistory1['image'] ?>" alt="" class="app_cart-img"></a>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span><?php echo $result_OrderHistory['productName'] ?></span>
+                                                    <span><?php echo $result_OrderHistory1['productName'] ?></span>
                                                 </td>
-                                                <td><?php echo $result_OrderHistory['size'] ?></td>
+                                                <td><?php echo $result_OrderHistory1['size'] ?></td>
                                                 <td>
                                                     <div class="cart-btn">
-                                                        <span><?php echo number_format($result_OrderHistory['price'], 0, ',', '.') . "" . "đ" ?></span>
+                                                        <span><?php echo number_format($result_OrderHistory1['price'], 0, ',', '.') . "" . "đ" ?></span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <form action="" method="post">
                                                         <!-- hidden loại type không hiên thị -->
 
-                                                        <input style="border: none;background: none;" type="button" name="quantity" value="<?php echo $result_OrderHistory['quantity'] ?>" width="30px" />
+                                                        <input style="border: none;background: none;" type="button" name="quantity" value="<?php echo $result_OrderHistory1['quantity'] ?>" width="30px" />
                                                         <!-- <input type="submit" name="submit" value="Update"/> -->
                                                     </form>
                                                 </td>
 
                                                 <td>
                                                     <span class="cart-current"><?php
-                                                                                echo number_format($result_OrderHistory['thanhtien'], 0, ',', '.') . " " . "đ";
+                                                                                echo number_format($result_OrderHistory1['thanhtien'], 0, ',', '.') . " " . "đ";
                                                                                 ?></span>
                                                 </td>
                                                 <td>
                                                     <?php
-                                                    echo $result_OrderHistory['order_time'];
+                                                    echo $result_OrderHistory1['order_time'];
                                                     ?>
                                                 </td>
 
                                             </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                                <td colspan="3">
+                                <div class="cart-sum" style="padding: 20px;font-size: 25px;">
+                                    <span>Tổng tiền:</span>
+                                    <span><?php echo number_format($total1, 0, ',', '.') . " " . "đ"; ?></span>
+                                </div>
+                            </table>
 
+                            <table class="table table_2">
+                                <thead>
+                                    <tr>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Ảnh</th>
+                                        <th>Tên</th>
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Số tiền</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Tình trạng </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $getOrderHistory2 = $order->getOrderHistory(Session::get('user_id'),-1);
+                                    $total2 = 0;
+                                    if ($getOrderHistory2) {
+                                        $i = 0;
+                                        while ($result_OrderHistory2 = $getOrderHistory2->fetch_assoc()) {
+                                            $total2 += $result_OrderHistory2['thanhtien'];
+                                    ?>
+                                            <tr>
+                                                <td><?= ($i = $i + 1); ?></td>
+                                                <td>
+                                                    <div class="cart-td_title">
+                                                        <a href="chitietsanpham.php?productId=<?php echo $result_OrderHistory2['productId']; ?>"><img style="cursor:pointer;" src="./admin/upload/<?php echo $result_OrderHistory2['image'] ?>" alt="" class="app_cart-img"></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><?php echo $result_OrderHistory2['productName'] ?></span>
+                                                </td>
+                                                <td><?php echo $result_OrderHistory2['size'] ?></td>
+                                                <td>
+                                                    <div class="cart-btn">
+                                                        <span><?php echo number_format($result_OrderHistory2['price'], 0, ',', '.') . "" . "đ" ?></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <form action="" method="post">
+                                                        <!-- hidden loại type không hiên thị -->
+
+                                                        <input style="border: none;background: none;" type="button" name="quantity" value="<?php echo $result_OrderHistory2['quantity'] ?>" width="30px" />
+                                                        <!-- <input type="submit" name="submit" value="Update"/> -->
+                                                    </form>
+                                                </td>
+
+                                                <td>
+                                                    <span class="cart-current"><?php
+                                                                                echo number_format($result_OrderHistory2['thanhtien'], 0, ',', '.') . " " . "đ";
+                                                                                ?></span>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    echo $result_OrderHistory2['order_time'];
+                                                    ?>
+                                                </td>
+                                                <td style="color:red;cursor:pointer">Đã hủy</td>
+                                                
+                                            </tr>
+                                                
 
                                     <?php
                                         }
                                     }
                                     ?>
                                 </tbody>
+                                <td colspan="3">
+                                <div class="cart-sum" style="padding: 20px;font-size: 25px;">
+                                    <span>Tổng tiền:</span>
+                                    <span><?php echo number_format($total2, 0, ',', '.') . " " . "đ"; ?></span>
+                                </div>
+                            </td>
                             </table>
-                            <div class="cart-sum" style="padding: 20px;font-size: 25px;">
-                                <span>Tổng tiền:</span>
-                                <span><?php echo number_format($total, 0, ',', '.') . " " . "đ"; ?></span>
                                 
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,5 +338,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         <?php include './inc/footer.php' ?>
     </div>
 </body>
-
+<script src="./assets/js/lichsu.js"></script>
 </html>
