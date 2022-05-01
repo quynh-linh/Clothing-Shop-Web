@@ -1,42 +1,88 @@
-:root{
-    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+:root {
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-.app{
+
+.app {
     border-top: 1px solid #ccc;
 }
-.baoloi{
+
+.baoloi {
     text-align: center;
     padding: 20px;
 }
-.error{
+
+.error {
     color: red;
     font-family: var(--font-family-sans-serif);
 }
-.success{
+
+.success {
     color: green;
     font-family: var(--font-family-sans-serif);
 }
-.loi{
-   box-sizing: border-box;
-   width: 100%;
-   height: 2.5rem;
-   overflow: hidden;
-   border: 1px solid rgba(235, 12, 12);
-   border-radius: 2px;
-   box-shadow: inset 0 2px 0 rgb(0 0 0 / 2%);
+
+.loi {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(235, 12, 12);
+    border-radius: 2px;
+    box-shadow: inset 0 2px 0 rgb(0 0 0 / 2%);
 }
-.fix-content{
+
+.fix-content {
     padding: 15px 0;
 }
-.auth-row{
+
+
+/* QUên mật khẩu */
+
+.btn-send {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #221f20;
+    color: white;
+    font-family: var(--font-family-sans-serif);
+    margin-bottom: 20px;
+}
+
+.btn-send:hover {
+    cursor: pointer;
+    background-color: #b3b3b3;
+    border: 1px solid black;
+}
+
+.app_content-allQMK {
+    background-color: white;
+    flex: 0 0 480px;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.app_content-allQMK form {
+    margin-top: 24px;
+    width: 390px;
+    max-width: 100%;
+    -webkit-margin-start: auto;
+    margin-inline-start: auto;
+    -webkit-margin-end: auto;
+    margin-inline-end: auto;
+}
+
+.auth-row {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 -16px;
     position: relative;
 }
-.auth-row::before{
+
+.auth-row::before {
     position: absolute;
     content: "";
     height: 300px;
@@ -45,60 +91,70 @@
     top: 25px;
     background-color: #e7e8e9;
 }
-.auth__form-header h2{
+
+.auth__form-header h2 {
     margin: 20px 0;
     font-family: var(--font-family-sans-serif);
 }
-.auth__form-form{
+
+.auth__form-form {
     width: 100%;
 }
-.app_content-all{
+
+.app_content-all {
     background-color: white;
 }
-.navbar{
+
+.navbar {
     margin-top: 8px;
     display: flex;
     align-items: center;
 }
-.navbar-list{
+
+.navbar-list {
     width: 75rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.navbar-logo img{
+
+.navbar-logo img {
     width: 11.875rem;
     height: 4rem;
 }
-.navbar-login{
+
+.navbar-login {
     color: #5CC1E3;
     font-size: 1.5rem;
     font-weight: 700;
 }
-.navbar-help{
+
+.navbar-help {
     text-decoration: none;
     color: #5CC1E3;
 }
-.content{
-   background-color: #5CC1E3;
+
+.content {
+    background-color: #5CC1E3;
 }
-.content-img img{
+
+.content-img img {
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center; 
+    background-position: center center;
     width: 100%;
     height: auto;
 }
-.content-all{
-   
+
+.content-all {
     margin: 0 auto;
     width: 65rem;
     display: flex;
     justify-content: space-between;
 }
 
-.content-login{
+.content-login {
     background-color: #fff;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -107,24 +163,28 @@
     overflow: hidden;
     width: 31.25rem;
 }
- .auth__form-header{
+
+.auth__form-header {
     text-align: center;
     width: 100%;
     font-family: var();
- }
- .auth__form-register{
-     text-decoration: none;
-     color: #000;
-     font-size: 1.2rem;
-     font-weight: 500;
- }
- .auth__form-heading{
+}
+
+.auth__form-register {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.auth__form-heading {
     font-size: 2rem;
     color: #222;
     margin-top: 0;
- }
- .auth__form_btn{
-     margin-top: 40px;
+}
+
+.auth__form_btn {
+    margin-top: 40px;
     outline: none;
     min-height: 40px;
     padding: 0 0.625rem;
@@ -133,30 +193,32 @@
     border-radius: 0.125rem;
     width: 100%;
     cursor: pointer;
- }
- .btn-primary{
+}
+
+.btn-primary {
     color: #fff;
     font-weight: 700;
     background-color: #5CC1E3;
     box-shadow: 0 1px 1px rgb(0 0 0 / 9%);
- }
-.auth__form-group{
-    margin: 15px 0px ;
 }
-.auth__form-group-title span{
+
+.auth__form-group-title span {
     font-family: var(--font-family-sans-serif);
 }
-.auth__form-container-title{
+
+.auth__form-container-title {
     font-size: 20px;
     font-family: var(--font-family-sans-serif);
 }
-.form-container-title{
+
+.form-container-title {
     font-size: 20px;
     font-family: var(--font-family-sans-serif);
     text-align: center;
     font-weight: 700;
 }
-.form-container-title p{
+
+.form-container-title p {
     font-size: 14px;
     line-height: 24px;
     padding: 20px;
@@ -164,7 +226,8 @@
     color: #6c6d70;
     font-family: var(--font-family-monospace);
 }
- .auth__form-input{
+
+.auth__form-input {
     margin: 15px 0;
     padding-left: 5px;
     width: 100%;
@@ -172,7 +235,8 @@
     border: 1px solid #E7E8E9;
     border-radius: 4px;
 }
-.btn-login{
+
+.btn-login {
     width: 100%;
     font-size: 20px;
     padding: 10px;
@@ -182,7 +246,8 @@
     color: white;
     font-family: var(--font-family-sans-serif);
 }
-.btn-login1{
+
+.btn-login1 {
     text-align: center;
     width: 100%;
     font-size: 20px;
@@ -191,67 +256,80 @@
     border: none;
     background-color: #221f20;
 }
-.btn-login1 a{
+
+.btn-login1 a {
     color: white;
     font-family: var(--font-family-sans-serif);
     text-decoration: none;
 }
-.btn-login:hover{
+
+.btn-login:hover {
     border: 2px solid black;
     cursor: pointer;
     background-color: white;
     color: #221f20;
 }
-.auth__form-group textarea{
+
+.auth__form-group textarea {
     width: 100%;
     border: 1px solid #E7E8E9;
     border-radius: 4px;
 }
- .auth__form-or{
-     display: flex;
-     margin-top: 40px;
- }
- .auth__form-or div{
+
+.auth__form-or {
+    display: flex;
+    margin-top: 40px;
+}
+
+.auth__form-or div {
     height: 1px;
     width: 100%;
     background-color: #dbdbdb;
     flex: 1;
- }
- .auth__form-or span{
+}
+
+.auth__form-or span {
     color: #ccc;
     padding: 0 1rem;
     text-transform: uppercase;
     font-size: .75rem;
- }
- .auth__form-aside{
-     margin-top: 18px;
- }
- .auth__form-socials{
-     background-color: #F5F5F5;
-     padding: 16px 32px;
-     display: flex;
-     justify-content: space-between;
- }
- .auth__form-help{
-     display: flex;
-     justify-content: space-between;
- }
- .auth__form-help-link{
-     text-decoration: none;
-     font-size: 16px;
-     color: #05a;
- }
- .auth__form-help-separate{
-     display: block;
-     border-left: 1px solid #ccc;
-     height: 15px;
-     margin: 4px 16px;
- }
- .auth__form-link{
-     display: flex;
-     justify-content: space-between;
- }
- .auth__form-cc{
+}
+
+.auth__form-aside {
+    margin-top: 18px;
+}
+
+.auth__form-socials {
+    background-color: #F5F5F5;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth__form-help {
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth__form-help-link {
+    text-decoration: none;
+    font-size: 16px;
+    color: #05a;
+}
+
+.auth__form-help-separate {
+    display: block;
+    border-left: 1px solid #ccc;
+    height: 15px;
+    margin: 4px 16px;
+}
+
+.auth__form-link {
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth__form-cc {
     outline: none;
     border: 0;
     padding: 0 2px;
@@ -264,62 +342,78 @@
     display: flex;
     align-items: center;
     justify-content: center;
- }
- .auth__form-cc div{
-     color: #fff;
- }
- .auth__form-fb{
-     background-color: #1877f2;
-     box-shadow: 2px 2px 2px #ccc;
- }
- .ti-google{
-     color: rgb(233, 99, 21);
- }
- .auth__form-ap{
-    background-color:#000;
+}
+
+.auth__form-cc div {
+    color: #fff;
+}
+
+.auth__form-fb {
+    background-color: #1877f2;
     box-shadow: 2px 2px 2px #ccc;
- }
- .auth__form-gg{
-     background-color: rgb(201, 195, 195);
-     box-shadow: 2px 2px 2px #ccc;
- }
- .auth__form-foot{
-     display: flex;
-     justify-content: center;
-     margin-top: 30px;
- }
- .auth__form-foot a{
+}
+
+.ti-google {
+    color: rgb(233, 99, 21);
+}
+
+.auth__form-ap {
+    background-color: #000;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+.auth__form-gg {
+    background-color: rgb(201, 195, 195);
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+.auth__form-foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.auth__form-foot a {
     text-decoration: none;
     color: #5CC1E3;
 }
+
+
 /* Footer */
-.account-footer{
+
+.account-footer {
     background-color: #fbfbfb;
 }
-.account-footer_titel{
+
+.account-footer_titel {
     margin-top: 50px;
     font-weight: 700;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
 }
-.account-footer_list li{
+
+.account-footer_list li {
     margin: 20px 10px;
-   
 }
-.account-footer_list a{
-   text-decoration: none;
-   color: rgba(0,0,0,.54);
+
+.account-footer_list a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .54);
 }
-.account-footer-security{
+
+.account-footer-security {
     text-align: center;
     margin-top: 40px;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
 }
-.app_content-mobile{
+
+.app_content-mobile {
     display: none;
 }
-.navbar-logo1{
+
+.navbar-logo1 {
     display: none;
 }
-.mobile-login{
+
+.mobile-login {
     display: none;
 }

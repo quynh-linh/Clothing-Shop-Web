@@ -17,7 +17,7 @@
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         $login_user = $user->login_user($_POST);
     }
-    ?>
+?>
 <body>
     <?php include 'inc/header.php' ?>
        <div class="app">
@@ -41,6 +41,9 @@
                                         <div class="auth__form-group1 col c-12">
                                             <input type="password" name="password" class="auth__form-input" placeholder="Mật khẩu">
                                         </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <a href="quenMatKhau.php" style="font-family: var(--font-family-monospace);color: #221f20;">Quên mật khẩu</a>
                                     </div>
                                     <div class="baoloi">
                                     <?php

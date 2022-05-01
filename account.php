@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     $update_user = $user->update_user($idUser, $_POST);
 }
 ?>
-
 <body>
     <div class="content">
         <div class="grid">

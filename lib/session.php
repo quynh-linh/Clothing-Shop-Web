@@ -33,12 +33,6 @@ class Session{
      self::destroy();
      header("Location:login.php");
     }
- }
- public static function checkSessionUser(){
-   if (self::get("user_login")== false) {
-    self::destroy();
-    header("Location:login.php");
-   }
 }
  public static function checkLogin(){
     self::init();

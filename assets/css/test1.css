@@ -1,78 +1,90 @@
-html{
-    box-sizing: border-box;
-    background-color: #fff;
-    margin: 0;
+:root {
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-:root{
-    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+
+.underline {
+    border-right: 2px solid #ccc;
 }
-*{
-    box-sizing: inherit;
-}
-.underline{
-    border-right: 2px solid #ccc ;
-}
-.category-all{
+
+.category-all {
     background-color: #fff;
     height: 100%;
     border-radius: 32px 0px;
     border: 1px solid #e7e8e9;
 }
-.category-all ul{
+
+.category-all ul {
     margin: 0px;
     padding: 0px;
 }
-.category-all li{
+
+.category-all li {
     margin: 0px;
 }
-.category{
+
+.category {
     padding: 20px 5px;
     display: flex;
     align-items: center;
     margin: 30px 10px;
 }
-.category a{
+
+.category a {
     text-decoration: none;
     font-size: 16px;
     line-height: 24px;
     color: #333;
     padding-left: 4px;
 }
-.category span{
+
+.category span {
     font-size: 20px;
 }
-.account-body{
+
+.account-body {
     border-radius: 3px;
     margin: 10px 0;
     font-family: var(--font-family-monospace);
 }
 
-.account-me{
+.account-body li {
+    width: 33.33333333333333%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 32px 0px;
+    border: 1px solid #e7e8e9;
+}
+
+.account-me {
     background-color: #fff;
     height: 100%;
 }
-.account-tt{
+
+.account-tt {
     margin-top: 20px;
     padding: 0 10px;
 }
-.account-title{
+
+.account-title {
     font-size: 16px;
     line-height: 24px;
     font-weight: 900;
     color: #333;
 }
 
-.information{
+.information {
     margin: 20px;
 }
-.information-name{
+
+.information-name {
     display: flex;
     align-items: center;
     margin: 40px 0;
     justify-content: space-between;
 }
-.information-name input{
+
+.information-name input {
     height: 36px;
     border-radius: 4px;
     padding: 10px 12px;
@@ -81,21 +93,25 @@ html{
     outline: none;
     border: 1px solid rgb(196, 196, 207);
 }
-.information-name label{
+
+.information-name label {
     font-size: 16px;
     max-width: 30%;
     color: rgb(55, 63, 60);
     padding-right: 25px;
 }
-.information-birthday{
+
+.information-birthday {
     margin: 40px 0;
 }
-.information-birthday label{
+
+.information-birthday label {
     font-size: 16px;
     padding-right: 25px;
     color: rgb(55, 63, 60);
 }
-.information-birthday select{
+
+.information-birthday select {
     width: 100px;
     border: 1px solid rgb(204, 204, 204);
     height: 34px;
@@ -107,20 +123,23 @@ html{
     background: 0px center;
     box-shadow: none;
 }
-.success{
+
+.success {
     color: green;
     font-weight: 800;
 }
 
-.information-sex{
+.information-sex {
     display: flex;
 }
-.information-sex label{
+
+.information-sex label {
     font-size: 16px;
     padding-right: 25px;
     color: rgb(55, 63, 60);
 }
-.infotmation-save input{
+
+.infotmation-save input {
     margin-top: 20px;
     border: 0px;
     width: 100%;
@@ -131,7 +150,8 @@ html{
     background-color: rgb(30 28 28);
     cursor: pointer;
 }
-.form-upload__img{
+
+.form-upload__img {
     width: 170px;
     height: 170px;
     border-radius: 50%;
@@ -139,22 +159,26 @@ html{
     z-index: 5;
     margin: 0 auto;
 }
+
 .account-tt-info-mobile,
 .account-tt-info-email,
 .account-tt-info-security,
-.account-tt-info-privacy{
+.account-tt-info-privacy {
     margin: 18px 0px;
 }
-.account-tt-info-fb{
+
+.account-tt-info-fb {
     display: flex;
     justify-content: space-between;
     margin: 18px 0px;
 }
-.account-tt-info-fb  span{
+
+.account-tt-info-fb span {
     display: flex;
     align-items: center;
 }
-.account-tt-info-fb  button{
+
+.account-tt-info-fb button {
     border: none;
     padding: 10px;
     color: white;
@@ -162,59 +186,72 @@ html{
     border-radius: 5px;
 }
 
+
 /* Footer */
-.account-footer{
+
+.account-footer {
     background-color: #fbfbfb;
 }
-.account-footer_titel{
+
+.account-footer_titel {
     margin-top: 50px;
     font-weight: 700;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
 }
-.account-footer_list li{
+
+.account-footer_list li {
     margin: 20px 10px;
-   
 }
-.account-footer_list a{
-   text-decoration: none;
-   color: rgba(0,0,0,.54);
+
+.account-footer_list a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .54);
 }
-.account-footer-security{
+
+.account-footer-security {
     text-align: center;
     margin-top: 40px;
-    color: rgba(0,0,0,.54);
+    color: rgba(0, 0, 0, .54);
 }
- /* Mobile Navbar */
-    .mobile-search,
-    .mobile-acc,
-    .mobile-info,
-    .navbar-logo,
-    .mobile-info1{
-        display: none;
-    }
-.mobile-search span{ 
+
+
+/* Mobile Navbar */
+
+.mobile-search,
+.mobile-acc,
+.mobile-info,
+.navbar-logo,
+.mobile-info1 {
+    display: none;
+}
+
+.mobile-search span {
     color: #fff;
 }
-.nav__bars-btn{
+
+.nav__bars-btn {
     color: #fff;
     margin-right: 10px;
     display: none;
 }
-.nav__bas-over-lay{
+
+.nav__bas-over-lay {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 100;
     display: none;
     animation: fadeIN linear 0.2s;
 }
-.nav-mobile-list{
+
+.nav-mobile-list {
     margin-top: 60px;
 }
-.nav-mobile{
+
+.nav-mobile {
     position: fixed;
     top: 0;
     right: 0;
@@ -226,53 +263,59 @@ html{
     z-index: 101;
     opacity: 0;
     transform: translateX(100%);
-    transition: transform linear 0.2s , opacity linear 0.2s;
+    transition: transform linear 0.2s, opacity linear 0.2s;
 }
-.nav-mobile-li span{
+
+.nav-mobile-li span {
     margin: 10px;
     color: #fff;
 }
-.nav-mobile-link{
+
+.nav-mobile-link {
     text-decoration: none;
     padding: 10px;
     font-size: 1.2rem;
-    color:#fff ;
+    color: #fff;
 }
-.nav-mobile-close{
+
+.nav-mobile-close {
     position: absolute;
     margin-right: 10px;
     right: 0;
     font-size: 2.4rem;
-    color:#fff ;
+    color: #fff;
 }
-.nav-input:checked ~ .nav__bas-over-lay {
+
+.nav-input:checked~.nav__bas-over-lay {
     display: block;
 }
-.nav-input:checked ~ .nav-mobile {
+
+.nav-input:checked~.nav-mobile {
     transform: translateX(0%);
     opacity: 1;
 }
 
-.navbar-logo img{
+.navbar-logo img {
     width: 88px;
     background: #fff;
     display: none;
 }
+
 @media (max-width:739px) {
     .mobile-search,
     .navbar-logo,
     .mobile-acc,
     .mobile-info,
-    .mobile-info1{
+    .mobile-info1 {
         display: block;
     }
-    .app_body{
+    .app_body {
         background-color: #fff;
     }
-    header .clearfix{
+    header .clearfix {
         background-color: #000;
     }
-    .navbar-logo{
+    .navbar-logo {
         display: flex;
         width: 100%;
         align-items: center;
@@ -280,13 +323,13 @@ html{
         padding: 15px;
         background: #000;
     }
-    .category-all{
+    .category-all {
         display: none;
     }
-    .account-me{
+    .account-me {
         display: none;
     }
-    .mobile-search span{
+    .mobile-search span {
         font-size: 23px;
         padding: 0 5px;
         margin-right: 60px;
@@ -294,48 +337,48 @@ html{
     .navbar-logo span {
         color: #fff;
     }
-    .nav__bars-btn{
+    .nav__bars-btn {
         display: block;
         right: 0;
         position: absolute;
         font-size: 30px;
         top: 0;
     }
-    .navbar-logo img{
+    .navbar-logo img {
         display: block;
     }
-    .clearfix{
+    .clearfix {
         height: 50px;
         max-height: 50px;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .navbar-m{
+    .navbar-m {
         background-color: #666;
     }
     .navigation ul,
-    .navigation a{
+    .navigation a {
         display: none;
     }
-    .navigation .nav-list img{
+    .navigation .nav-list img {
         display: none;
     }
-    .header{
+    .header {
         display: none;
     }
-    footer{
+    footer {
         display: none;
     }
     /*  */
-    .mobile-acc-img{
+    .mobile-acc-img {
         background-color: #333;
     }
-    .mobile-info{
+    .mobile-info {
         background-color: #fff;
         padding: 10px;
     }
-    .acc-img{
+    .acc-img {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -345,58 +388,58 @@ html{
         color: #fff;
         text-align: center;
     }
-    .mobile-acc_change{
+    .mobile-acc_change {
         text-align: center;
         background: rgb(105 103 103 / 50%);
         margin-top: 13px;
     }
-    .mobile-acc-img img{
+    .mobile-acc-img img {
         height: 50px;
         width: 50px;
         border-radius: 50%;
         border: 2px solid white;
     }
-    .info-name{
+    .info-name {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 20px 0;
     }
-    .ti-angle-right{
+    .ti-angle-right {
         font-size: 10px;
         color: #000;
     }
-    .mobile-info1{
+    .mobile-info1 {
         background: #fff;
         padding: 10px;
         margin: 10px 0;
     }
-    .account-body{
+    .account-body {
         display: none;
     }
 }
 
-@media (min-width:740px) and (max-width:1023px){
+@media (min-width:740px) and (max-width:1023px) {
     .navbar-logo span {
         color: #fff;
     }
     .navigation ul,
-    .navigation a{
+    .navigation a {
         display: none;
     }
-    .navigation .nav-list img{
+    .navigation .nav-list img {
         display: none;
     }
-    .header{
+    .header {
         display: none;
     }
-    .app_body{
+    .app_body {
         background-color: #fff;
     }
-    header .clearfix{
+    header .clearfix {
         background-color: #000;
     }
-    .navbar-logo{
+    .navbar-logo {
         display: flex;
         width: 100%;
         align-items: center;
@@ -404,13 +447,13 @@ html{
         padding: 15px;
         background: #000;
     }
-    .category-all{
+    .category-all {
         display: none;
     }
-    .category-all{
+    .category-all {
         display: none;
     }
-    .account_infomation{
+    .account_infomation {
         padding: 0 10px;
     }
 }

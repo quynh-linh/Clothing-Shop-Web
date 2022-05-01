@@ -1,15 +1,11 @@
-html {
-    box-sizing: border-box;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+:root {
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .app {
-    background: #f5f5f5f5;
+    background: #ffffff;
+    border-top: 1px solid #ccc;
 }
 
 .app_cart {
@@ -56,27 +52,21 @@ html {
     padding-left: 10px;
 }
 
-.ti-user,
-.ti-bookmark-alt {
-    color: #0852c0;
-}
-
-.ti-wallet,
-.ti-shortcode {
-    color: red;
-}
-
 .list_order {
-    background: #fff;
-    margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    padding: 20px 0;
     box-shadow: 0px 2px #ccc;
+    border-bottom: 1px solid rgb(92, 90, 90);
 }
 
 .list_order-success {
-    color: #c03c08;
+    padding: 10px;
+    font-family: var(--font-family-sans-serif);
+    width: 25%;
+    text-align: center;
+    border-radius: 32px 0px;
+    border: 1px solid #e7e8e9;
+    background: white;
 }
 
 .list_order a {
@@ -88,14 +78,18 @@ html {
 table {
     width: 100%;
     background: #fff;
-    margin-top: 10px;
     padding: 10px;
     border-collapse: collapse;
     font-size: 15px;
 }
 
 th {
-    padding: 20px;
+    padding: 10px;
+    color: white;
+    background-color: #2a2b2c;
+    font-size: 12px;
+    text-align: center;
+    width: 14.28571428571429%;
 }
 
 tr {
@@ -104,6 +98,9 @@ tr {
 
 td {
     text-align: center;
+    border: 1px solid #ccc;
+    font-family: var(--font-family-sans-serif);
+    padding: 20px;
 }
 
 .cart-td_title img {
@@ -113,6 +110,14 @@ td {
     padding: 10px;
     width: 80px;
     height: 80px;
+}
+
+.QLdonhang {
+    padding: 10px;
+    text-align: center;
+    width: 33.333%;
+    border-radius: 32px 0px;
+    border: 1px solid #e7e8e9;
 }
 
 .cart-td_title {

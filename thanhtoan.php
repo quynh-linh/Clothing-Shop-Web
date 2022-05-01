@@ -19,10 +19,9 @@
 if (isset($_GET['orderid']) && $_GET['orderid'] == 'order') {
     $inserOder = $order->insertOder(Session::get('user_id'));
     $delCart = $cat->del_Cart(Session::get('user_id'));
-    header('Location:lichsu.php');
+    header('Location:donhang.php');
 }
 ?>
-
 <body>
     <div class="grid">
         <!-- Phần header -->
