@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                         </thead>
                                         <?php
                                         // $totalquantity =0;
-                                        if (isset($getTongDoanhThuTheoNGay)) {
+                                        if ($getTongDoanhThuTheoNGay) {
                                             while ($result_dtngay = $getTongDoanhThuTheoNGay->fetch_assoc()) {
                                                 // $totalquantity += $result_dtngay['quantity'];
                                         ?>
@@ -130,11 +130,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 </tbody>
                                         <?php
                                             }
-                                        }
+                                        }else{
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="4" style="text-align:center">Không có sản phẩm nào trong mốc thời gian này</td>
+                                                    </tr>
+                                                </tbody>
+                                        <?php
+                                            }
                                         ?>
                                     </table>
                                     <?php
-                                    // }
+                                     //}
                                     ?>
                                 </div>
                             </form>
