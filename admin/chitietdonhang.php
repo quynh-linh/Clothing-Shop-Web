@@ -48,7 +48,6 @@ if ( isset($_GET['order'])  && $_GET['userId']!=" " ) {
                             if (isset($_GET['userId']) && $_GET['action']=="0" ) {
                                 $userId = $_GET['userId'];
                                 $status=$_GET['action'];
-                                
                         ?>
                         <table >
                             <thead>
@@ -111,17 +110,11 @@ if ( isset($_GET['order'])  && $_GET['userId']!=" " ) {
                                 </tbody>
                         </table>
                         <?php } ?>
-
-
-
 <!-- status=1 -->
-
-
                         <?php
                             if (isset($_GET['userId']) && $_GET['action']=="1" ) {
                                 $userId = $_GET['userId'];
                                 $status=$_GET['action'];
-                                
                         ?>
                         <table >
                             <thead>

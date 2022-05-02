@@ -1,176 +1,285 @@
+<?php include '../classses/statistical.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/main.css">
     <title>Admin</title>
 </head>
+<?php
+$statistical1 = new statistical();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    $getTongDoanhThuTheoNGay = $statistical1->gettongSPTheoNgay($_POST);
+}
+?>
+
 <body>
     <?php include './inc/sidebar.php' ?>
-         <div class="main-content">
-            <?php include './inc/header.php' ?>
-             <main>
-                 <h2 class="dash-title">Tổng Quan</h2>
+    <div class="main-content">
+        <?php include './inc/header.php' ?>
+        <main>
+            <h2 class="dash-title">Tổng Quan</h2>
+            
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-briefcase"> </span>
+                        <div class="card-body-DT">
+                            <?php
+                            $statistical = new statistical();
+                            $getTongDoanhThu = $statistical->gettongDoanhThu();
+                            $total0 = 0;
+                            while ($result = $getTongDoanhThu->fetch_assoc()) {
+                                $total0 += $result['thanhtien'];
+                            }
+                            ?>
+                            <h5> Tổng doanh thu</h5>
+                            <h4><?php echo number_format($total0, 0, ',', '.') . "" . "đ"   ?></h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-reload"> </span>
+                        <div class="card-body-DT">
+                            <?php
+                            $statistical = new statistical();
+                            $getTongDoanhThu = $statistical->gettongKhachHang();
+                            $dem = 0;
+                            while ($result = $getTongDoanhThu->fetch_assoc()) {
+                                $dem++;
+                            }
+                            ?>
+                            <h5> Số lượng khách hàng</h5>
+                            <h4><?php echo $dem ?></h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div class="card-body">
 
-                 <div class="dash-cards">
-                     <div class="card-single">
-                             <div class="card-body">
-                                <span class="ti-briefcase"> </span>
+                        <span class="ti-check-box"> </span>
+                        <div class="card-body-DT">
+                            <?php
+                            $statistical = new statistical();
+                            $getTongDoanhThu = $statistical->gettongSP();
+                            $dem = 0;
+                            while ($result = $getTongDoanhThu->fetch_assoc()) {
+                                $dem++;
+                            }
+                            ?>
+                            <h5>Số lượng sản phẩm</h5>
+                            <h4><?php echo $dem ?></h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+            </div>
+            <section class="recent">
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <h3>Thống kê sản phẩm</h3>
+                        <div>
+                            <form method="POST" action="">
+                                <div class="activity-card-calendar">
+                                    <div class="input-group mb-3">
+                                        <input id="datePickerId" value="2021-01-01" name="date1" type="date" data-date-inline-picker="true" />
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input id="datePickerId" value="2022-12-30" name="date2" type="date" data-date-inline-picker="true" />
+                                    </div>
+                                    <div class="input-group1 mb-3">
+                                        <input id="submit" name="submit" type="submit" value="Tìm kiếm">
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Sản phẩm</th>
+                                                <th>Số lượng bán ra</th>
+                                                <th>Giá</th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        // $totalquantity =0;
+                                        if (isset($getTongDoanhThuTheoNGay)) {
+                                            while ($result_dtngay = $getTongDoanhThuTheoNGay->fetch_assoc()) {
+                                                // $totalquantity += $result_dtngay['quantity'];
+                                        ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo $result_dtngay['productName'] ?></td>
+                                                        <td><?php echo  $result_dtngay['value_count'] ?></td>
+                                                        <td><?php echo number_format($result_dtngay['price'], 0, ',', '.') . " " . "đ";   ?></td>
+                                                        <td><?php echo number_format($result_dtngay['value_sumTT'], 0, ',', '.') . " " . "đ"; ?></td>
+                                                    </tr>
+                                                </tbody>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </table>
+                                    <?php
+                                    // }
+                                    ?>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- // thống kế ngày sinh nhật hoặc thành viên -->
+                    <div class="summary">
+                        <div class="summary-card">
+                            <div class="summary-single">
+                                <span class="ti-id-badge"></span>
                                 <div>
-                                   <h5> Số dư hiện có </h5>
-                                   <h4>300.000$</h4>
+                                    <h5>196.000</h5>
+                                    <small>Số lượng người truy cập</small>
                                 </div>
-                             </div>
-                             <div class="card-footer">
-                                 <a href="">View all</a>
-                             </div>
-                     </div>
-                     <div class="card-single">
-                        <div class="card-body">
-                           <span class="ti-reload"> </span>
-                           <div>
-                              <h5> Đang chờ xử lý</h5>
-                              <h4>350.000$</h4>
-                           </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="">View all</a>
-                        </div>
-                     </div>
-                     <div class="card-single">
-                        <div class="card-body">
-                           <span class="ti-check-box"> </span>
-                           <div>
-                              <h5> Đã xử lý</h5>
-                              <h4>4.000.000$</h4>
-                           </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="">View all</a>
-                        </div>
-                     </div>
-                 </div>
-                 <section class="recent">
-                    <div class="activity-grid">
-                        <div class="activity-card">
-                            <h3>Hoạt động gần đầy</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Công việc</th>
-                                            <th>Ngày bắt đầu</th>
-                                            <th>Ngày kết thúc</th>
-                                            <th>Thành viên phụ trách</th>
-                                            <th>Tình trạng</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                           <td>Nhập sản phẩm giày</td>
-                                           <td>15 Aug , 2021</td>
-                                           <td>22 Aug , 2021</td>
-                                           <td class="td-team">
-                                               <div class="img-1"></div>
-                                               <div class="img-2"></div>
-                                               <div class="img-3"></div>
-                                           </td>
-                                           <td>
-                                               <span class="badge success">Success</span>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                        <td>Nhập dụng cụ thể thao</td>
-                                        <td>15 Aug , 2021</td>
-                                        <td>22 Aug , 2021</td>
-                                        <td  class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge warning">Processing</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thanh toán hoá đơn</td>
-                                        <td>15 Aug , 2021</td>
-                                        <td>22 Aug , 2021</td>
-                                        <td  class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge success">Success</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thanh toán thuế</td>
-                                        <td>15 Aug , 2021</td>
-                                        <td>22 Aug , 2021</td>
-                                        <td  class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge warning">Processing</span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            </div>
+                            <div class="summary-single">
+                                <span class="ti-calendar"></span>
+                                <div>
+                                    <h5>10.000</h5>
+                                    <small>Số lượng vừa mới thoát</small>
+                                </div>
+                            </div>
+                            <div class="summary-single">
+                                <span class="ti-face-smile"></span>
+                                <div>
+                                    <h5>198</h5>
+                                    <small>Số lượng thành viên</small>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="summary">
-                            <div class="summary-card">
-                                <div class="summary-single">
-                                    <span class="ti-id-badge"></span>
-                                    <div>
-                                        <h5>196.000</h5>
-                                        <small>Số lượng người truy cập</small>
-                                    </div>
-                                </div>
-                                <div class="summary-single">
-                                    <span class="ti-calendar"></span>
-                                    <div>
-                                        <h5>10.000</h5>
-                                        <small>Số lượng vừa mới thoát</small>
-                                    </div>
-                                </div>
-                                <div class="summary-single">
-                                    <span class="ti-face-smile"></span>
-                                    <div>
-                                        <h5>198</h5>
-                                        <small>Số lượng thành viên</small>
-                                    </div>
+                        <div class="bday-card">
+                            <div class="bday-flex">
+                                <div class="bday-img"></div>
+                                <div class="bday-info">
+                                    <h5>My is Linh</h5>
+                                    <small>Birthday Today</small>
+
                                 </div>
                             </div>
-
-                            <div class="bday-card">
-                                <div class="bday-flex">
-                                    <div class="bday-img"></div>
-                                    <div class="bday-info">
-                                        <h5>My is Linh</h5>
-                                        <small>Birthday Today</small>
-    
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button><span class="ti-gift"></span>
-                                        Wish him
-                                    </button>
-                                </div>
+                            <div class="text-center">
+                                <button><span class="ti-gift"></span>
+                                    Wish him
+                                </button>
                             </div>
                         </div>
                     </div>
-                 </section>
-             </main>
-         </div>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
+<link rel='stylesheet' href='https://cdn.oesmith.co.uk/morris-0.5.1.css'>
+<link rel="stylesheet" href="./style.css">
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js'></script>
+<script text="text/javascript  ">
+    var data = [{
+                y: '2014',
+                a: 50,
+                b: 90
+            },
+            {
+                y: '2015',
+                a: 65,
+                b: 75
+            },
+            {
+                y: '2016',
+                a: 50,
+                b: 50
+            },
+            {
+                y: '2017',
+                a: 75,
+                b: 60
+            },
+            {
+                y: '2018',
+                a: 80,
+                b: 65
+            },
+            {
+                y: '2019',
+                a: 90,
+                b: 70
+            },
+            {
+                y: '2020',
+                a: 100,
+                b: 75
+            },
+            {
+                y: '2021',
+                a: 115,
+                b: 75
+            },
+            {
+                y: '2022',
+                a: 120,
+                b: 85
+            },
+            {
+                y: '2023',
+                a: 145,
+                b: 85
+            },
+            {
+                y: '2024',
+                a: 160,
+                b: 95
+            }
+        ],
+        config = {
+            data: data,
+            xkey: 'y',
+            ykeys: ['a', 'b'],
+            labels: ['Sản phẩm bán ra', 'Doanh thu'],
+            fillOpacity: 0.6,
+            hideHover: 'auto',
+            behaveLikeLine: true,
+            resize: true,
+            pointFillColors: ['#ffffff'],
+            pointStrokeColors: ['black'],
+            lineColors: ['gray', 'red']
+        };
+    config.element = 'stacked';
+    config.stacked = true;
+    Morris.Bar(config);
+    Morris.Donut({
+        element: 'pie-chart',
+        data: [{
+                label: "Sản phẩm",
+                value: <?php echo $demSP ?>
+            },
+            {
+                label: "Nhân viên",
+                value: <?php echo $countAdmin ?>
+            },
+            {
+                label: "Khách hàng",
+                value: <?php echo $demKH ?>
+            }
+        ]
+    });
+</script>
 </html>
