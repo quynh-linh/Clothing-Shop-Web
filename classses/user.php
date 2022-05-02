@@ -1,6 +1,5 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
-    include_once($filepath.'/../lib/session.php');
     include_once($filepath . '/../lib/database.php');
     include_once($filepath . '/../helpers/format.php');
 ?>
@@ -89,6 +88,29 @@ class user
         $query = "SELECT *  FROM tbl_uer WHERE userId = '$userId'";
         $result = $this->db->select($query);
         return $result;
+    }
+    // hiển hị khách hàng trong admin
+    public function showKHAdmin()
+    {
+        $query = "SELECT us.* , SUM(od.thanhtien) AS sumTT
+        FROM tbl_uer AS us INNER JOIN tbl_order AS od ON us.userId =od.userId
+        GROUP BY  od.userId
+        ORDER BY od.userId";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    // xóa khách hàng
+    public function del_user($id)
+    {
+        $query = "DELETE FROM tbl_uer where userId = '$id'";
+        $result = $this->db->delete($query);
+        if ($result) {
+            $alert = "<span class='success'> Xóa thành công  </span>";
+            return $alert;
+        } else {
+            $alert = "<span class='error'> Xóa không thành công  </span>";
+            return $alert;
+        }
     }
     public function showCauHoiBiMat($username, $cauHoiBiMat)
     {

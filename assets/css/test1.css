@@ -42,20 +42,6 @@
     font-size: 20px;
 }
 
-.account-body {
-    border-radius: 3px;
-    margin: 10px 0;
-    font-family: var(--font-family-monospace);
-}
-
-.account-body li {
-    width: 33.33333333333333%;
-    padding: 10px;
-    text-align: center;
-    border-radius: 32px 0px;
-    border: 1px solid #e7e8e9;
-}
-
 .account-me {
     background-color: #fff;
     height: 100%;
