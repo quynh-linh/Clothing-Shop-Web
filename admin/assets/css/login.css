@@ -1,169 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-html{
-    background-image: url(https://guantanamocity.org/wp-content/uploads/2020/12/cach-tao-background-trong-illustrator-tuyet-dep-huong-dan-hoc-thiet-ke-background-do-hoa-1.jpg);
-    background-size: cover;
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+body,
+html {
+    height: 100%;
 }
-.login-btn{
-    color: #fff;
+
+body {
+    font-family: "Open Sans";
+    font-weight: 100;
+    display: flex;
+    overflow: hidden;
+}
+
+input ::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.login-form-waring {
+    color: white;
+    font-size: 12px;
     text-align: center;
-    margin: 20px;
 }
-/* MODAL */
-.modal {
+
+input ::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input :-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    outline: 0 transparent solid;
+}
+
+input:focus ::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+input:focus ::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+input:focus :-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.login-form {
+    min-height: 10rem;
+    margin: auto;
+    max-width: 50%;
+    padding: 0.5rem;
+}
+
+.login-text {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    max-width: 50%;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.login-text .fa-stack-1x {
+    color: black;
+}
+
+.login-username,
+.login-password {
+    background: transparent;
+    border: 0 solid;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    display: block;
+    margin: 1rem;
+    padding: 0.5rem;
+    transition: 250ms background ease-in;
+    width: calc(100% - 3rem);
+}
+
+.login-username:focus,
+.login-password:focus {
+    background: white;
+    color: black;
+    transition: 250ms background ease-in;
+}
+
+.login-forgot-pass {
+    bottom: 0;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 75%;
+    left: 0;
+    opacity: 0.6;
+    padding: 0.5rem;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.login-forgot-pass:hover {
+    opacity: 1;
+}
+
+.login-submit {
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    display: block;
+    margin: 1rem auto;
+    min-width: 1px;
+    padding: 0.25rem;
+    transition: 250ms background ease-in;
+}
+
+.login-submit:hover,
+.login-submit:focus {
+    background: white;
+    color: black;
+    transition: 250ms background ease-in;
+}
+
+[class*=underlay] {
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    animation: fadein linear 0.1s;
 }
-.btn{
-    height: 29px;
-    width: 120px;
-    background-color: #000;
-    color: #fff;
-}
-.modal__overlay{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5)
-}
-.modal__body{
-    --growth-from: 0.7s;
-    --growth-to: 1s;
-    margin: auto;
-    z-index: 1;
-    border-radius: 5px;
-    animation: growth linear 0.1s ;
-}
-.auth__form{
-    width: 500px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    overflow: hidden;
- }
- .auth__form-container{
-     padding: 0 32px;
- }
- .auth__form-header{
-    text-align: center;
 
- }
- .auth__form-heading{
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    margin-top: 0;
- }
- .ti-github{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 60px;
- }
- .auth__form-switch-btn{
-     font-size: 1.6rem;
-     font-weight: 600;
-     cursor: pointer;
-     text-decoration: none;
-     color: #2bd0e1;
- }
+.underlay-photo {
+    -webkit-animation: hue-rotate 6s infinite;
+    animation: hue-rotate 6s infinite;
+    background: url("https://31.media.tumblr.com/41c01e3f366d61793e5a3df70e46b462/tumblr_n4vc8sDHsd1st5lhmo1_1280.jpg");
+    background-size: cover;
+    -webkit-filter: grayscale(30%);
+    z-index: -1;
+}
 
- .auth__form-input{
-     width: 100%;
-     height: 40px;
-     margin-top: 16px;
-     padding-left: 5px;
-     font-size: 19px;
-     border: 1px solid var(--border-color) ;
-     border-radius: 4px;
- }
- .auth__form-aside{
-     margin-top: 18px;
- }
- .auth__form-policy-text{
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    text-align: center;
- }
- .auth__form-text-link{
-     font-size: 1.2rem;
-     text-decoration: none;
-     color: #2bd0e1;
- }
- .auth__form-controls{
-    margin-top: 51px;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
- }   
- .auth__form-controls-back{
-     margin-right: 8px;
- }
- .auth__form-socials{
-     background-color: #F5F5F5;
-     padding: 16px 32px;
-     display: flex;
-     justify-content: space-between;
- }
- .auth__form-socials-icon{
-     font-size: 1.8rem;
- }
- .auth__form-socials-faceboook ,
- .auth__form-socials-icon{
-     color: var(--white-color);
-     background-color: #2d4aec;
- }
- .auth__form-socials-google ,
- .auth__form-socials-icon{
-     color: var(--white-color);
-     background-color: #8f9099;
- }
- .auth__form-socials-title{
-     margin: 0 26px;
- }
- .auth__form-help{
-     display: flex;
-     justify-content: flex-end;
- }
- .auth__form-help-link{
-     text-decoration: none;
-     font-size: 20px;
-     color: #fff;
- }
- .auth__form-help-separate{
-     display: block;
-     border-left: 1px solid #323434;
-     height: 15px;
-     margin: 4px 16px;
- }
- @media only screen and (max-width:46.1875em) {
-    .auth__form{
-       width: 100%;
-     }
-     .ti-github{
-         font-size: 30px;
-     }
-     .auth__form-heading{
-         font-size: 20px;
-     }
-     .auth__form-input{
-        height: auto;
-        font-size: 10px;
-     }
-     .auth__form-help{
-       align-items: center;
-     }
-     .auth__form-help-link{
-      zoom: 0.5;
-     }
-     .auth__form-controls{
-         margin-top: 10px;
-     }
-     .btn{
-        zoom: 0.7;
-     }
- }
+.underlay-black {
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+@-webkit-keyframes hue-rotate {
+    from {
+        -webkit-filter: grayscale(30%) hue-rotate(0deg);
+    }
+    to {
+        -webkit-filter: grayscale(30%) hue-rotate(360deg);
+    }
+}
+
+@keyframes hue-rotate {
+    from {
+        -webkit-filter: grayscale(30%) hue-rotate(0deg);
+    }
+    to {
+        -webkit-filter: grayscale(30%) hue-rotate(360deg);
+    }
+}
