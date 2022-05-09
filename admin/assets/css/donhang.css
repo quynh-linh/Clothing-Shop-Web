@@ -323,13 +323,12 @@ td{
     }
 }
 
-.QLdonhang{
-    padding:10px 10px 0 10px;
-    font-size:17px;
-    cursor:pointer;
-    border:1px solid black;
-    border-bottom:none;
-    border-radius:15px 15px 0 0;
+.QLdonhang {
+    padding: 10px;
+    text-align: center;
+    width: 33.333%;
+    border-radius: 32px 0px;
+    border: 1px solid #e7e8e9;
 }
 table{
     width:100%;
@@ -337,4 +336,33 @@ table{
 .table td,.table th{
     padding-left:50px;
     padding-right:50px;
+}
+
+.toggle:active{
+    color:red;
+}
+.toggle:hover{
+    cursor:pointer;
+}
+
+.display{
+    display:none;
+}
+h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+.table_0 thead tr th{
+    width:27.07%;
+}
+.table_1 thead tr th,
+.table_2 thead tr th{
+    width:25%;
+}
+
+.ti-check{
+    color:white;    
+}
+.ti-check:hover{
+    color:red;    
 }

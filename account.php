@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                                 </li>
                                 <li class="category">
                                     <span class="ti-printer"></span>
-                                    <a href="lichsu.php"> Quản lý đơn hàng</a>
+                                    <a href="donhang.php"> Quản lý đơn hàng</a>
                                 </li>
                                 <li class="category">
                                     <span class="ti-location-pin"></span>

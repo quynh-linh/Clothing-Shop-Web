@@ -35,17 +35,17 @@
             }
 		}
         // hiển thị  sản phẩm ra trang lich su
-        public function getOrderHistory($userId,$status){
+        public function getOrderHistory($userId,$status,$date){
             $query = "SELECT od.* , pd.productName 
             FROM tbl_order AS od
             INNER JOIN tbl_product AS pd ON od.productId =pd.productId
-            WHERE userId='$userId' AND status='$status'";
+            WHERE userId='$userId' AND status='$status' AND od.order_time='$date'";
             $result = $this->db->select($query);
             return $result;
          }
          // update status
          public function update_Status_Order($orderId,$status,$userId){
-            $query= "UPDATE tbl_order SET status = '$status' WHERE orderId = '$orderId' AND userId='$userId'";
+            $query= "UPDATE tbl_order SET status = '$status' WHERE orderId IN $orderId AND userId='$userId'";
             $result = $this->db->update($query);
          }
          // tải data tbl_order lên trang admin
@@ -59,12 +59,23 @@
          }
 
          // hiển thị  sản phẩm ra trang admin
-        public function admin_getOrder_waiting($userId,$status){
-            $query = "SELECT od.* , pd.productName ,username,us.userId , name
+        public function admin_getOrder_waiting($userId,$status,$date){
+            $query = "SELECT od.* , pd.productName ,username,us.userId , name,us.diaChi,us.name
             FROM tbl_order AS od
             INNER JOIN tbl_product AS pd ON od.productId =pd.productId
             INNER JOIN tbl_uer AS us ON od.userId =us.userId
-            WHERE od.userId='$userId' AND status='$status'";
+            WHERE od.userId='$userId' AND status='$status' AND od.order_time='$date'";
+            $result = $this->db->select($query);
+            return $result;
+         }
+
+         public function order_date($userId,$status){
+            $query = "SELECT od.order_time
+            FROM tbl_order AS od
+            INNER JOIN tbl_product AS pd ON od.productId =pd.productId
+            INNER JOIN tbl_uer AS us ON od.userId =us.userId
+            WHERE od.userId='$userId' AND status='$status'
+            GROUP BY od.order_time";
             $result = $this->db->select($query);
             return $result;
          }

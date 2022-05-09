@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                         </thead>
                                         <?php
                                         // $totalquantity =0;
-                                        if ($getTongDoanhThuTheoNGay) {
+                                        if (isset($getTongDoanhThuTheoNGay) && $getTongDoanhThuTheoNGay) {
                                             while ($result_dtngay = $getTongDoanhThuTheoNGay->fetch_assoc()) {
                                                 // $totalquantity += $result_dtngay['quantity'];
                                         ?>

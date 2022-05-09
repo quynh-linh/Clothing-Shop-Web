@@ -45,7 +45,7 @@
                     <table class="table table_0">
                             <thead>
                                 <tr>
-                                    <th>Mã đơn hàng</th>
+                                    <th>STT</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tài khoản</th>
                                     <th>Xem chi tiết</th>
@@ -66,7 +66,7 @@
                                         <?= $result_OrderHistory0['username']; ?>
                                     </td>
                                     <td>
-                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory0['userId']?>&action=0">Xem chi tiết</a>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory0['userId']?>&action=0&username=<?php echo $result_OrderHistory0['username'];?> ">Xem chi tiết</a>
                                     </td>
                                 </tr>
                                 <?php
@@ -79,8 +79,7 @@
                         <table class="table table_1">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Mã đơn hàng</th>
+                                    <th>STT</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tài khoản</th>
                                     <th>Xem chi tiết</th>
@@ -96,16 +95,13 @@
                                         while ($result_OrderHistory1 = $getOrderHistory1->fetch_assoc()) {
                                 ?>
                                 <tr>
-                                    <td>
-                                        <input type="radio" name="animal" id="check" >
-                                    </td>
                                     <td><?= ($i = $i + 1); ?></td>
                                     <td><?= $result_OrderHistory1['name']; ?></td>
                                     <td>
                                         <?= $result_OrderHistory1['username']; ?>
                                     </td>
                                     <td>
-                                    <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory1['userId']?>&action=1">Xem chi tiết</a>
+                                    <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory1['userId']?>&action=1&username=<?php echo $result_OrderHistory1['username'];?> ">Xem chi tiết</a>
                                     </td>
                                 </tr>
                                 <?php
@@ -118,7 +114,7 @@
                         <table class="table table_2">
                             <thead>
                                 <tr>
-                                    <th>Mã đơn hàng</th>
+                                    <th>STT</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tài khoản</th>
                                     <th>Xem chi tiết</th>
@@ -140,7 +136,7 @@
                                         <?= $result_OrderHistory2['username']; ?>
                                     </td>
                                     <td>
-                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory2['userId']?>&action=-1">Xem chi tiết</a>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory2['userId']?>&action=-1&username=<?php echo $result_OrderHistory2['username'];?> ">Xem chi tiết</a>
                                     </td>
                                 </tr>
                                 <?php

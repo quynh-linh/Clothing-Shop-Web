@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="assets/css/xemlaidonhang.css">
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Giỏ hàng</title>
 </head>
 <?php
 if (isset($_GET['orderID']) && $_GET['orderID']) {
     $userId = Session::get('user_id');
-    $orderId = $_GET['orderID'];
-    $update_status = $order->update_Status_Order($orderId, $userId, -1);
+    $orderId ="(".$_GET['orderID']."-1)";
+    $update_status = $order->update_Status_Order($orderId, -1, $userId);
 }
 ?>
 <body>
@@ -101,31 +102,53 @@ if (isset($_GET['orderID']) && $_GET['orderID']) {
                             <li class="QLdonhang" onclick="changeProductList('daHuy',this)">Đã hủy</li>
                         </ul>
                         <div class="col l-12">
-                            <table id="choXN" class="table table_0">
+                        <!-- <table id="choXN" class="table table_0"> -->
                                 <?php
-                                $getOrderHistory0 = $order->getOrderHistory(Session::get('user_id'), 0);
-                                $total0 = 0;
-                                if ($getOrderHistory0) {
-                                    $i = 0;
+                                    $date=$order->order_date(Session::get('user_id'),0);
+                                    if($date==Null){
+                                
+                                    }else{
+
+                                        $count=0;
+                                        while($result_date=$date->fetch_assoc()){
+                                        $count+=1;
+                                        foreach($result_date as $date_order){
                                 ?>
+                                <table id="choXN" class="table table_0">
                                     <thead>
                                         <tr>
-                                            <th>Mã đơn hàng</th>
-                                            <th>Ảnh</th>
-                                            <th>Tên</th>
-                                            <th>Size</th>
-                                            <th>Giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Số tiền</th>
-                                            <th>Ngày đặt</th>
-                                            <th>Tình trạng </th>
-                                            <th>Hủy đơn</th>
+                                            <th>Đơn hàng: <?php echo $count;?></th>
+                                            <th colspan="5">Ngày đặt: <?php echo $date_order;?></th>
+                                            <th colspan="2" class="toggle">Xem chi tiết</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
+                                        <!-- </table> -->
+
+                        <table class="display display_0">
+                            <thead style="background-color:blue;">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên</th>
+                                    <th>Size</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Tình trạng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                        $getOrderHistory0 = $order->getOrderHistory(Session::get('user_id'), 0,$date_order);
+                                        
+                                        if ($getOrderHistory0) {
+                                        $i = 0;
+                                        $total0 = 0;
+                                        $orderID="";
                                         while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
                                             $total0 += $result_OrderHistory0['thanhtien'];
+                                            $orderID.=$result_OrderHistory0['orderId'].",";
                                         ?>
                                             <tr>
                                                 <td><?= ($i = $i + 1); ?></td>
@@ -163,43 +186,71 @@ if (isset($_GET['orderID']) && $_GET['orderID']) {
                                                     ?>
                                                 </td>
                                                 <td style="color:red;cursor:pointer">Đang chờ xác nhận</td>
-                                                <td>
-                                                    <a onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này')" href="?orderID=<?php echo $result_OrderHistory0['orderId'] ?>" class="ti-close"><?php ?></a>
-                                                </td>
+                                                
                                             </tr>
                                     <?php
                                         }
+                                         
+                                        ?>
+                                        <td colspan="8" style="background-color:#2a2b2c;text-align:center;color:white;">Tổng đơn hàng: <?php echo number_format($total0, 0, ',', '.') . "" . "đ";?></td>
+                                        <td colspan="2" class="huy_don" style="background-color:#2a2b2c;">
+                                            <a style="text-decoration:none;font-size:20px;" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này')" href="?orderID=<?php echo $orderID ?>" class="ti-trash"></a>
+                                        </td>
+                                        <?php
                                     }
+                                }
+                            }
+                        
                                     ?>
                                     </tbody>
-                                    <td colspan="3">
-                                        <div class="cart-sum" style="padding: 20px;font-size: 25px;">
-                                            <span>Tổng tiền:</span>
-                                            <span><?php echo number_format($total0, 0, ',', '.') . " " . "đ"; ?></span>
-                                        </div>
                             </table>
+                            </table>
+                            <?php } ?>
 
-                            <table id="daGiao" class="table table_1">
+
+                            <!-- <table id="daGiao" class="table table_1"> -->
                                 <?php
-                                $getOrderHistory1 = $order->getOrderHistory(Session::get('user_id'), 1);
-                                $total1 = 0;
-                                if ($getOrderHistory1) {
-                                    $i = 0;
-                                ?>
-                                    <thead>
-                                        <tr>
-                                            <th>Mã đơn hàng</th>
-                                            <th>Ảnh</th>
-                                            <th>Tên</th>
-                                            <th>Size</th>
-                                            <th>Giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Số tiền</th>
-                                            <th>Ngày đặt</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                                $date1=$order->order_date(Session::get('user_id'),1);
+                                if($date1==Null){
+                                    
+                                        }else{
+    
+                                            $count=0;
+                                            while($result_date1=$date1->fetch_assoc()){
+                                            $count+=1;
+                                            foreach($result_date1 as $date_order1){
+                                    ?>
+                                    <table id="daGiao" class="table table_1">
+                                        <thead>
+                                            <tr>
+                                                <th>Đơn hàng: <?php echo $count;?></th>
+                                                <th colspan="5">Ngày đặt: <?php echo $date_order1;?></th>
+                                                <th colspan="2" class="toggle">Xem chi tiết</th>
+                                            </tr>
+                                        </thead>
+                                    <!-- </table> -->
+    
+                            <table class="display display_1">
+                                <thead style="background-color:blue;">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Ảnh</th>
+                                        <th>Tên</th>
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    $getOrderHistory1 = $order->getOrderHistory(Session::get('user_id'), 1,$date_order1);
+                                
+                                    if ($getOrderHistory1) {
+                                        $i = 0;
+                                        $total1 = 0;
                                         while ($result_OrderHistory1 = $getOrderHistory1->fetch_assoc()) {
                                             $total1 += $result_OrderHistory1['thanhtien'];
                                         ?>
@@ -238,43 +289,69 @@ if (isset($_GET['orderID']) && $_GET['orderID']) {
                                                     echo $result_OrderHistory1['order_time'];
                                                     ?>
                                                 </td>
-
+                                                <td>Đã giao</td>
                                             </tr>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                    </tbody>
-                                    <td colspan="3">
-                                        <div class="cart-sum" style="padding: 20px;font-size: 25px;">
-                                            <span>Tổng tiền:</span>
-                                            <span><?php echo number_format($total1, 0, ',', '.') . " " . "đ"; ?></span>
-                                        </div>
-                                    </td>
-                            </table>
-
-                            <table id="daHuy" class="table table_2">
-                                <?php
-                                $getOrderHistory2 = $order->getOrderHistory(Session::get('user_id'), -1);
-                                $total2 = 0;
-                                if ($getOrderHistory2) {
-                                    $i = 0;
-                                ?>
-                                    <thead>
-                                        <tr>
-                                            <th>Mã đơn hàng</th>
-                                            <th>Ảnh</th>
-                                            <th>Tên</th>
-                                            <th>Size</th>
-                                            <th>Giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Số tiền</th>
-                                            <th>Ngày đặt</th>
-                                            <th>Tình trạng </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                            <?php
+                                            
+                                            }
+                                        ?>
+                                        <td colspan="11" style="background-color:#2a2b2c;text-align:center;color:white;">Tổng đơn hàng: <?php echo number_format($total1, 0, ',', '.') . "" . "đ";?></td>
                                         <?php
+                                    }
+                                }
+                            }
+                        
+                                ?> 
+                                    </tbody>
+                            </table>
+                            </table>
+                            <?php } ?>
+
+
+                            <!--huy-->
+                            <!-- <table id="daHuy" class="table table_2"> -->
+                                <?php
+                                    $date2=$order->order_date(Session::get('user_id'),-1);
+                                    if($date2==Null){
+                                
+                                        }else{
+    
+                                            $count=0;
+                                            while($result_date2=$date2->fetch_assoc()){
+                                            $count+=1;
+                                            foreach($result_date2 as $date_order2){
+                                ?>
+                                <table id="daHuy" class="table table_2">
+                                        <thead>
+                                            <tr>
+                                                <th>Đơn hàng: <?php echo $count;?></th>
+                                                <th colspan="5">Ngày đặt: <?php echo $date_order2;?></th>
+                                                <th colspan="2" class="toggle">Xem chi tiết</th>
+                                            </tr>
+                                        </thead>
+                                    <!-- </table> -->
+    
+                            <table class="display display_2">
+                                <thead style="background-color:blue;">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Ảnh</th>
+                                        <th>Tên</th>
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $getOrderHistory2 = $order->getOrderHistory(Session::get('user_id'), -1,$date_order2);
+                                    
+                                    if ($getOrderHistory2) {
+                                        $i = 0;
+                                        $total2 = 0;
                                         while ($result_OrderHistory2 = $getOrderHistory2->fetch_assoc()) {
                                             $total2 += $result_OrderHistory2['thanhtien'];
                                         ?>
@@ -316,20 +393,21 @@ if (isset($_GET['orderID']) && $_GET['orderID']) {
                                                 <td style="color:red;cursor:pointer">Đã hủy</td>
 
                                             </tr>
-
-                                            <td colspan="3">
-                                                <div class="cart-sum" style="padding: 20px;font-size: 25px;">
-                                                    <span>Tổng tiền:</span>
-                                                    <span><?php echo number_format($total2, 0, ',', '.') . " " . "đ"; ?></span>
-                                                </div>
-                                            </td>
-                                    <?php
+                                            <?php  
                                         }
-                                    }
                                     ?>
-                                    </tbody>
+                                            <td colspan="11" style="background-color:#2a2b2c;text-align:center;color:white;">Tổng đơn hàng: <?php echo number_format($total2, 0, ',', '.') . "" . "đ";?></td>
+                                    <?php
+                                    }
+                                }
+                            }
+
+                                    ?> 
+                                </tbody>
 
                             </table>
+                            </table>
+                            <?php } ?>
 
                         </div>
                     </div>
@@ -339,6 +417,6 @@ if (isset($_GET['orderID']) && $_GET['orderID']) {
         <?php include './inc/footer.php' ?>
     </div>
 </body>
-<script src="./assets/js/lichsu.js"></script>
 
+<script src="./assets/js/donhang.js"></script>
 </html>

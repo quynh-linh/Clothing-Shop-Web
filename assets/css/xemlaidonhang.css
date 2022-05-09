@@ -92,9 +92,9 @@
 table {
     width: 100%;
     background: #fff;
-    padding: 10px;
     border-collapse: collapse;
     font-size: 15px;
+    padding:0 10px;
 }
 
 th {
@@ -178,4 +178,20 @@ td {
     text-align: center;
     margin-top: 40px;
     color: rgba(0, 0, 0, .54);
+}
+
+.display{
+    display:none;
+}
+.toggle{
+    cursor:pointer;
+}
+.toggle:hover{
+    color:red;
+}
+.huy_don a{
+    color:white;
+}
+.huy_don:hover a{
+    color:red;
 }
