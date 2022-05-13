@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $getTongDoanhThuTheoNGay = $statistical1->gettongSPTheoNgay($_POST);
 }
 ?>
-
 <body>
     <?php include './inc/sidebar.php' ?>
     <div class="main-content">

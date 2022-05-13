@@ -437,7 +437,7 @@
                         <a href="">BỘ SƯU TẬP</a>
                     </li>
                     <li class="nav-list">
-                        <a href="giohang.php">VỀ CHÚNG TÔI</a>
+                        <a href="aboutAs.php">VỀ CHÚNG TÔI</a>
                     </li>
                     <li class="nav-list">
                         <a href="donhang.php">LIÊN HỆ</a>
