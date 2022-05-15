@@ -72,6 +72,22 @@ class product
         $result = $this->db->select($query);
         return $result;
     }
+    public function getproductbyBrandId($id)
+    {
+        $query = "SELECT pd.* , br.brandName 
+        FROM tbl_product AS pd INNER JOIN tbl_brand AS br ON pd.brandId=br.brandId 
+        WHERE pd.brandId  = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getproductbyTypeProductId($id)
+    {
+        $query = "SELECT pd.* , tpd.typeProductName 
+        FROM tbl_product AS pd  INNER JOIN tbl_type_product AS tpd ON pd.typeProductId= tpd.typeProductID
+        WHERE pd.typeProductId  = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
     public function update_product($data, $files, $id)
     {
         // kết nối với cơ sở dữ liệu

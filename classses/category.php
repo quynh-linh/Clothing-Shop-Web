@@ -88,6 +88,6 @@
             $result = $this->db->select($query);
             return $result;
         }
-
+        /* Show list product by brand */
     }
 ?>

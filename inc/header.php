@@ -5,7 +5,7 @@
             <nav class="navigation">
                 <ul class="nav">
                     <li class="nav-list">
-                        <a href="lienhe.php">NAM</a>
+                        <a href="#">NAM</a>
                         <div class="header_menu-list-in-item">
                             <div class="header_menu-list">
                                 <div class="row">   
@@ -20,7 +20,7 @@
                                                         while ($result = $get_brand->fetch_assoc()) {
                                                 ?>
                                                 <li class="col c-4">
-                                                    <a href=""><?php echo $result['brandName'] ?></a>
+                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></a>
                                                 </li>
                                                     <?php
                                                         }
@@ -148,7 +148,7 @@
                         </div>
                     </li>
                     <li class="nav-list">
-                        <a href="gioithieu.php">NỮ</a>
+                        <a href="#">NỮ</a>
                         <div class="header_menu-list-in-item">
                             <div class="header_menu-list">
                                 <div class="row">   
@@ -163,7 +163,7 @@
                                                         while ($result = $get_brand->fetch_assoc()) {
                                                 ?>
                                                 <li class="col c-4">
-                                                    <a href=""><?php echo $result['brandName'] ?></a>
+                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></a>
                                                 </li>
                                                     <?php
                                                         }
@@ -291,7 +291,7 @@
                         </div>
                     </li>
                     <li class="nav-list">
-                        <a href="quanao.php">TRẺ EM</a>
+                        <a href="#">TRẺ EM</a>
                         <div class="header_menu-list-in-item">
                             <div class="header_menu-list">
                                 <div class="row">   
@@ -306,7 +306,7 @@
                                                         while ($result = $get_brand->fetch_assoc()) {
                                                 ?>
                                                 <li class="col c-4">
-                                                    <a href=""><?php echo $result['brandName'] ?></a>
+                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></a>
                                                 </li>
                                                     <?php
                                                         }
@@ -440,7 +440,7 @@
                         <a href="aboutAs.php">VỀ CHÚNG TÔI</a>
                     </li>
                     <li class="nav-list">
-                        <a href="donhang.php">LIÊN HỆ</a>
+                        <a href="#">LIÊN HỆ</a>
                     </li>
                 </ul>
              </nav>

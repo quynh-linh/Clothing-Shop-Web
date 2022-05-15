@@ -38,7 +38,7 @@
         }
         public function show_type_product_ao()
         {
-            $query = "SELECT t_pd.typeProductName
+            $query = "SELECT t_pd.*
                 FROM tbl_type_product AS t_pd INNER JOIN category AS cat ON t_pd.catID =cat.catId   
                 WHERE cat.catId  = '40'
                 order by t_pd.typeProductID  desc";
@@ -47,7 +47,7 @@
         }
         public function show_type_product_aokhoac()
         {
-            $query = "SELECT t_pd.typeProductName
+            $query = "SELECT t_pd.*
             FROM tbl_type_product AS t_pd INNER JOIN category AS cat ON t_pd.catID =cat.catId   
             WHERE cat.catId  = '41'
             order by t_pd.typeProductID  desc";
@@ -56,7 +56,7 @@
         }
         public function show_type_product_quan()
         {
-            $query = "SELECT t_pd.typeProductName
+            $query = "SELECT t_pd.*
             FROM tbl_type_product AS t_pd INNER JOIN category AS cat ON t_pd.catID =cat.catId   
             WHERE cat.catId  = '42'
             order by t_pd.typeProductID  desc";
@@ -65,7 +65,7 @@
         }
         public function show_type_product_chanvay()
         {
-            $query = "SELECT t_pd.typeProductName
+            $query = "SELECT t_pd.*
             FROM tbl_type_product AS t_pd INNER JOIN category AS cat ON t_pd.catID =cat.catId   
             WHERE cat.catId  = '43'
             order by t_pd.typeProductID  desc";
@@ -74,7 +74,7 @@
         }
         public function show_type_product_dam()
         {
-            $query = "SELECT t_pd.typeProductName
+            $query = "SELECT t_pd.*
             FROM tbl_type_product AS t_pd INNER JOIN category AS cat ON t_pd.catID =cat.catId   
             WHERE cat.catId  = '44'
             order by t_pd.typeProductID  desc";
@@ -83,7 +83,7 @@
         }
         public function show_type_product_DOLOT()
         {
-            $query = "SELECT t_pd.typeProductName
+            $query = "SELECT t_pd.*
             FROM tbl_type_product AS t_pd INNER JOIN category AS cat ON t_pd.catID =cat.catId   
             WHERE cat.catId  = '45'
             order by t_pd.typeProductID  desc";
