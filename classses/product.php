@@ -220,5 +220,45 @@ class product
         $result = $this->db->select($sql);
         return $result;
     }
+    // search category
+    public function display_product_category($rowcategory)
+    {
+        $sql = "SELECT * FROM tbl_product WHERE catId IN ($rowcategory)";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // search brand
+    public function display_product_brand($rowbrand)
+    {
+        $sql = "SELECT * FROM tbl_product WHERE brandId IN ($rowbrand)";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    //search price
+    public function display_product_price($rowprice){
+        $sql = "SELECT * FROM tbl_product WHERE price <= ($rowprice)";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // display product sort price
+    public function display_product_sortprice($sort_option){
+        $sql = "SELECT * FROM tbl_product ORDER BY price $sort_option";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // display category
+    public function show_nameCategory()
+    {
+        $sql = "SELECT * FROM category";
+        $result = $this->db->select($sql);
+       return $result;
+    }
+    // display brand
+    public function show_nameBrand()
+    {
+        $sql = "SELECT * FROM tbl_brand";
+        $result = $this->db->select($sql);
+       return $result;
+    }
 }
 ?>
