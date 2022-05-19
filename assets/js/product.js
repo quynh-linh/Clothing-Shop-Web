@@ -81,4 +81,19 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
+// slider thuong mại
+let scroll=document.getElementsByClassName("app_suggestion");
+let arrow_left=document.querySelectorAll('.arrow_left')
+let arrow_right=document.querySelectorAll('.arrow_right')
 
+//click vào mũi tên sẽ cuộn trái hoặc phải 500px
+for(let i=0;i<scroll.length;i++){
+
+    arrow_left[i].addEventListener('click',()=>{
+        scroll[i].scrollLeft-=500
+    })
+
+    arrow_right[i].addEventListener('click',()=>{
+        scroll[i].scrollLeft+=500
+    })
+}

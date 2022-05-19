@@ -48,7 +48,7 @@
                                     <th>STT</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tài khoản</th>
-                                    <th>Xem chi tiết</th>
+                                    <th style="width:500px;">Xem chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +82,7 @@
                                     <th>STT</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tài khoản</th>
-                                    <th>Xem chi tiết</th>
+                                    <th style="width:500px;">Xem chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,7 +117,7 @@
                                     <th>STT</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tài khoản</th>
-                                    <th>Xem chi tiết</th>
+                                    <th style="width:500px;">Xem chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
