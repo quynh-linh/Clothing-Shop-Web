@@ -16,14 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tìm kiếm nâng cao</title>
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/timkiemnangcao.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/grid.css">
 	<link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
 	<link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
-	<script src="./assets/js/product.js"></script>
-
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -47,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 											<span id="max" style="font-family: var(--font-family-sans-serif);">
 											<?php 
 											if (isset($_GET['price'])) {
-														echo $_GET['price'];
+														echo number_format($_GET['price'], 0, ',', '.') . "" . "đ";
 											}else {
 												echo "0";	
 											}
@@ -181,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 													 ?></span>
 													<div class="home-product-item_price">
 														<span class="home-product-item_price"><?php
-														 echo $row['price'] 
+														 	echo number_format($row['price'], 0, ',', '.') . "" . "đ" 
 														 ?></span>
 													</div>
 												</div>
@@ -368,5 +366,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 		<?php include './inc/footer.php' ?>
 	</section>
 	<script src="./assets/js/slider.js"></script>
+	<script src="./assets/js/product.js"></script>
 </body>
 </html>
