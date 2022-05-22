@@ -21,6 +21,17 @@ if (!isset($_GET['productId']) || $_GET['productId'] == NULL) {
 } else {
     $id = $_GET['productId'];
 }
+
+/* Kiểm tra id brand */
+if (isset($_GET['brandId']) && $_GET['brandId']!=NULL ) {
+    $br = $_GET['brandId'];
+}
+
+/* Kiểm tra loai sp*/
+if (isset($_GET['type']) && $_GET['type']!=NULL) {
+    $type = $_GET['type'];
+}
+
 // Thêm sản phẩm vào giỏ hàng
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (Session::get('user_login') == false) {
@@ -175,9 +186,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             <div>
                 <h3>Sản phẩm liên quan</h1>
                     <div class="row">
-                        <div class="col l-2-4">
-
-                        </div>
+                       
+                            <?php
+                                $get_productRelatetionship = $product->getProduct_Relationship($br,$id);
+                                if ($get_productRelatetionship) {
+                                    while ($result = $get_productRelatetionship->fetch_assoc()) {
+                            ?> 
+                            <div class="col l-2-4">
+                                                    <a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
+                                                        <div class="home-product-item">
+                                                            <img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
+                                                            <h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
+                                                            <div class="home-product-item_price">
+                                                                <span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                            </div>
+                            <?php
+                                    }
+                                }
+                            ?>
+                        
                     </div>
             </div>
         </div>

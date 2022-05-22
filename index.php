@@ -174,19 +174,18 @@
 								$getProduct_Women = $product->getProduct_Women();
 								if ($getProduct_Women) {
 								?>
-									<button class="arrow_left">
-										< </button>
+									<button class="arrow_left">< </button>
 											<button class="arrow_right">></button>
 											<?php
 											while ($result = $getProduct_Women->fetch_assoc()) {
 											?>
 												<div class="col l-2-4 ">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>?brandId=<?php echo $result['brandId']?>">
+													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
 														<div class="home-product-item">
 															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
 															<div class="home-product-item_price">
-																<span class="home-product-item_price-current"><?php echo $result['price'] . "đ" ?></span>
+																<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
 															</div>
 														</div>
 													</a>
@@ -212,7 +211,7 @@
 											while ($result = $getProduct_Women->fetch_assoc()) {
 											?>
 												<div class="col l-2-4 men_products">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>">
+													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
 														<div class="home-product-item men_product">
 															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
@@ -242,7 +241,7 @@
 											while ($result = $getProduct_Kid->fetch_assoc()) {
 											?>
 												<div class="col l-2-4 kid">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>">
+													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
 														<div class="home-product-item">
 															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>

@@ -260,5 +260,14 @@ class product
         $result = $this->db->select($sql);
        return $result;
     }
+    // chọn ngẫu nhiên cac sp cung brand trừ sp hiện tại 
+    public function getProduct_Relationship($br,$id)
+    {
+        $query = "SELECT * FROM tbl_product where brandId='$br' and productId not in ('$id') 
+                  ORDER BY rand() limit 5
+          ";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
 ?>
