@@ -339,19 +339,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 								<span class="foward-btn">
 									<a href="">1</a>
 								</span>
-								<span>
+								<span class="foward-btn">
 									<a href="">2</a>
 								</span>
-								<span>
+								<span class="foward-btn">
 									<a href="">3</a>
 								</span>
-								<span>
+								<span class="foward-btn">
 									<a href="">4</a>
 								</span>
-								<span>
+								<span class="foward-btn">
 									<a href="">5</a>
 								</span>
-								<span>
+								<span class="foward-btn">
 									<a href="">...</a>
 								</span>
 								<span class="ti-angle-right"></span>
