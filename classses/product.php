@@ -195,7 +195,18 @@ class product
     // tìm kiếm sản phẩm theo tên
     public function searchProduct($productName)
     {
-        $sql = "SELECT * FROM tbl_product WHERE productName like '%$productName%'";
+        // manh
+        // $sp_tungtrang = 6;
+        // if(!isset($_GET['trang'])){
+        //     $trang = 1;
+        // }else{
+        //     $trang = $_GET['trang'];
+        // }
+        // $tungtrang = ($trang-1)*$sp_tungtrang;
+        $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
+        $current_page = !empty($_GET['page'])?$_GET['page']:1;
+        $offsset = ($current_page-1)*$item_per_page;
+        $sql = "SELECT * FROM tbl_product WHERE productName like '%$productName%' LIMIT $item_per_page OFFSET $offsset" ;
         $result = $this->db->select($sql);
         return $result;
     }
@@ -223,7 +234,20 @@ class product
     // search category
     public function display_product_category($rowcategory)
     {
-        $sql = "SELECT * FROM tbl_product WHERE catId IN ($rowcategory)";
+        $sp_tungtrang = 6;
+        if(!isset($_GET['trang'])){
+            $trang = 1;
+        }else{
+            $trang = $_GET['trang'];
+        }
+        $tungtrang = ($trang-1)*$sp_tungtrang;
+        $sql = "SELECT * FROM tbl_product WHERE catId IN ($rowcategory) LIMIT $tungtrang,$sp_tungtrang";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // all product category
+    public function get_all_product_category($rowcategory, $rowbrand, $rowprice){
+        $sql = "SELECT * FROM tbl_product WHERE catId IN ('$rowcategory') OR brandId IN ('$rowbrand') OR price <= ('$rowprice')";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -236,13 +260,29 @@ class product
     }
     //search price
     public function display_product_price($rowprice){
+        $sp_tungtrang = 6;
+        if(!isset($_GET['trang'])){
+            $trang = 1;
+        }else{
+            $trang = $_GET['trang'];
+        }
+        $tungtrang = ($trang-1)*$sp_tungtrang;
+        $sql = "SELECT * FROM tbl_product WHERE price <= ($rowprice) LIMIT $tungtrang,$sp_tungtrang";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // get all product price
+    public function get_all_product_price($rowprice){
         $sql = "SELECT * FROM tbl_product WHERE price <= ($rowprice)";
         $result = $this->db->select($sql);
         return $result;
     }
     // display product sort price
     public function display_product_sortprice($sort_option){
-        $sql = "SELECT * FROM tbl_product ORDER BY price $sort_option";
+        $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
+        $current_page = !empty($_GET['page'])?$_GET['page']:1;
+        $offsset = ($current_page-1)*$item_per_page;
+        $sql = "SELECT * FROM tbl_product ORDER BY price $sort_option LIMIT $item_per_page OFFSET $offsset";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -251,22 +291,19 @@ class product
     {
         $sql = "SELECT * FROM category";
         $result = $this->db->select($sql);
-       return $result;
+        return $result;
     }
     // display brand
     public function show_nameBrand()
     {
         $sql = "SELECT * FROM tbl_brand";
         $result = $this->db->select($sql);
-       return $result;
+        return $result;
     }
-    // chọn ngẫu nhiên cac sp cung brand trừ sp hiện tại 
-    public function getProduct_Relationship($br,$id)
-    {
-        $query = "SELECT * FROM tbl_product where brandId='$br' and productId not in ('$id') 
-                  ORDER BY rand() limit 5
-          ";
-        $result = $this->db->select($query);
+    // all product
+    public function get_all_product(){
+        $sql = "SELECT * FROM tbl_product";
+        $result = $this->db->select($sql);
         return $result;
     }
 }
