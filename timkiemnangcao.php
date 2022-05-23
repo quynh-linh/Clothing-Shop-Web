@@ -418,7 +418,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 											}
 										}else {
 											?>
-											<strong style="background-color: cyan; padding:5px 30px; border-radius: 3px;"><?=$num?></strong>
+											<strong style="background-color: #adb7b9; padding:5px 30px; border-radius: 3px;"><?=$num?></strong>
 											<?php
 										}
 									}

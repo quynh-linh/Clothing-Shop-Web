@@ -29,48 +29,48 @@
 }
 load_data();
 
-// click chon trang
-var number_page = document.getElementsByClassName("foward-btn");
-var btn_next = document.getElementsByClassName("ti-angle-right");
-var btn_pre = document.getElementsByClassName("ti-angle-left");
+// // click chon trang
+// var number_page = document.getElementsByClassName("foward-btn");
+// var btn_next = document.getElementsByClassName("ti-angle-right");
+// var btn_pre = document.getElementsByClassName("ti-angle-left");
 
-for (let i = 0; i < number_page.length; i++){
-    number_page[i].style.background=""
-}
-    number_page[0].style.background="#adb7b9"
+// for (let i = 0; i < number_page.length; i++){
+//     number_page[i].style.background=""
+// }
+//     number_page[0].style.background="#adb7b9"
 
-for (let i = 0; i < number_page.length; i++) {
+// for (let i = 0; i < number_page.length; i++) {
 
-    number_page[i].addEventListener('click', () => {
-        for (let i = 0; i < number_page.length; i++){
-            number_page[i].style.background=""
-        }
-        number_page[i].style.background="#adb7b9"
-    })
-}
+//     number_page[i].addEventListener('click', () => {
+//         for (let i = 0; i < number_page.length; i++){
+//             number_page[i].style.background=""
+//         }
+//         number_page[i].style.background="#adb7b9"
+//     })
+// }
 
-btn_next[1].addEventListener('click', () => {
+// btn_next[1].addEventListener('click', () => {
 
-        for (let i = 0; i < number_page.length; i++){
-            if(number_page[i].style.background!=""){
-                if(i+1 == number_page.length) break
-                number_page[i+1].style.background="#adb7b9"
-                number_page[i].style.background=""
-                break
-            }
-            number_page[i].style.background=""
-        }
-})
+//         for (let i = 0; i < number_page.length; i++){
+//             if(number_page[i].style.background!=""){
+//                 if(i+1 == number_page.length) break
+//                 number_page[i+1].style.background="#adb7b9"
+//                 number_page[i].style.background=""
+//                 break
+//             }
+//             number_page[i].style.background=""
+//         }
+// })
 
-btn_pre[1].addEventListener('click', () => {
+// btn_pre[1].addEventListener('click', () => {
 
-        for (let i = 0; i < number_page.length; i++){
-            if(number_page[i].style.background!=""){
-                if(i-1 < 0) break
-                number_page[i-1].style.background="#adb7b9"
-                number_page[i].style.background=""
-                break
-            }
-            number_page[i].style.background=""
-        }
-})
+//         for (let i = 0; i < number_page.length; i++){
+//             if(number_page[i].style.background!=""){
+//                 if(i-1 < 0) break
+//                 number_page[i-1].style.background="#adb7b9"
+//                 number_page[i].style.background=""
+//                 break
+//             }
+//             number_page[i].style.background=""
+//         }
+// })
