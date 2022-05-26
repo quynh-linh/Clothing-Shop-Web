@@ -362,29 +362,29 @@ class product
         }
         $product_start = ($trang-1)*$sp_tungtrang;
 
-        if($search ==NULL){
+        if($search ==""){
 
-            if($category == "(-1)" && $brand == "(-1)" && $price !=-1){
+            if($category == '(-1)' && $brand == '(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE price <= '$price' LIMIT $product_start,$sp_tungtrang";
-            }elseif($category != "(-1)" && $brand == "(-1)" && $price ==-1){
+            }elseif($category !='(-1)' && $brand =='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category  LIMIT $product_start,$sp_tungtrang";
-            }elseif($category == "(-1)" && $brand != "(-1)" && $price ==-1){
+            }elseif($category =='(-1)' && $brand !='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand  LIMIT $product_start,$sp_tungtrang";
-            }elseif($category != "(-1)" && $brand != "(-1)" && $price ==-1){
+            }elseif($category !='(-1)' && $brand !='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand LIMIT $product_start,$sp_tungtrang";
-            }elseif($category != "(-1)" && $brand == "(-1)" && $price !=-1){
+            }elseif($category !='(-1)' && $brand =='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price' LIMIT $product_start,$sp_tungtrang";
-            }elseif($category == "(-1)" && $brand != "(-1)" && $price !=-1){
+            }elseif($category =='(-1)' && $brand !='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price' LIMIT $product_start,$sp_tungtrang";
-            }elseif($category != "(-1)" && $brand != "(-1)" && $price !=-1){
+            }elseif($category !='(-1)' && $brand !='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'  LIMIT $product_start,$sp_tungtrang";
-            }elseif($category == "(-1)" && $brand == "(-1)" && $price ==-1){
+            }elseif($category =='(-1)' && $brand =='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product LIMIT $product_start,$sp_tungtrang";
             }
 
         }else{
 
-            if($category == "(-1)" && $brand == "(-1)" && $price ==-1)
+            if($category =='(-1)' && $brand =='(-1)' && $price ==-1)
                 $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%' LIMIT $product_start,$sp_tungtrang";
         }
 
@@ -396,29 +396,29 @@ class product
     public function number_page($category,$brand,$price,$search)
     {
 
-        if($search ==NULL){
+        if($search ==""){
 
-            if($category == "(-1)" && $brand == "(-1)" && $price !=-1){
+            if($category =='(-1)' && $brand =='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE price <= '$price' ";
-            }elseif($category != "(-1)" && $brand == "(-1)" && $price ==-1){
+            }elseif($category !='(-1)' && $brand =='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category  ";
-            }elseif($category == "(-1)" && $brand != "(-1)" && $price ==-1){
+            }elseif($category =='(-1)' && $brand !='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand  ";
-            }elseif($category != "(-1)" && $brand != "(-1)" && $price ==-1){
+            }elseif($category !='(-1)' && $brand !='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand ";
-            }elseif($category != "(-1)" && $brand == "(-1)" && $price !=-1){
+            }elseif($category !='(-1)' && $brand =='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price' ";
-            }elseif($category == "(-1)" && $brand != "(-1)" && $price !=-1){
+            }elseif($category =='(-1)' && $brand !='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price' ";
-            }elseif($category != "(-1)" && $brand != "(-1)" && $price !=-1){
+            }elseif($category !='(-1)' && $brand !='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'  ";
-            }elseif($category == "(-1)" && $brand == "(-1)" && $price ==-1){
+            }elseif($category =='(-1)' && $brand =='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product";
             }
 
         }else{
 
-            if($category == "(-1)" && $brand == "(-1)" && $price ==-1)
+            if($category =='(-1)' && $brand =='(-1)' && $price ==-1)
                 $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%'";
         }
 

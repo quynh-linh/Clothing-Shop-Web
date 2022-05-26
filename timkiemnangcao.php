@@ -3,7 +3,7 @@
 if (isset($_GET['search']))
 	$search = $_GET['search'];
 else
-	$search = NULL;
+	$search = "";
 
 //$search = $product->searchProduct($search);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
@@ -68,20 +68,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 											$show_category = $product->show_nameCategory();
 											if ($show_category) {
 												while ($result = $show_category->fetch_assoc()) {
-													$checked = [];
-													if (isset($_GET['category'])) {
-														$checked = $_GET['category'];
+
+													if (isset($_GET['category']) && is_string($_GET['category'])) {
+														$a=explode(',', $_GET['category']);
+													}elseif(isset($_GET['category']) && is_array($_GET['category'])){
+														$checked=$_GET['category'];
 													}
 											?>
 												<li>
 													<input type="checkbox" id="category" name="category[]" value="<?= $result['catId'];?>"
 														<?php 
-														if (isset($_GET['category'])){
+														if (isset($_GET['category']) && is_string($_GET['category'])){
+															if (in_array($result['catId'], $a)) {
+																echo "checked";
+															}
+														}elseif(isset($_GET['category']) && is_array($_GET['category'])){
 															if (in_array($result['catId'], $checked)) {
 																echo "checked";
 															}
-														}else echo "";
-														
+														}
+													
 													?>>
 													<label><?php echo $result['catName'] ?></label><br>
 												</li>
@@ -100,15 +106,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 											$show_brand = $product->show_nameBrand();
 											if ($show_brand) {
 												while ($result = $show_brand->fetch_assoc()) {
-													$checked = [];
-													if (isset($_GET['brand'])) {
-														$checked = $_GET['brand'];
+													if (isset($_GET['brand']) && is_string($_GET['brand'])) {
+														$a=explode(',', $_GET['brand']);
+													}elseif(isset($_GET['brand']) && is_array($_GET['brand'])){
+														$checked=$_GET['brand'];
 													}
 											?>
 												<li>
 													<input type="checkbox" id="brand" name="brand[]" value="<?= $result['brandId'];?>"
-														<?php if (in_array($result['brandId'], $checked)) {
-														echo "checked";
+														<?php
+
+														if (isset($_GET['brand']) && is_string($_GET['brand'])){
+															if (in_array($result['brandId'], $a)) {
+																echo "checked";
+															}
+														}elseif(isset($_GET['brand']) && is_array($_GET['brand'])){
+															if (in_array($result['brandId'], $checked)) {
+																echo "checked";
+															}
 														}
 													?>>
 													<label><?php echo $result['brandName'] ?></label><br>
@@ -148,36 +163,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 									<?php	
 
 										//Chuyển mảng thành chuỗi
-										if(isset($_GET['category'])){
-											$category = $_GET['category'];
+										$str_cate="";
+										$str_br="";
+										if(isset($_GET['category']) && is_string($_GET['category']) && $_GET['category']!=""){
+											$category =explode(',',$_GET['category']) ;
 											$str = "";
+											$str_cate="";
 
 											foreach($category as $cate){
 												$str.=$cate.",";
 											}
 
 											$category = "(".$str."-1)";
-										}else{
-											$category = "(-1)";          // Category không dc chọn
-										}	
-
-										if(isset($_GET['brand'])){
-											$brand = $_SESSION['br'];
+											$str_cate=$str."-1";
+										}elseif(isset($_GET['category']) && is_array($_GET['category']) && $_GET['category']!=""){
+											$category =$_GET['category'] ;
 											$str = "";
+											$str_cate="";
+
+											foreach($category as $cate){
+												$str.=$cate.",";
+											}
+
+											$category = "(".$str."-1)";
+											$str_cate=$str."-1";
+											         
+										}elseif(!isset($_GET['category']) || $_GET['category']==""){
+											$category = '(-1)';
+											$str_cate=""; 
+										}
+				
+
+										if(isset($_GET['brand']) && is_string($_GET['brand']) && $_GET['brand']!=""){
+											$brand = explode(',',$_GET['brand']) ;
+											$str = "";
+											$str_br="";
 
 											foreach($brand as $br){
 												$str.=$br.",";
 											}
 
 											$brand = "(".$str."-1)";
-										}else{
-											$brand = "(-1)";              // Brand không dc chọn
+											$str_br=$str."-1";
+										}elseif(isset($_GET['brand']) && is_array($_GET['brand']) && $_GET['brand']!=""){
+											$brand =$_GET['brand'] ;
+											$str = "";
+											$str_br="";
+
+											foreach($brand as $br){
+												$str.=$br.",";
+											}
+
+											$brand = "(".$str."-1)";
+											$str_br=$str."-1";             
+										}elseif(!isset($_GET['brand']) || $_GET['brand']==""){
+											$brand = '(-1)'; 
+											$str_br=""; 
 										}
 
-
-										if(isset($_GET['price']) && $_GET['price']>0){// user chọn giá
+										if(isset($_GET['price']) && $_GET['price']>0){
 											$price = $_GET['price'];
-										}else{											// Giá không dc chọn
+										}else{											
 											$price = -1;
 										}													
 											
@@ -258,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 													if($current_page > 1){
 														$prev_page = $current_page - 1;
 														?>										
-															 <a href="?trang=<?=$prev_page?>&price=<?=$_GET['price']?>">
+															 <a href="?trang=<?=$prev_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>">
 																<span class="ti-angle-left"></span>
 															</a>	
 														<?php
@@ -271,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 																
 														?>
 														 <span style="margin: 0 15px ;" class="foward-btn">
-															<a href="?trang=<?=$num?>&price=<?=$_GET['price']?>"><?=$num ?></a>				
+															<a href="?trang=<?=$num?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>"><?=$num ?></a>				
 														</span>
 														<?php
 															}
@@ -284,7 +330,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 													if($current_page < $product_button){
 														$next_page = $current_page + 1;
 														?>										
-															<a href="?trang=<?=$next_page?>&price=<?=$_GET['price']?>">
+															<a href="?trang=<?=$next_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>">
 																<span class="ti-angle-right"></span>
 															</a>																						
 												<?php
