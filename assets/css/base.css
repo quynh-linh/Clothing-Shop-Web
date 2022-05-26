@@ -10,15 +10,15 @@
     display: none;
     position: fixed;
     bottom: 100px;
-    right: 9px;
+    right: 10px;
     z-index: 99;
-    font-size: 40px;
+    font-size: 34px;
     border: none;
     outline: none;
     background-color: rgb(30 26 26 / 50%);
     color: white;
     cursor: pointer;
-    padding: 5px 15px;
+    padding: 1px 13px;
     border-radius: 50%;
 }
 
@@ -97,6 +97,7 @@
     font-size: 40px;
     font-family: var(--font-family-monospace);
     text-decoration: underline;
+    text-shadow: 1px 1px 3px rgb(192 192 192 / 70%), 2px 2px 5px rgb(128 128 128 / 50%), 3px 3px 7px rgb(64 64 64 / 30%);
 }
 
 .best_seller .row ul {
@@ -129,24 +130,14 @@
 .app_banner-web {
     margin: 20px 0;
     width: 100%;
-    height: 500px;
+    height: 550px;
     position: relative;
 }
 
 .banner-web {
-    background-image: url(../img/banner/banner6.jpg);
+    background-image: url(../img/bl3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-}
-
-.banner-web1 {
-    background-image: url(../img/banner/pexels-pixabay-235922.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     width: 100%;
     height: 100%;
 }
@@ -206,11 +197,12 @@
 }
 
 .app_view-shop_tile {
-    margin-top: 31px;
+    margin: 30px;
     font-family: var(--font-family-monospace);
-    text-align: center;
+    text-align: left;
     font-size: 40px;
     text-decoration: underline;
+    text-shadow: 1px 1px 3px rgb(192 192 192 / 70%), 2px 2px 5px rgb(128 128 128 / 50%), 3px 3px 7px rgb(64 64 64 / 30%);
 }
 
 .view-shop {
@@ -482,253 +474,5 @@
     }
     to {
         opacity: 1;
-    }
-}
-
-@media (max-width:739px) {
-    .app_body {
-        background-color: #fff;
-    }
-    header .clearfix {
-        background-color: #000;
-    }
-    .navbar-logo {
-        display: flex;
-    }
-    .mobile-search span {
-        font-size: 23px;
-        padding: 0 5px;
-        margin-right: 60px;
-    }
-    .mobile-search {
-        display: block;
-    }
-    .nav__bars-btn {
-        display: block;
-        right: 0;
-        position: absolute;
-        font-size: 30px;
-        top: 0;
-    }
-    .navbar-logo img {
-        display: block;
-    }
-    .clearfix {
-        height: 50px;
-        max-height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .banner-web {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    .banner-web-title h1 {
-        font-size: 1.5rem;
-    }
-    .shopping-for {
-        margin-top: 10px;
-        box-shadow: none;
-    }
-    .navbar-m {
-        background-color: #666;
-    }
-    .navigation a {
-        display: none;
-    }
-    .navigation ul {
-        display: none;
-    }
-    .navigation .nav-list img {
-        display: none;
-    }
-    .header {
-        display: none;
-    }
-    footer {
-        display: none;
-    }
-    .slider {
-        display: none;
-    }
-    .view-shop {
-        margin-top: 10px;
-        box-shadow: none;
-        padding: 0;
-    }
-    .ti-angle-left,
-    .ti-angle-right {
-        font-size: 10px;
-    }
-    .app_view-shop-tile {
-        margin: 0;
-        font-size: 20px;
-        padding-top: 10px;
-        text-align: center;
-    }
-    .app_view-shop_tile {
-        margin: 15px;
-        text-align: center;
-    }
-    .app_content-title {
-        margin-bottom: 10px;
-    }
-    .view-shop {
-        background-color: #282828;
-    }
-    .view-shop_title {
-        color: white;
-    }
-    .view-shop_btn button {
-        border: 1px solid #fff;
-    }
-    .home-product-item {
-        box-shadow: none;
-        background-color: #282828;
-    }
-    .home-product-item_img {
-        width: 170px;
-        padding: 3px;
-        height: 170px;
-    }
-    .home-product-item_name {
-        color: #fff;
-        font-size: 13px;
-    }
-    .home-product-item_price-current {
-        color: #fff;
-        font-size: 13px;
-    }
-    .home-product-item_price-old {
-        color: #fff;
-        font-size: 10px;
-    }
-}
-
-
-/* Tablet */
-
-@media (min-width: 740px) and (max-width:1023px) {
-    .app_body {
-        background-color: #fff;
-    }
-    header .clearfix {
-        background-color: #000;
-    }
-    .navbar-logo {
-        display: flex;
-    }
-    .mobile-search span {
-        font-size: 23px;
-        padding: 0 5px;
-        margin-right: 60px;
-    }
-    .mobile-search {
-        display: block;
-    }
-    .nav__bars-btn {
-        display: block;
-        right: 0;
-        position: absolute;
-        font-size: 30px;
-        top: 0;
-    }
-    .navbar-logo img {
-        display: block;
-        margin-left: 140px;
-    }
-    .clearfix {
-        height: 50px;
-        max-height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .banner-web {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    .banner-web-title h1 {
-        font-size: 1.5rem;
-    }
-    .shopping-for {
-        margin-top: 10px;
-        box-shadow: none;
-    }
-    .navbar-m {
-        background-color: #666;
-    }
-    .navigation a {
-        display: none;
-    }
-    .navigation ul {
-        display: none;
-    }
-    .navigation .nav-list img {
-        display: none;
-    }
-    .header {
-        display: none;
-    }
-    footer {
-        display: none;
-    }
-    .slider {
-        display: none;
-    }
-    .view-shop {
-        margin-top: 10px;
-        box-shadow: none;
-        padding: 0;
-    }
-    .ti-angle-left,
-    .ti-angle-right {
-        font-size: 10px;
-    }
-    .app_view-shop-tile {
-        margin: 0;
-        font-size: 20px;
-        padding-top: 10px;
-        text-align: center;
-    }
-    .app_view-shop_tile {
-        margin: 15px;
-        text-align: center;
-    }
-    .app_content-title {
-        margin-bottom: 10px;
-    }
-    .view-shop {
-        background-color: #282828;
-    }
-    .view-shop_title {
-        color: white;
-    }
-    .view-shop_btn button {
-        border: 1px solid #fff;
-    }
-    .home-product-item {
-        box-shadow: none;
-        background-color: #282828;
-    }
-    .home-product-item_img {
-        width: 170px;
-        padding: 3px;
-        height: 170px;
-    }
-    .home-product-item_name {
-        color: #fff;
-        font-size: 13px;
-    }
-    .home-product-item_price-current {
-        color: #fff;
-        font-size: 13px;
-    }
-    .home-product-item_price-old {
-        color: #fff;
-        font-size: 10px;
     }
 }

@@ -46,12 +46,12 @@
             <h2 class="title">About me</h2>
             <div class="about-content">
                 <div class="column left">
-                    <img src="./assets/img/243298213_1333840867072468_3557306755313176949_n.jpg" alt="">
+                    <img src="./assets/img/bl1.jpg" alt="">
                 </div>
                 <div class="column right">
                     <div class="text">MLL <span class="typing1"></span></div>
                     <p>Khởi đầu là một thương hiệu thời trang công sở chỉ dành cho nữ giới, đến nay IVY moda đã hoàn thiện ""hệ sinh thái"" thời trang của mình bằng việc ra mắt các dòng sản phẩm dành cho cả nam giới và trẻ em với những tuyên ngôn thời trang khác biệt. Thương hiệu từng bước chuyển mình mạnh mẽ và khẳng định vị thế dẫn đầu về thời trang xu hướng trên thị trường Việt Nam</p>
-                    <a href="#">Download CV</a>
+                    <a href="#">Xem Thêm</a>
                 </div>
             </div>
         </div>

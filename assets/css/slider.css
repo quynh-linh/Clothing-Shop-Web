@@ -506,17 +506,23 @@ body {
 
 .example-slider .fnc-slide-1 .fnc-slide__inner,
 .example-slider .fnc-slide-1 .fnc-slide__mask-inner {
-    background-image: url("../img/750743.jpg");
+    background-image: url("../img/841031.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .example-slider .fnc-slide-2 .fnc-slide__inner,
 .example-slider .fnc-slide-2 .fnc-slide__mask-inner {
-    background-image: url("../img/426835.jpg");
+    background-image: url("../img/VR2.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .example-slider .fnc-slide-3 .fnc-slide__inner,
 .example-slider .fnc-slide-3 .fnc-slide__mask-inner {
-    background-image: url("../img/966877.jpg");
+    background-image: url("../img/VR5.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .example-slider .fnc-slide-3 .fnc-slide__inner:before {
@@ -531,8 +537,9 @@ body {
 
 .example-slider .fnc-slide-4 .fnc-slide__inner,
 .example-slider .fnc-slide-4 .fnc-slide__mask-inner {
-    object-fit: fill;
-    background-image: url("../img/966918.jpg");
+    background-image: url("../img/VR4.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .example-slider .fnc-slide-4 .fnc-slide__inner:before {

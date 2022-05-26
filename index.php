@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="assets/css/grid.css">
 	<link rel="stylesheet" href="assets/css/base.css">
 	<link rel="stylesheet" href="assets/css/slider.css">
+	<link rel="stylesheet" href="assets/css/newtodays.css">
+	<link rel="stylesheet" href="assets/css/banners.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
 
@@ -33,15 +35,15 @@
 								<div class="fnc-slide__content">
 									<h2 class="fnc-slide__heading">
 										<div class="fnc-slide__heading-line">
-											<span>LOINEL</span>
+											<span>BECCA</span>
 										</div>
 										<div class="fnc-slide__heading-line">
-											<span>MESSI</span>
+											<span>HILLER</span>
 										</div>
 									</h2>
 									<button type="button" class="fnc-slide__action-btn">
 										Shop now
-										<span data-text="Credits">Shop now</span>
+										<span data-text="Shop now">Shop now</span>
 									</button>
 								</div>
 							</div>
@@ -56,15 +58,15 @@
 								<div class="fnc-slide__content">
 									<h2 class="fnc-slide__heading">
 										<div class="fnc-slide__heading-line">
-											<span>Cristiano</span>
+											<span>UNIQUE &</span>
 										</div>
 										<div class="fnc-slide__heading-line">
-											<span>Ronaldo</span>
+											<span>TALENT</span>
 										</div>
 									</h2>
 									<button type="button" class="fnc-slide__action-btn">
 										Shop now
-										<span data-text="Credits">Shop now</span>
+										<span data-text="Shop now">Shop now</span>
 									</button>
 								</div>
 							</div>
@@ -79,15 +81,15 @@
 								<div class="fnc-slide__content">
 									<h2 class="fnc-slide__heading">
 										<div class="fnc-slide__heading-line">
-											<span>Kylian </span>
+											<span>BEAUTIFUL & </span>
 										</div>
 										<div class="fnc-slide__heading-line">
-											<span>Mbappé</span>
+											<span>STYLE</span>
 										</div>
 									</h2>
 									<button type="button" class="fnc-slide__action-btn">
 										Shop now
-										<span data-text="Credits">Shop now</span>
+										<span data-text="Shop now">Shop now</span>
 									</button>
 								</div>
 							</div>
@@ -102,15 +104,15 @@
 								<div class="fnc-slide__content">
 									<h2 class="fnc-slide__heading">
 										<div class="fnc-slide__heading-line">
-											<span>Junior </span>
+											<span>INDIVIDUAL &</span>
 										</div>
 										<div class="fnc-slide__heading-line">
-											<span>Neymar</span>
+											<span>ONLY</span>
 										</div>
 									</h2>
 									<button type="button" class="fnc-slide__action-btn">
 										Shop now
-										<span data-text="Credits">Shop now</span>
+										<span data-text="Shop now">Shop now</span>
 									</button>
 								</div>
 							</div>
@@ -126,19 +128,19 @@
 						</div>
 						<div class="fnc-nav__controls">
 							<button class="fnc-nav__control">
-								Lionel Messi
+								Slide 1
 								<span class="fnc-nav__control-progress"></span>
 							</button>
 							<button class="fnc-nav__control">
-								Cristiano Ronaldo
+								Slide 2
 								<span class="fnc-nav__control-progress"></span>
 							</button>
 							<button class="fnc-nav__control">
-								Kylian Mbappé
+								Slide 3
 								<span class="fnc-nav__control-progress"></span>
 							</button>
 							<button class="fnc-nav__control">
-								Junior Neymar
+								Slide 4
 								<span class="fnc-nav__control-progress"></span>
 							</button>
 						</div>
@@ -174,13 +176,14 @@
 								$getProduct_Women = $product->getProduct_Women();
 								if ($getProduct_Women) {
 								?>
-									<button class="arrow_left">< </button>
+									<button class="arrow_left">
+										< </button>
 											<button class="arrow_right">></button>
 											<?php
 											while ($result = $getProduct_Women->fetch_assoc()) {
 											?>
 												<div class="col l-2-4 ">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
+													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
 														<div class="home-product-item">
 															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
@@ -211,7 +214,7 @@
 											while ($result = $getProduct_Women->fetch_assoc()) {
 											?>
 												<div class="col l-2-4 men_products">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
+													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
 														<div class="home-product-item men_product">
 															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
@@ -236,12 +239,12 @@
 								?>
 									<button class="arrow_left">
 										< </button>
-											<button class="arrow_right">></button>
+
 											<?php
 											while ($result = $getProduct_Kid->fetch_assoc()) {
 											?>
 												<div class="col l-2-4 kid">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
+													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
 														<div class="home-product-item">
 															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
@@ -251,6 +254,7 @@
 														</div>
 													</a>
 												</div>
+												<button class="arrow_right">></button>
 										<?php
 											}
 										}
@@ -260,89 +264,124 @@
 					</div>
 				</div>
 			</div>
-			<div class="app_banner-web">
-				<div class="banner-web">
-					<div class="banner-web_list">
-						<div class="banner-web_btn">
-							<button>SHOP NOW</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="grid wide">
-				<div class="row">
-					<div class="col l-6">
-						<img src="./assets/img/banner/banner7.jpg" style="object-fit: fill;width: 100%;border-radius: 50px 0 50px 0;" alt="">
-					</div>
-					<div class="col l-6">
-						<img src="./assets/img/banner/banner8.jpg" style="object-fit: fill;width: 100%;border-radius: 50px 0 50px 0;" alt="">
-					</div>
-				</div>
-				<div class="row">
-
-				</div>
-			</div>
-
-			<div class="grid wide">
-			</div>
-			<div class="grid wide">
-				<h2 class="app_view-shop_tile">NEWS TODAY</h2>
-				<div class="app_view-shop">
+				<div class="ds-layout">
+					<h2 class="section-font">
+						<span class="small-up-caps">Model</span>
+						<span class="light-shadow">Outstanding</span>
+					</h2>
 					<div class="row">
-						<div class="col l-4">
-							<div class="view-shop">
-								<div class="view-shop_img">
-									<img src="./assets/img/NewToDay/M-17_LOW-RES Not for Production-17AW_RT_World-Champs_Bolt_Anatomical_RYW_3389_rgb.jpg" alt="">
-								</div>
-								<div class="view-shop_title">
-									<h3>Makers of History, Makers of the Future</h3>
-									<small>Kể từ năm 1948, những đổi mới do PUMA thực hiện đã trở thành tâm điểm của các vận động viên viết lịch sử thể thao.
-										Những khoảnh khắc được đánh giá bằng cảm xúc, được hỗ trợ bởi khoa học</small>
-								</div>
-								<div class="view-shop_btn">
-									<button>READ NOW</button>
+						<div class="ds-flex-container">
+							<div class="ds-flex-item-image col l-5">
+								<img id="ds-flex-img-1" src="./assets/img/bl3.jpg" alt="fashion model">
+
+								<div class="ds-flex-item-text">
+									<span class="small-up-caps">BECCA HILLER</span>
+									<h3 class="medium-style">Becca Hiller là một người mẫu nữ được đại diện bởi MGM Models</h3>
 								</div>
 							</div>
-						</div>
-						<div class="col l-4">
-							<div class="view-shop">
-								<div class="view-shop_img">
-									<img src="./assets/img/NewToDay/726f72377d3054223dab85155d39e3d4.webp" alt="">
-								</div>
-								<div class="view-shop_title">
-									<h3>How Kobe Bryant Changed Sneakers</h3>
-									<small>Hãy nhớ lại rằng, trước khi xuất hiện Black Mamba, Hệ thống Kobe,
-										và dòng giày có chữ ký được đeo nhiều nhất tại NBA, Kobe Bryant đã được ký hợp đồng với Adidas. </small>
-								</div>
-								<div class="view-shop_btn">
-									<button>READ NOW</button>
-								</div>
-							</div>
-						</div>
-						<div class="col l-4">
-							<div class="view-shop">
-								<div class="view-shop_img">
-									<img src="./assets/img/NewToDay/rich-paul-new-balance-550-3.jpg" alt="">
-								</div>
-								<div class="view-shop_title">
-									<h3>New Balance Reveals Klutch Sports Founder Rich Paul`s Collaborative 550 Sneaker and Apparel Range</h3>
-									<small>Không lâu sau khi đôi giày bị rò rỉ trên mạng xã hội, New Balance đã tiết lộ thông tin phát hành cho bộ sưu tập hợp tác của mình với người sáng
-										lập và đại diện Rich Paul nổi tiếng của Klutch Sports Group.</small>
-								</div>
-								<div class="view-shop_btn">
-									<button>READ NOW</button>
-								</div>
+
+							<div class="ds-flex-item-image col l-7">
+								<img id="ds-flex-img-2" src="./assets/img/1118full-becca-hiller.jpg">
 							</div>
 						</div>
 					</div>
 
+					<!-- ds-flex-container -->
+				</div>
+			</div>
+
+		</div>
+
+		<div class="grid wide">
+			<h2 class="app_view-shop_tile">NEWS TODAY</h2>
+			<div class="app_view-shop">
+				<div class="row">
+					<div class="example-2 col l-4">
+						<div class="wrapper">
+							<div class="header">
+								<div class="date">
+									<span class="day">22</span>
+									<span class="month">May</span>
+									<span class="year">2022</span>
+								</div>
+								<ul class="menu-content">
+									<li>
+										<a href="#" class="fa fa-bookmark-o"></a>
+									</li>
+									<li><a href="#" class="ti-heart"><span>18k</span></a></li>
+									<li><a href="#" class="ti-comments"><span>20k</span></a></li>
+								</ul>
+							</div>
+							<div class="data">
+								<div class="content">
+									<span class="author">Jane Doe</span>
+									<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+									<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+									<a href="#" class="button">Read more</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="example-2 col l-4">
+						<div class="wrapper1">
+							<div class="header">
+								<div class="date">
+									<span class="day">23</span>
+									<span class="month">May</span>
+									<span class="year">2022</span>
+								</div>
+								<ul class="menu-content">
+									<li>
+										<a href="#" class="fa fa-bookmark-o"></a>
+									</li>
+									<li><a href="#" class="ti-heart"><span>1,8k</span></a></li>
+									<li><a href="#" class="ti-comments"><span>3k</span></a></li>
+								</ul>
+							</div>
+							<div class="data">
+								<div class="content">
+									<span class="author">Jane Doe</span>
+									<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+									<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+									<a href="#" class="button">Read more</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="example-2 col l-4">
+						<div class="wrapper2">
+							<div class="header">
+								<div class="date">
+									<span class="day">24</span>
+									<span class="month">May</span>
+									<span class="year">2022</span>
+								</div>
+								<ul class="menu-content">
+									<li>
+										<a href="#" class="fa fa-bookmark-o"></a>
+									</li>
+									<li><a href="#" class="ti-heart"><span>25k</span></a></li>
+									<li><a href="#" class="ti-comments"><span>3,5k</span></a></li>
+								</ul>
+							</div>
+							<div class="data">
+								<div class="content">
+									<span class="author">Jane Doe</span>
+									<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+									<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+									<a href="#" class="button">Read more</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+		</div>
 		<?php include './inc/footer.php' ?>
 	</section>
-	<button onclick="topFunction()" id="backToTop" title="Go to top" style="display: block;"><i class="ti-angle-up"></i>
+	<button onclick="topFunction()" id="backToTop" title="Go to top" style="display: block;"><i class="ti-angle-up" style="font-size: 25px;"></i>
 	</button>
 	<script src="./assets/js/product.js"></script>
 	<script src="./assets/js/slideshow.js"></script>
