@@ -24,9 +24,9 @@
 		<?php include 'inc/header.php' ?>
 		<div class="app_body">
 			<div class="grid">
-				<div class="fnc-slider example-slider">
+				 <div class="fnc-slider example-slider">
 					<div class="fnc-slider__slides">
-						<!-- slide start -->
+					
 						<div class="fnc-slide m--blend-green m--active-slide">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -48,8 +48,8 @@
 								</div>
 							</div>
 						</div>
-						<!-- slide end -->
-						<!-- slide start -->
+					
+					
 						<div class="fnc-slide m--blend-dark">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -71,8 +71,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- slide end -->
-						<!-- slide start -->
+					
 						<div class="fnc-slide m--blend-red">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -94,8 +93,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- slide end -->
-						<!-- slide start -->
+					
 						<div class="fnc-slide m--blend-blue">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -117,7 +115,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- slide end -->
+					
 					</div>
 					<nav class="fnc-nav">
 						<div class="fnc-nav__bgs">
@@ -145,7 +143,7 @@
 							</button>
 						</div>
 					</nav>
-				</div>
+				</div> 
 				<div class="grid wide ">
 					<div class="best_seller">
 						<div class="row">
@@ -178,6 +176,7 @@
 								?>
 									<button class="arrow_left">
 										< </button>
+											<button class="arrow_left">< </button>
 											<button class="arrow_right">></button>
 											<?php
 											while ($result = $getProduct_Women->fetch_assoc()) {

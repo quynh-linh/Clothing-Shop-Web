@@ -1,12 +1,15 @@
 <?php include './inc/handle.php' ?>
 <?php
-$search = '';
 if (isset($_GET['search']))
 	$search = $_GET['search'];
-$search = $product->searchProduct($search);
+else
+	$search = "";
+
+//$search = $product->searchProduct($search);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	$showSearch = $product->searchProductRangePrice($_POST);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,12 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/timkiemnangcao.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/grid.css">
+	<link rel="stylesheet" href="assets/css/base.css">
 	<link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
 	<link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
 	<script src="./assets/js/product.js"></script>
 
 </head>
+<?php
 
+	if (isset($_GET['price'])) {
+	 	$_SESSION['pr']=$_GET['price'];
+	}else {
+		$_GET['price']=0;
+		$_SESSION['pr']=0;	
+	}
+?>
 <body>
 	<section class="app">
 		<?php include 'inc/header.php' ?>
@@ -44,15 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										<h4 class="h4">Theo khoảng giá</h4>
 										<div style="display: flex;align-items: center;justify-content: space-around;">										
 											<input id="slider_pr" type="range" name="price" min="0" max="100000000" value="0" >
-											<span id="max" style="font-family: var(--font-family-sans-serif);">
-											<?php 
-											if (isset($_GET['price'])) {
-														echo $_GET['price'];
-											}else {
-												echo "0";	
-											}
-											?>											
-											</span>
+											<span id="max" style="font-family: var(--font-family-sans-serif);"></span>
 											VNĐ
 										</div>
 									</div>
@@ -64,16 +68,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 											$show_category = $product->show_nameCategory();
 											if ($show_category) {
 												while ($result = $show_category->fetch_assoc()) {
-													$checked = [];
-													if (isset($_GET['category'])) {
-														$checked = $_GET['category'];
+
+													if (isset($_GET['category']) && is_string($_GET['category'])) {
+														$a=explode(',', $_GET['category']);
+													}elseif(isset($_GET['category']) && is_array($_GET['category'])){
+														$checked=$_GET['category'];
 													}
 											?>
 												<li>
 													<input type="checkbox" id="category" name="category[]" value="<?= $result['catId'];?>"
-														<?php if (in_array($result['catId'], $checked)) {
-														echo "checked";
+														<?php 
+														if (isset($_GET['category']) && is_string($_GET['category'])){
+															if (in_array($result['catId'], $a)) {
+																echo "checked";
+															}
+														}elseif(isset($_GET['category']) && is_array($_GET['category'])){
+															if (in_array($result['catId'], $checked)) {
+																echo "checked";
+															}
 														}
+													
 													?>>
 													<label><?php echo $result['catName'] ?></label><br>
 												</li>
@@ -92,15 +106,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 											$show_brand = $product->show_nameBrand();
 											if ($show_brand) {
 												while ($result = $show_brand->fetch_assoc()) {
-													$checked = [];
-													if (isset($_GET['brand'])) {
-														$checked = $_GET['brand'];
+													if (isset($_GET['brand']) && is_string($_GET['brand'])) {
+														$a=explode(',', $_GET['brand']);
+													}elseif(isset($_GET['brand']) && is_array($_GET['brand'])){
+														$checked=$_GET['brand'];
 													}
 											?>
 												<li>
 													<input type="checkbox" id="brand" name="brand[]" value="<?= $result['brandId'];?>"
-														<?php if (in_array($result['brandId'], $checked)) {
-														echo "checked";
+														<?php
+
+														if (isset($_GET['brand']) && is_string($_GET['brand'])){
+															if (in_array($result['brandId'], $a)) {
+																echo "checked";
+															}
+														}elseif(isset($_GET['brand']) && is_array($_GET['brand'])){
+															if (in_array($result['brandId'], $checked)) {
+																echo "checked";
+															}
 														}
 													?>>
 													<label><?php echo $result['brandName'] ?></label><br>
@@ -118,27 +141,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										<input class="tim-kiem-nang-cao-input" type="submit" name="submit" value="Tìm kiếm" />
 									</div>
 								</div>
-							</form>
+							 </form> 
 						</div>
 						<div id="searchResults" class="col l-9">
 							<div class="home-filter">
-								<span class="ti-light-bulb"></span>
-								<span>Kết quả tìm kiếm cho từ khoá "
-									<?php
-									if(isset($_GET['search'])){
-										echo $_GET['search'];
-									}else{
-										echo "";
-									}
-									?>"
-								</span>
-							</div>
-
-							<div class="home-filter">
 								<span class="home-filter__label">Sắp xếp theo</span>
-								<button class="home-filter-btn  btn first-active " onclick="changeProductList('trend',this)">Phổ biến</button>
-								<button class="home-filter-btn  btn  btn--primary" onclick="changeProductList('new',this)">Mới nhất</button>
-								<button class="home-filter-btn  btn " onclick="changeProductList('selling',this)">Bán chạy</button>
 								<form action="" method="GET">
 									<div class="sort_price" style="display: flex;">										
 										<select class="select-input" name="select" onchange="location = this.value;">																			
@@ -148,60 +155,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										</select>
 									</div>
 								</form>
-								<div class="home-filter__page">
-									<span class="home-filter__page-num">
-										<span class="home-filter__page-current">1</span>/14
-									</span>
-									<div class="home-filter__page-control">
-										<a href="" class="home-filter__page-btn home-filter__page-btn--disabled">
-											<i class="home-filter__page-icon ti-angle-left"></i>
-										</a>
-										<a href="" class=" home-filter__page-btn">
-											<i class="home-filter__page-icon ti-angle-right"></i>
-										</a>
-									</div>
-								</div>
 							</div>
 							<!-- Phổ biến -->
 							<div id="trend" class="home-suggestion">
+	<!-- Tìm kiếm nâng cao -->						
 								<div class="row">
-									<?php
-									if(!isset($_GET['category']) && !isset($_GET['brand']) && !isset($_GET['price']) && !isset($_GET['select'])){
-									if ($search) {
-										while ($row = $search->fetch_assoc()) {
+									<?php	
 
-									?>
-											<div class="col l-4">
-												<div class="home-product-item">
-													<img src="./admin/upload/<?php 
-													echo $row['image'] 
-													?>" alt="" class="home-product-item_img">
-													<span class="home-product-item_name"><?php
-													 echo $row['productName'] 
-													 ?></span>
-													<div class="home-product-item_price">
-														<span class="home-product-item_price"><?php
-														 echo number_format($row['price'],0,',','.')." " ."VNĐ"
-														 ?></span>
-													</div>
-												</div>
-											</div>
-									<?php
+										//Chuyển mảng thành chuỗi
+										$str_cate="";
+										$str_br="";
+										if(isset($_GET['category']) && is_string($_GET['category']) && $_GET['category']!=""){
+											$category =explode(',',$_GET['category']) ;
+											$str = "";
+											$str_cate="";
+
+											foreach($category as $cate){
+												$str.=$cate.",";
+											}
+
+											$category = "(".$str."-1)";
+											$str_cate=$str."-1";
+										}elseif(isset($_GET['category']) && is_array($_GET['category']) && $_GET['category']!=""){
+											$category =$_GET['category'] ;
+											$str = "";
+											$str_cate="";
+
+											foreach($category as $cate){
+												$str.=$cate.",";
+											}
+
+											$category = "(".$str."-1)";
+											$str_cate=$str."-1";
+											         
+										}elseif(!isset($_GET['category']) || $_GET['category']==""){
+											$category = '(-1)';
+											$str_cate=""; 
 										}
-									}
-								}
-									?>						
-								<!-- search checkbox -->
-									<?php				
-										if (isset($_GET['category']) ) {											
-											$categorychecked = [];
-											$categorychecked = $_GET['category'];
-											foreach ($categorychecked as $rowcategory ) {																																		
-												$product_ct = $product->display_product_category($rowcategory);
-												if ($product_ct) {
+				
+
+										if(isset($_GET['brand']) && is_string($_GET['brand']) && $_GET['brand']!=""){
+											$brand = explode(',',$_GET['brand']) ;
+											$str = "";
+											$str_br="";
+
+											foreach($brand as $br){
+												$str.=$br.",";
+											}
+
+											$brand = "(".$str."-1)";
+											$str_br=$str."-1";
+										}elseif(isset($_GET['brand']) && is_array($_GET['brand']) && $_GET['brand']!=""){
+											$brand =$_GET['brand'] ;
+											$str = "";
+											$str_br="";
+
+											foreach($brand as $br){
+												$str.=$br.",";
+											}
+
+											$brand = "(".$str."-1)";
+											$str_br=$str."-1";             
+										}elseif(!isset($_GET['brand']) || $_GET['brand']==""){
+											$brand = '(-1)'; 
+											$str_br=""; 
+										}
+
+										if(isset($_GET['price']) && $_GET['price']>0){
+											$price = $_GET['price'];
+										}else{											
+											$price = -1;
+										}													
+											
+
+												$product_ct = $product->search_Advanced($category,$brand,$price,$search);
+												if ($product_ct && !isset($_GET['select'])) {
+													
+													$i=0;
 													while ($result=$product_ct->fetch_assoc()){
+														$i+=1;
+														if($i>6) break;
 													?>													
 														<div class="col l-4">
+															<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
 															<div class="home-product-item">
 																<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 																<span class="home-product-item_name"><?php echo $result['productName'] ?></span>
@@ -209,70 +245,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 																	<span class="home-product-item_price"><?php echo number_format($result['price'],0,',','.')." " ."VNĐ" ?></span>
 																</div>
 															</div>
+														</a>
 														</div>														
-										<?php													
-												}} else {
-													// echo "No product found";
-												}
-										}																													
-									} else {
-										echo "";
-									}
-									?>
-									<?php															 			
-									if (isset($_GET['brand']) ) {
-										$brandchecked = [];
-										$brandchecked = $_GET['brand'];										
-										foreach ($brandchecked as $rowbrand ) {											
-											$product_br = $product->display_product_brand($rowbrand);
-											if ($product_br) {
-												while($result=$product_br->fetch_assoc()){
-												?>													
-													<div class="col l-4">
-														<div class="home-product-item">
-															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
-															<span class="home-product-item_name"><?php echo $result['productName'] ?></span>
-															<div class="home-product-item_price">
-																<span class="home-product-item_price"><?php echo number_format($result['price'],0,',','.')." " ."VNĐ" ?></span>
-															</div>
-														</div>
-													</div>											
-									<?php
-												}								
-											} else {
-												// echo "No product found";
-											}
-										}																														
-									} else {
-									}
-									?>	
-									<?php
-									if(isset($_GET["price"]))
-									{
-										$rowprice = $_GET["price"];										
-										$product_pr = $product->display_product_price($rowprice);
-										if ($product_pr) {
-											while($result = $product_pr->fetch_assoc()){
-											?>													
-											<div class="col l-4">
-												<div class="home-product-item">
-													<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
-													<span class="home-product-item_name"><?php echo $result['productName'] ?></span>
-													<div class="home-product-item_price">
-														<span class="home-product-item_price"><?php echo number_format($result['price'],0,',','.')." " ."VNĐ" ?></span>
-													</div>
-												</div>
-											</div>											
+												<?php													
+													}
+											} elseif(!$product_ct && !isset($_GET['select'])) {
+										?>
+													 <span style="margin:50px auto;font-size:20px;">No product found</span>
 										<?php
-											}									
-										} else {
-											// echo "No product found";
-										}																		
-									}else {
-											echo "";
-										}
-									?>	
-								<!-- display sort price -->
+													}
+										?>
+	<!--select sort-->										
 								<?php
 								$sort_option = "";
 								if(isset($_GET['select'])){									
@@ -286,6 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										while($result = $product_spr->fetch_assoc()){
 											?>
 											<div class="col l-4">
+												<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
 												<div class="home-product-item">
 													<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 													<span class="home-product-item_name"><?php echo $result['productName'] ?></span>
@@ -293,6 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 														<span class="home-product-item_price"><?php  echo number_format($result['price'],0,',','.')." "."VNĐ" ?></span>
 													</div>
 												</div>
+											</a>
 											</div>	
 								<?php	
 										}
@@ -305,57 +290,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 								?>
 								</div>								
 							</div>
-							<!-- Mới nhất -->
-							<div id="new" class="home-suggestion">
-								<div class="row">
-									<div class="col l-4">
-										<div class="home-product-item">
-											<img src="./assets/img/new/hinh1.jfif" alt="" class="home-product-item_img">
-											<span class="home-product-item_name">F.C. Barcelona Men's Full-Zip Football Jacket</span>
-											<div class="home-product-item_price">
-												<span class="home-product-item_price-old">2.499.000đ</span>
-												<span class="home-product-item_price-current">1.499.000đ</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Bán chạy -->
-							<div id="selling" class="home-suggestion">
-								<div class="row">
-									<div class="col l-4">
-										<div class="home-product-item">
-											<img src="./assets/img/selling/hinh1.jfif" alt="" class="home-product-item_img">
-											<span class="home-product-item_name">Nike Dri-FIT Strike Men's Short-Sleeve Football Top</span>
-											<div class="home-product-item_price">
-												<span class="home-product-item_price-old">1.399.000đ</span>
-												<span class="home-product-item_price-current">827.000đ</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
 							<div class="home-foward">
-								<!-- <span class="ti-angle-left"></span> -->
-								<?php 
-									if(isset($_GET['price']) && isset($_GET["brand"]) && isset($_GET["category"])){
-										$rowprice = $_GET["category"];
-										$rowbrand = $_GET["brand"]	;
-										$rowprice = $_GET["price"];
-										$product_all_price = $product->get_all_product_category($rowcategory, $rowbrand, $rowprice);
-										$product_count_price = mysqli_num_rows($product_all_price);
-										$product_button_price = ceil($product_count_price/6);										
-										for($i = 1; $i <= $product_button_price;$i++){
-										?>
-										<span style="margin: 0 15px ;" class="foward-btn">
+		<!-- 	Phân trang tìm kiếm -->
 											<?php
-											echo $product_count_price;	
-											echo '<a href="timkiemnangcao.php?trang='.$i.'">'.$i.'</a>';
-											?>
-								     	</span>
-										<?php										
-										}
-									}elseif(isset($_GET['select'])) {
+											if(!isset($_GET['select']) && $product_ct) {
+												
+												$number_page = $product->number_page($category,$brand,$price,$search);
+												$current_page = !empty($_GET['trang'])?$_GET['trang']:1;					
+												$product_count = mysqli_num_rows($number_page);
+												$product_button = ceil($product_count/6);	
+												if($product_count>6){
+													if($current_page > 1){
+														$prev_page = $current_page - 1;
+														?>										
+															 <a href="?trang=<?=$prev_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>">
+																<span class="ti-angle-left"></span>
+															</a>	
+														<?php
+													}							
+													for($num = 1; $num <= $product_button;$num++){
+
+														if( $num != $current_page){
+															if($num > $current_page - 2 && $num < $current_page + 2){
+
+																
+														?>
+														 <span style="margin: 0 15px ;" class="foward-btn">
+															<a href="?trang=<?=$num?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>"><?=$num ?></a>				
+														</span>
+														<?php
+															}
+														}else {
+															?>
+															<strong style="background-color: #adb7b9; padding:5px 30px; border-radius: 3px;"><?=$num?></strong> 
+															<?php
+														}
+													}
+													if($current_page < $product_button){
+														$next_page = $current_page + 1;
+														?>										
+															<a href="?trang=<?=$next_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>">
+																<span class="ti-angle-right"></span>
+															</a>																						
+												<?php
+													}									
+											}
+										}else echo "";
+												?>		
+<!-- Phân trang lựa  -->
+								<?php
+										if(isset($_GET['select'])) {
 										$chon = $_GET['select'];																	
 										$item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
 										$current_page = !empty($_GET['page'])?$_GET['page']:1;			
@@ -365,93 +350,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										if($current_page > 1){
 											$prev_page = $current_page - 1;
 											?>										
-												<a href="?per_page=<?=$item_per_page?>&page=<?=$prev_page?>&select=<?=$chon?>">
+												 <a href="?per_page=<?=$item_per_page?>&price=<?=$_GET['price']?>&page=<?=$prev_page?>&select=<?=$chon?>">
 													<span class="ti-angle-left"></span>
-												</a>																						
+												</a>	
 											<?php
 										}							
 										for($num = 1; $num <= $product_button;$num++){
 											if( $num != $current_page){
 												if($num > $current_page - 2 && $num < $current_page + 2){
 											?>
-											<span style="margin: 0 15px ;" class="foward-btn">
-												<a href="?per_page=<?=$item_per_page?>&page=<?=$num?>&select=<?=$chon?>"><?=$num ?></a>										
+											 <span style="margin: 0 15px ;" class="foward-btn">
+												<a href="?per_page=<?=$item_per_page?>&price=<?=$_GET['price']?>&page=<?=$num?>&select=<?=$chon?>"><?=$num ?></a>										
 											</span>
 											<?php
 												}
 											}else {
 												?>
-												<strong style="background-color: cyan; padding:5px 30px; border-radius: 3px;"><?=$num?></strong>
+												<strong style="background-color: #adb7b9; padding:5px 30px; border-radius: 3px;"><?=$num?></strong> 
 												<?php
 											}
 										}
 										if($current_page < $product_button){
 											$next_page = $current_page + 1;
 											?>										
-												<a href="?per_page=<?=$item_per_page?>&page=<?=$next_page?>&select=<?=$chon?>">
+												<a href="?per_page=<?=$item_per_page?>&price=<?=$_GET['price']?>&page=<?=$next_page?>&select=<?=$chon?>">
 													<span class="ti-angle-right"></span>
 												</a>																						
 											<?php
 										}									
-								}else {				
-									$item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
-									$current_page = !empty($_GET['page'])?$_GET['page']:1;			
-									$product_all = $product->get_all_product();
-									$product_count = mysqli_num_rows($product_all);
-									$product_button = ceil($product_count/6);	
-									if($current_page > 1){
-										$prev_page = $current_page - 1;
-										?>										
-											<a href="?per_page=<?=$item_per_page?>&page=<?=$prev_page?>">
-												<span class="ti-angle-left"></span>
-											</a>																						
-										<?php
-									}							
-									for($num = 1; $num <= $product_button;$num++){
-										if( $num != $current_page){
-											if($num > $current_page - 2 && $num < $current_page + 2){
-										?>
-										<span style="margin: 0 15px ;" class="foward-btn">
-											<a href="?per_page=<?=$item_per_page?>&page=<?=$num?>"><?=$num ?></a>										
-								     	</span>
-										<?php
-											}
-										}else {
-											?>
-											<strong style="background-color: #adb7b9; padding:5px 30px; border-radius: 3px;"><?=$num?></strong>
-											<?php
-										}
-									}
-									if($current_page < $product_button){
-										$next_page = $current_page + 1;
-										?>										
-											<a href="?per_page=<?=$item_per_page?>&page=<?=$next_page?>">
-												<span class="ti-angle-right"></span>
-											</a>																						
-										<?php
-									}	
-									}
-								?>																					
-								<!-- <span class="foward-btn">
-									<a href="">1</a>
-								</span>
-								<span>
-									<a href="">2</a>
-								</span>
-								<span>
-									<a href="">3</a>
-								</span>
-								<span>
-									<a href="">4</a>
-								</span>
-								<span>
-									<a href="">5</a>
-								</span> -->
-								<!-- <span>
-									<a href="">...</a>
-								</span> -->
-								<!-- <span class="ti-angle-right"></span> -->
-							</div>							
+								}
+									?>		
+							</div>	
+
 						</div>						
 					</div>
 				</div>
@@ -461,6 +391,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 		
 		<?php include './inc/footer.php' ?>
 	</section>
-	<script src="./assets/js/slider.js"></script>
+<script>
+		 // thanh trượt giá
+		    var slider = document.getElementById("slider_pr");
+		    var output = document.getElementById("max");
+		    output.innerHTML = slider.value;
+
+		    slider.oninput = function() {
+		        max.innerHTML = this.value;;			
+		    };
+		    function load_data() {
+		    var input = document.getElementById("slider_pr");
+		    <?php
+		        if(isset($_SESSION['pr']) && $_SESSION['pr']) {
+		    ?>
+		        input.value = <?=$_SESSION['pr']?>;
+		    <?php
+		    } else {
+		    ?>
+		        input.value = 0;
+		    <?php
+		    }
+		    ?>
+		    document.getElementById("max").innerHTML = slider.value;	
+		}
+		load_data();
+</script>
 </body>
 </html>
