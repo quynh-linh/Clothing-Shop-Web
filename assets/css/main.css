@@ -454,7 +454,6 @@ header .search__logo form p .btn-search {
     justify-content: center;
     align-items:center;
     cursor:pointer;
-    z-index:9;
     font-size:20px;
     opacity:0.7;
 }

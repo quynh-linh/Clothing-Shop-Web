@@ -74,17 +74,52 @@ class product
     }
     public function getproductbyBrandId($id)
     {
+        $sp_tungtrang = 8;
+        if(!isset($_GET['trang'])){
+            $trang = 1;
+        }else{
+            $trang = $_GET['trang'];
+        }
+
+        $product_start = ($trang-1)*$sp_tungtrang;
+
         $query = "SELECT pd.* , br.brandName 
         FROM tbl_product AS pd INNER JOIN tbl_brand AS br ON pd.brandId=br.brandId 
-        WHERE pd.brandId  = '$id'";
+        WHERE pd.brandId  = '$id' LIMIT $product_start,$sp_tungtrang";
         $result = $this->db->select($query);
         return $result;
     }
     public function getproductbyTypeProductId($id)
     {
+        $sp_tungtrang = 8;
+        if(!isset($_GET['trang'])){
+            $trang = 1;
+        }else{
+            $trang = $_GET['trang'];
+        }
+
+        $product_start = ($trang-1)*$sp_tungtrang;
+
         $query = "SELECT pd.* , tpd.typeProductName 
         FROM tbl_product AS pd  INNER JOIN tbl_type_product AS tpd ON pd.typeProductId= tpd.typeProductID
-        WHERE pd.typeProductId  = '$id'";
+        WHERE pd.typeProductId  = '$id' LIMIT $product_start,$sp_tungtrang";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function getproductbyBrandId_number_page($id)
+    {
+        $query = "SELECT pd.* , br.brandName 
+        FROM tbl_product AS pd INNER JOIN tbl_brand AS br ON pd.brandId=br.brandId 
+        WHERE pd.brandId  = '$id' ";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function getproductbyTypeProductId_number_page($id)
+    {
+        $query = "SELECT pd.* , tpd.typeProductName 
+        FROM tbl_product AS pd  INNER JOIN tbl_type_product AS tpd ON pd.typeProductId= tpd.typeProductID
+        WHERE pd.typeProductId  = '$id' ";
         $result = $this->db->select($query);
         return $result;
     }
@@ -316,5 +351,80 @@ class product
         $result = $this->db->select($query);
         return $result;
     }
+//Tìm kiếm nâng cao
+    public function search_Advanced($category,$brand,$price,$search)
+    {
+        $sp_tungtrang = 6;
+        if(!isset($_GET['trang'])){
+            $trang = 1;
+        }else{
+            $trang = $_GET['trang'];
+        }
+        $product_start = ($trang-1)*$sp_tungtrang;
+
+        if($search ==NULL){
+
+            if($category == "(-1)" && $brand == "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE price <= '$price' LIMIT $product_start,$sp_tungtrang";
+            }elseif($category != "(-1)" && $brand == "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category  LIMIT $product_start,$sp_tungtrang";
+            }elseif($category == "(-1)" && $brand != "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand  LIMIT $product_start,$sp_tungtrang";
+            }elseif($category != "(-1)" && $brand != "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand LIMIT $product_start,$sp_tungtrang";
+            }elseif($category != "(-1)" && $brand == "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price' LIMIT $product_start,$sp_tungtrang";
+            }elseif($category == "(-1)" && $brand != "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price' LIMIT $product_start,$sp_tungtrang";
+            }elseif($category != "(-1)" && $brand != "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'  LIMIT $product_start,$sp_tungtrang";
+            }elseif($category == "(-1)" && $brand == "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product LIMIT $product_start,$sp_tungtrang";
+            }
+
+        }else{
+
+            if($category == "(-1)" && $brand == "(-1)" && $price ==-1)
+                $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%' LIMIT $product_start,$sp_tungtrang";
+        }
+
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    //Tìm kiếm nâng cao
+    public function number_page($category,$brand,$price,$search)
+    {
+
+        if($search ==NULL){
+
+            if($category == "(-1)" && $brand == "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE price <= '$price' ";
+            }elseif($category != "(-1)" && $brand == "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category  ";
+            }elseif($category == "(-1)" && $brand != "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand  ";
+            }elseif($category != "(-1)" && $brand != "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand ";
+            }elseif($category != "(-1)" && $brand == "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price' ";
+            }elseif($category == "(-1)" && $brand != "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price' ";
+            }elseif($category != "(-1)" && $brand != "(-1)" && $price !=-1){
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'  ";
+            }elseif($category == "(-1)" && $brand == "(-1)" && $price ==-1){
+                $sql = "SELECT * FROM tbl_product";
+            }
+
+        }else{
+
+            if($category == "(-1)" && $brand == "(-1)" && $price ==-1)
+                $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%'";
+        }
+
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
 }
 ?>

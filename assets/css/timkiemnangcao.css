@@ -2,6 +2,7 @@
     --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   }
+
 .btn{
     min-width: 124px;
     height: 36px;
@@ -195,7 +196,8 @@ color: #f20c0c;
 .home-filter__label{
     font-size: 17px;
     color: #555;
-    margin-right: 16px;
+    margin-right: 25px;
+    margin-left: 500px;
 }
 
 .home-filter-btn{
@@ -377,6 +379,7 @@ color: #f20c0c;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 .home-product-item_price-old{
     text-decoration: line-through;
