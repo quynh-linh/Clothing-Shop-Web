@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>MLL SHOP</title>
 	<link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/css/lightslider.min.css'>
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/grid.css">
@@ -14,9 +16,9 @@
 	<link rel="stylesheet" href="assets/css/slider.css">
 	<link rel="stylesheet" href="assets/css/newtodays.css">
 	<link rel="stylesheet" href="assets/css/banners.css">
+
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -24,9 +26,9 @@
 		<?php include 'inc/header.php' ?>
 		<div class="app_body">
 			<div class="grid">
-				 <div class="fnc-slider example-slider">
+				<div class="fnc-slider example-slider">
 					<div class="fnc-slider__slides">
-					
+
 						<div class="fnc-slide m--blend-green m--active-slide">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -48,8 +50,8 @@
 								</div>
 							</div>
 						</div>
-					
-					
+
+
 						<div class="fnc-slide m--blend-dark">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -71,7 +73,7 @@
 								</div>
 							</div>
 						</div>
-					
+
 						<div class="fnc-slide m--blend-red">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -93,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-					
+
 						<div class="fnc-slide m--blend-blue">
 							<div class="fnc-slide__inner">
 								<div class="fnc-slide__mask">
@@ -115,7 +117,7 @@
 								</div>
 							</div>
 						</div>
-					
+
 					</div>
 					<nav class="fnc-nav">
 						<div class="fnc-nav__bgs">
@@ -143,7 +145,7 @@
 							</button>
 						</div>
 					</nav>
-				</div> 
+				</div>
 				<div class="grid wide ">
 					<div class="best_seller">
 						<div class="row">
@@ -175,58 +177,74 @@
 								if ($getProduct_Women) {
 								?>
 									<button class="arrow_left">
-										< </button>
-											<button class="arrow_left">< </button>
-											<button class="arrow_right">></button>
-											<?php
-											while ($result = $getProduct_Women->fetch_assoc()) {
-											?>
-												<div class="col l-2-4 ">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
-														<div class="home-product-item">
-															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
-															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
-															<div class="home-product-item_price">
-																<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
-															</div>
+										<i class="class-ti ti-angle-left"></i> </button>
+									<?php
+									while ($result = $getProduct_Women->fetch_assoc()) {
+									?>
+										<div class="col l-3 ">
+											<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
+												<div class="home-product-item">
+													<div class="ovelay-img">
+														<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
+														<div class="overlay">
+															<!--buy-btn------>
+															<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>" class="buy-btn">Buy Now</a>
 														</div>
-													</a>
+													</div>
+													<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
+													<div class="home-product-item_price">
+														<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
+													</div>
+
 												</div>
-										<?php
-											}
-										}
-										?>
+											</a>
+										</div>
+									<?php
+									}
+									?>
+									<button class="arrow_right"><i class="class-ti ti-angle-right"></i></button>
+								<?php
+								}
+								?>
 							</div>
 						</div>
 						<div id="men" class="row">
 
 							<div class="app_suggestion ">
 								<?php
-								$getProduct_Women = $product->getProduct_Men();
-								if ($getProduct_Women) {
+								$getProduct_Men = $product->getProduct_Men();
+								if ($getProduct_Men) {
 								?>
 									<button class="arrow_left">
-										< </button>
-											<button class="arrow_right">></button>
-											<?php
-
-											while ($result = $getProduct_Women->fetch_assoc()) {
-											?>
-												<div class="col l-2-4 men_products">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
-														<div class="home-product-item men_product">
-															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
-															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
-															<div class="home-product-item_price">
-																<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
-															</div>
+										<i class="class-ti ti-angle-left"></i> </button>
+									<?php
+									while ($result = $getProduct_Men->fetch_assoc()) {
+									?>
+										<div class="col l-3 ">
+											<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
+												<div class="home-product-item">
+													<div class="ovelay-img">
+														<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
+														<div class="overlay">
+															<!--buy-btn------>
+															<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>" class="buy-btn">Buy Now</a>
 														</div>
-													</a>
+													</div>
+													<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
+													<div class="home-product-item_price">
+														<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
+													</div>
+
 												</div>
-										<?php
-											}
-										}
-										?>
+											</a>
+										</div>
+									<?php
+									}
+									?>
+									<button class="arrow_right"><i class="class-ti ti-angle-right"></i></button>
+								<?php
+								}
+								?>
 
 							</div>
 						</div>
@@ -237,146 +255,153 @@
 								if ($getProduct_Kid) {
 								?>
 									<button class="arrow_left">
-										< </button>
-
-											<?php
-											while ($result = $getProduct_Kid->fetch_assoc()) {
-											?>
-												<div class="col l-2-4 kid">
-													<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
-														<div class="home-product-item">
-															<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
-															<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
-															<div class="home-product-item_price">
-																<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
-															</div>
+										<i class="class-ti ti-angle-left"></i> </button>
+									<?php
+									while ($result = $getProduct_Kid->fetch_assoc()) {
+									?>
+										<div class="col l-3 ">
+											<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
+												<div class="home-product-item">
+													<div class="ovelay-img">
+														<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
+														<div class="overlay">
+															<!--buy-btn------>
+															<a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>" class="buy-btn">Buy Now</a>
 														</div>
-													</a>
+													</div>
+													<h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
+													<div class="home-product-item_price">
+														<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
+													</div>
+
 												</div>
-												<button class="arrow_right">></button>
-										<?php
-											}
-										}
-										?>
+											</a>
+										</div>
+									<?php
+									}
+									?>
+									<button class="arrow_right"><i class="class-ti ti-angle-right"></i></button>
+								<?php
+								}
+								?>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="grid wide">
+					<div class="ds-layout">
+						<h2 class="section-font">
+							<span class="small-up-caps">Model</span>
+							<span class="light-shadow">Outstanding</span>
+						</h2>
+						<div class="row">
+							<div class="ds-flex-container">
+								<div class="ds-flex-item-image col l-5">
+									<img id="ds-flex-img-1" src="./assets/img/bl3.jpg" alt="fashion model">
+
+									<div class="ds-flex-item-text">
+										<span class="small-up-caps">BECCA HILLER</span>
+										<h3 class="medium-style">Becca Hiller là một người mẫu nữ được đại diện bởi MGM Models</h3>
+									</div>
+								</div>
+
+								<div class="ds-flex-item-image col l-7">
+									<img id="ds-flex-img-2" src="./assets/img/1118full-becca-hiller.jpg">
+								</div>
+							</div>
+						</div>
+
+						<!-- ds-flex-container -->
+					</div>
+				</div>
+
 			</div>
+
 			<div class="grid wide">
-				<div class="ds-layout">
-					<h2 class="section-font">
-						<span class="small-up-caps">Model</span>
-						<span class="light-shadow">Outstanding</span>
-					</h2>
+				<h2 class="app_view-shop_tile">NEWS TODAY</h2>
+				<div class="app_view-shop">
 					<div class="row">
-						<div class="ds-flex-container">
-							<div class="ds-flex-item-image col l-5">
-								<img id="ds-flex-img-1" src="./assets/img/bl3.jpg" alt="fashion model">
-
-								<div class="ds-flex-item-text">
-									<span class="small-up-caps">BECCA HILLER</span>
-									<h3 class="medium-style">Becca Hiller là một người mẫu nữ được đại diện bởi MGM Models</h3>
+						<div class="example-2 col l-4">
+							<div class="wrapper">
+								<div class="header">
+									<div class="date">
+										<span class="day">22</span>
+										<span class="month">May</span>
+										<span class="year">2022</span>
+									</div>
+									<ul class="menu-content">
+										<li>
+											<a href="#" class="fa fa-bookmark-o"></a>
+										</li>
+										<li><a href="#" class="ti-heart"><span>18k</span></a></li>
+										<li><a href="#" class="ti-comments"><span>20k</span></a></li>
+									</ul>
 								</div>
-							</div>
-
-							<div class="ds-flex-item-image col l-7">
-								<img id="ds-flex-img-2" src="./assets/img/1118full-becca-hiller.jpg">
-							</div>
-						</div>
-					</div>
-
-					<!-- ds-flex-container -->
-				</div>
-			</div>
-
-		</div>
-
-		<div class="grid wide">
-			<h2 class="app_view-shop_tile">NEWS TODAY</h2>
-			<div class="app_view-shop">
-				<div class="row">
-					<div class="example-2 col l-4">
-						<div class="wrapper">
-							<div class="header">
-								<div class="date">
-									<span class="day">22</span>
-									<span class="month">May</span>
-									<span class="year">2022</span>
-								</div>
-								<ul class="menu-content">
-									<li>
-										<a href="#" class="fa fa-bookmark-o"></a>
-									</li>
-									<li><a href="#" class="ti-heart"><span>18k</span></a></li>
-									<li><a href="#" class="ti-comments"><span>20k</span></a></li>
-								</ul>
-							</div>
-							<div class="data">
-								<div class="content">
-									<span class="author">Jane Doe</span>
-									<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
-									<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-									<a href="#" class="button">Read more</a>
+								<div class="data">
+									<div class="content">
+										<span class="author">Jane Doe</span>
+										<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+										<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+										<a href="#" class="button">Read more</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="example-2 col l-4">
-						<div class="wrapper1">
-							<div class="header">
-								<div class="date">
-									<span class="day">23</span>
-									<span class="month">May</span>
-									<span class="year">2022</span>
+						<div class="example-2 col l-4">
+							<div class="wrapper1">
+								<div class="header">
+									<div class="date">
+										<span class="day">23</span>
+										<span class="month">May</span>
+										<span class="year">2022</span>
+									</div>
+									<ul class="menu-content">
+										<li>
+											<a href="#" class="fa fa-bookmark-o"></a>
+										</li>
+										<li><a href="#" class="ti-heart"><span>1,8k</span></a></li>
+										<li><a href="#" class="ti-comments"><span>3k</span></a></li>
+									</ul>
 								</div>
-								<ul class="menu-content">
-									<li>
-										<a href="#" class="fa fa-bookmark-o"></a>
-									</li>
-									<li><a href="#" class="ti-heart"><span>1,8k</span></a></li>
-									<li><a href="#" class="ti-comments"><span>3k</span></a></li>
-								</ul>
-							</div>
-							<div class="data">
-								<div class="content">
-									<span class="author">Jane Doe</span>
-									<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
-									<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-									<a href="#" class="button">Read more</a>
+								<div class="data">
+									<div class="content">
+										<span class="author">Jane Doe</span>
+										<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+										<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+										<a href="#" class="button">Read more</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="example-2 col l-4">
-						<div class="wrapper2">
-							<div class="header">
-								<div class="date">
-									<span class="day">24</span>
-									<span class="month">May</span>
-									<span class="year">2022</span>
+						<div class="example-2 col l-4">
+							<div class="wrapper2">
+								<div class="header">
+									<div class="date">
+										<span class="day">24</span>
+										<span class="month">May</span>
+										<span class="year">2022</span>
+									</div>
+									<ul class="menu-content">
+										<li>
+											<a href="#" class="fa fa-bookmark-o"></a>
+										</li>
+										<li><a href="#" class="ti-heart"><span>25k</span></a></li>
+										<li><a href="#" class="ti-comments"><span>3,5k</span></a></li>
+									</ul>
 								</div>
-								<ul class="menu-content">
-									<li>
-										<a href="#" class="fa fa-bookmark-o"></a>
-									</li>
-									<li><a href="#" class="ti-heart"><span>25k</span></a></li>
-									<li><a href="#" class="ti-comments"><span>3,5k</span></a></li>
-								</ul>
-							</div>
-							<div class="data">
-								<div class="content">
-									<span class="author">Jane Doe</span>
-									<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
-									<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-									<a href="#" class="button">Read more</a>
+								<div class="data">
+									<div class="content">
+										<span class="author">Jane Doe</span>
+										<h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+										<p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+										<a href="#" class="button">Read more</a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 		<?php include './inc/footer.php' ?>
 	</section>
@@ -384,6 +409,8 @@
 	</button>
 	<script src="./assets/js/product.js"></script>
 	<script src="./assets/js/slideshow.js"></script>
+	<script type="text/javascript" src="./assets/js/script.js"></script>
+
 </body>
 
 </html>

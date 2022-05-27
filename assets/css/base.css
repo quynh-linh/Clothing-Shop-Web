@@ -313,6 +313,64 @@
     cursor: pointer;
 }
 
+
+/*  */
+
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(99, 99, 99, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buy-btn {
+    width: 160px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    color: #252525;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: calibri;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
+}
+
+.buy-btn:hover {
+    color: #FFFFFF;
+    background-color: #0e0d0d;
+    transition: all ease 0.3s;
+}
+
+.overlay {
+    visibility: hidden;
+}
+
+.ovelay-img:hover .overlay {
+    visibility: visible;
+    animation: fade 0.5s;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/*  */
+
 .home-product-item_img {
     object-fit: fill;
     width: 100%;
@@ -383,89 +441,6 @@
     margin-left: 2rem;
     margin-right: 2rem;
     display: inline-block;
-}
-
-
-/* Mobile Navbar */
-
-.mobile-search {
-    display: none;
-}
-
-.mobile-search span {
-    color: #fff;
-}
-
-.nav__bars-btn {
-    color: #fff;
-    margin-right: 6px;
-    display: none;
-}
-
-.nav__bas-over-lay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    display: none;
-    animation: fadeIN linear 0.2s;
-}
-
-.nav-mobile-list {
-    margin-top: 60px;
-}
-
-.nav-mobile {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 320px;
-    max-width: 100%;
-    background-color: #333;
-    z-index: 10;
-    z-index: 101;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: transform linear 0.2s, opacity linear 0.2s;
-}
-
-.nav-mobile-li span {
-    margin: 10px;
-    color: #fff;
-}
-
-.nav-mobile-link {
-    text-decoration: none;
-    padding: 10px;
-    font-size: 1.2rem;
-    color: #fff;
-}
-
-.nav-mobile-close {
-    position: absolute;
-    margin-right: 10px;
-    right: 0;
-    font-size: 2.4rem;
-    color: #fff;
-}
-
-.nav-input:checked~.nav__bas-over-lay {
-    display: block;
-}
-
-.nav-input:checked~.nav-mobile {
-    transform: translateX(0%);
-    opacity: 1;
-}
-
-.navbar-logo img {
-    width: 88px;
-    background: #fff;
-    display: none;
 }
 
 @keyframes fadeIn {

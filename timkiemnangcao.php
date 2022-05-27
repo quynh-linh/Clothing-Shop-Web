@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/timkiemnangcao.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/grid.css">
-	<link rel="stylesheet" href="assets/css/base.css">
 	<link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
 	<link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
 	<script src="./assets/js/product.js"></script>
@@ -158,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 							</div>
 							<!-- Phổ biến -->
 							<div id="trend" class="home-suggestion">
-	<!-- Tìm kiếm nâng cao -->						
+									<!-- Tìm kiếm nâng cao -->						
 								<div class="row">
 									<?php	
 

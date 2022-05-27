@@ -91,4 +91,3 @@ for (let i = 0; i < scroll.length; i++) {
         scroll[i].scrollLeft += 500
     })
 }
-

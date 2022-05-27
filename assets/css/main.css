@@ -454,18 +454,16 @@ header .search__logo form p .btn-search {
     position: absolute;
     display: flex;
     justify-content: center;
-<<<<<<< HEAD
     align-items: center;
     cursor: pointer;
-    z-index: 9;
     font-size: 20px;
     opacity: 0.7;
-=======
-    align-items:center;
-    cursor:pointer;
-    font-size:20px;
-    opacity:0.7;
->>>>>>> f6903d3cb6e8c4abadec3c4556dcc208c047f01e
+    background: none;
+}
+
+.class-ti {
+    background: black !important;
+    color: white !important;
 }
 
 .arrow_left:hover,
@@ -493,9 +491,6 @@ a {
 .app_suggestion::-webkit-scrollbar {
     display: none;
 }
-
-
-/*  */
 
 .all-form-controls form {
     margin: 15px 0;
