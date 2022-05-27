@@ -17,6 +17,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="fancybox/jquery.fancybox.css?v=2.0.4" type="text/css" media="screen" />
     <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js?v=2.0.4"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
 /* Kiểm tra id sản phẩm */
@@ -38,9 +39,6 @@ if (isset($_GET['type']) && $_GET['type'] != NULL) {
 // Thêm sản phẩm vào giỏ hàng
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (Session::get('user_login') == false) {
-        echo '<script type ="text/JavaScript">';
-        echo 'alert("Bạn phải đăng nhập mới được mua hàng")';
-        echo '</script>';
     } else {
         $quantity = $_POST['quantity'];
         if ($_POST['size'] != "") {
@@ -516,7 +514,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <span><?php echo number_format($result_Details['price'], 0, ',', '.') . "" . "đ"  ?></span>
                                             </div>
                                             <div style="text-align: center;padding: 40px;align-items: center; display: flex; justify-content: center;     border-bottom: 1px solid #ccc;">
-                                                <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                                <?php
+                                                    if (Session::get('user_login') == false) {
+                                                ?>
+                                                <input type="button" value="Thêm sản phẩm" class="btn--primary" onclick="swal_login_false()"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                                <?php
+                                            }else{
+                                                ?>
+                                                <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary" ><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                                <?php
+
+                                            }
+                                            ?>
                                             </div>
                                             <div class="app_content">
                                                 <div class="home-title">

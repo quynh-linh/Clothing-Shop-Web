@@ -1,4 +1,10 @@
 <header>
+    <?php
+        if (isset($_GET['action']) && $_GET['action']){
+            header('Location:index.php');
+            Session::destroy();
+        }
+    ?>
     <ul>
         <li>
         <div class="clearfix">
@@ -20,7 +26,7 @@
                                                         while ($result = $get_brand->fetch_assoc()) {
                                                 ?>
                                                 <li class="col c-4">
-                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></a>
+                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>&type=0"><?php echo $result['brandName'] ?></a>
                                                 </li>
                                                     <?php
                                                         }
@@ -42,7 +48,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName']; ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=0"><?php echo $result['typeProductName']; ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -60,7 +66,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=0"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -78,7 +84,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=0"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -96,7 +102,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=0"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -114,7 +120,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=0"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -132,7 +138,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=0"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -163,7 +169,7 @@
                                                         while ($result = $get_brand->fetch_assoc()) {
                                                 ?>
                                                 <li class="col c-4">
-                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></a>
+                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>&type=1"><?php echo $result['brandName'] ?></a>
                                                 </li>
                                                     <?php
                                                         }
@@ -185,7 +191,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName']; ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=1"><?php echo $result['typeProductName']; ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -203,7 +209,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=1"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -221,7 +227,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=1"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -239,7 +245,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=1"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -257,7 +263,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=1"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -275,7 +281,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=1"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -306,7 +312,7 @@
                                                         while ($result = $get_brand->fetch_assoc()) {
                                                 ?>
                                                 <li class="col c-4">
-                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>"><?php echo $result['brandName'] ?></a>
+                                                    <a href="listProduct.php?idBrand=<?php echo $result['brandId'] ?>&type=2"><?php echo $result['brandName'] ?></a>
                                                 </li>
                                                     <?php
                                                         }
@@ -328,7 +334,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName']; ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=2"><?php echo $result['typeProductName']; ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -346,7 +352,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=2"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -364,7 +370,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=2"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -382,7 +388,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=2"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -400,7 +406,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=2"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -418,7 +424,7 @@
                                                                 while ($result = $get_tpd->fetch_assoc()) {
                                                         ?>
                                                         <li class="col c-12">
-                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>"><?php echo $result['typeProductName'] ?></a>
+                                                            <a href="listProduct.php?idType=<?php echo $result['typeProductID']; ?>&type=2"><?php echo $result['typeProductName'] ?></a>
                                                         </li>
                                                             <?php
                                                                 }
@@ -580,9 +586,4 @@
             </ul>
         </li>
     </ul>
-    <?php
-        if (isset($_GET['action']) && $_GET['action']){
-            Session::destroy();
-        }
-    ?>
 </header>

@@ -18,12 +18,16 @@
     <section class="app">
         <?php include 'inc/header.php' ?>
         <?php
+        if (isset($_GET['type'])) {
+            $type = $_GET['type'];
+        }
         if (isset($_GET['idBrand'])) {
-            $getProduct = $product->getproductbyBrandId($_GET['idBrand']);
+            $getProduct = $product->getproductbyBrandId($_GET['idBrand'],$type);
         }
         if (isset($_GET['idType'])) {
-            $getProduct = $product->getproductbyTypeProductId($_GET['idType']);
+            $getProduct = $product->getproductbyTypeProductId($_GET['idType'],$type);
         }
+
         ?>
         <div class="app_search">
             <div class="pc">
@@ -68,16 +72,16 @@
                                 </div>
                                 <div class="home-foward">
                                    <?php
-                                            if(isset($_GET['idBrand'])) {   
-                                                $number_page = $product->getproductbyBrandId_number_page($_GET['idBrand']);
+                                            if(isset($_GET['idBrand']) && $getProduct) {   
+                                                $number_page = $product->getproductbyBrandId_number_page($_GET['idBrand'],$type,);
                                                 $current_page = !empty($_GET['trang'])?$_GET['trang']:1;                    
                                                 $product_count = mysqli_num_rows($number_page);
                                                 $product_button = ceil($product_count/6);   
-                                                if($product_count>6){
+                                                if($product_count>8){
                                                     if($current_page > 1){
                                                         $prev_page = $current_page - 1;
                                                         ?>                                      
-                                                             <a href="?trang=<?=$prev_page?>&idBrand=<?=$_GET['idBrand']?>">
+                                                             <a href="?trang=<?=$prev_page?>&idBrand=<?=$_GET['idBrand']?>&type=<?=$type?>">
                                                                 <span class="ti-angle-left"></span>
                                                             </a>    
                                                         <?php
@@ -90,7 +94,7 @@
                                                                 
                                                         ?>
                                                          <span style="margin: 0 15px ;" class="foward-btn">
-                                                            <a href="?trang=<?=$num?>&idBrand=<?=$_GET['idBrand']?>"><?=$num ?></a>             
+                                                            <a href="?trang=<?=$num?>&idBrand=<?=$_GET['idBrand']?>&type=<?=$type?>"><?=$num ?></a>             
                                                         </span>
                                                         <?php
                                                             }
@@ -103,7 +107,7 @@
                                                     if($current_page < $product_button){
                                                         $next_page = $current_page + 1;
                                                         ?>                                      
-                                                            <a href="?trang=<?=$next_page?>&idBrand=<?=$_GET['idBrand']?>">
+                                                            <a href="?trang=<?=$next_page?>&idBrand=<?=$_GET['idBrand']?>&type=<?=$type?>">
                                                                 <span class="ti-angle-right"></span>
                                                             </a>                                                                                        
                                                 <?php
@@ -114,9 +118,9 @@
 
 
                                         <?php
-                                        if(isset($_GET['idType'])) {
+                                        if(isset($_GET['idType']) && $getProduct) {
                                                 
-                                                $number_page = $product->getproductbyTypeProductId_number_page($_GET['idType']);
+                                                $number_page = $product->getproductbyTypeProductId_number_page($_GET['idType'],$type);
                                                 $current_page = !empty($_GET['trang'])?$_GET['trang']:1;                    
                                                 $product_count = mysqli_num_rows($number_page);
                                                 $product_button = ceil($product_count/6);   
@@ -124,7 +128,7 @@
                                                     if($current_page > 1){
                                                         $prev_page = $current_page - 1;
                                                         ?>                                      
-                                                             <a href="?trang=<?=$prev_page?>&idType=<?=$_GET['idType']?>">
+                                                             <a href="?trang=<?=$prev_page?>&idType=<?=$_GET['idType']?>&type=<?=$type?>">
                                                                 <span class="ti-angle-left"></span>
                                                             </a>    
                                                         <?php
@@ -137,7 +141,7 @@
                                                                 
                                                         ?>
                                                          <span style="margin: 0 15px ;" class="foward-btn">
-                                                            <a href="?trang=<?=$num?>&idType=<?=$_GET['idType']?>"><?=$num ?></a>             
+                                                            <a href="?trang=<?=$num?>&idType=<?=$_GET['idType']?>&type=<?=$type?>"><?=$num ?></a>             
                                                         </span>
                                                         <?php
                                                             }
@@ -150,7 +154,7 @@
                                                     if($current_page < $product_button){
                                                         $next_page = $current_page + 1;
                                                         ?>                                      
-                                                            <a href="?trang=<?=$next_page?>&idType=<?=$_GET['idType']?>">
+                                                            <a href="?trang=<?=$next_page?>&idType=<?=$_GET['idType']?>&type=<?=$type?>">
                                                                 <span class="ti-angle-right"></span>
                                                             </a>                                                                                        
                                                 <?php

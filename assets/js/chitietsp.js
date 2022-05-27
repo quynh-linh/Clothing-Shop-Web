@@ -22,7 +22,8 @@ function checkSize() {
     }
 }
 checkSize()
-    //js số lượng
+
+//js số lượng
 
 function down() {
     let Quantity = document.getElementById('input_quantity').value
@@ -47,7 +48,7 @@ function rederdata() {
     tabs[0].style.color = '#0b1b20';
 }
 rederdata()
-
+document.getElementById('men').style.display = 'block';
 function changeBestSeller(type, element) {
     let tabs = document.getElementsByClassName('exclusive-tab');
     for (i = 0; i < tabs.length; i++) {
@@ -71,4 +72,12 @@ function changeBestSeller(type, element) {
         default:
             break;
     }
+}
+
+function swal_login_false(){
+    Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Bạn phải đăng nhập mới được mua hàng.',
+            })
 }
