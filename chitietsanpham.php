@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="/assets/font/fontawesome-free-5.15.4-web/css/all.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="fancybox/jquery.fancybox.css?v=2.0.4" type="text/css" media="screen" />
+    <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js?v=2.0.4"></script>
 </head>
 <?php
 /* Kiểm tra id sản phẩm */
@@ -23,12 +26,12 @@ if (!isset($_GET['productId']) || $_GET['productId'] == NULL) {
 }
 
 /* Kiểm tra id brand */
-if (isset($_GET['brandId']) && $_GET['brandId']!=NULL ) {
+if (isset($_GET['brandId']) && $_GET['brandId'] != NULL) {
     $br = $_GET['brandId'];
 }
 
 /* Kiểm tra loai sp*/
-if (isset($_GET['type']) && $_GET['type']!=NULL) {
+if (isset($_GET['type']) && $_GET['type'] != NULL) {
     $type = $_GET['type'];
 }
 
@@ -68,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             ?>
                     <div class="app_details">
                         <div class="row">
-
                             <div class="col l-6 " style="font-family: var(--font-family-monospace);">
                                 <div class="app_details-img">
                                     <img src="./admin/upload/<?php echo $result_Details['image'] ?>" alt="" class="content-img">
@@ -122,7 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                     </div>
                                     <div class="all-form-controls">
                                         <form action="" method="post">
-
+                                            <div style="display: flex;align-items: center;">
+                                                <span class="ti-ruler"></span>
+                                                <a href="" onclick="resgiter(event)" class="navbar-item-link text-bold navbar__item--separate" style="color: #666;">Kiểm tra size của bạn</a>
+                                            </div>
                                             <div class="home-product-item-size">
                                                 <span>Kích cỡ</span>
                                                 <div class="home-product-item-size_input">
@@ -136,7 +141,368 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <p id="checkSize" style="color:red; margin-left:10px;"></p>
                                             </div>
                                             <input type="hidden" id="btn_sizes" name="size" value="">
+                                            <!-- Kiểm tra kích cỡ size -->
 
+
+                                            <div class="overFlow"></div>
+                                            <div class="modal">
+                                                <div class="modal__overlay">
+                                                    <div class="model__body">
+                                                        <div class="table-size-product" style="display: none" id="table-size-product">
+                                                            <div style="text-align: end;display: flex;justify-content: end;align-items: center;"> <input type="submit" value="X" id="cancelBtn" onclick="parent.jQuery.fancybox.close()" /></div>
+                                                            <div class="title-table-size">BẢNG TƯ VẤN SIZE</div>
+                                                            <div class="exclusive-tabs">
+                                                                <div class="exclusive-head">
+                                                                    <ul>
+                                                                        <li class="exclusive-tab " onclick="changeBestSeller('men',this)">Nam</li>
+                                                                        <li class="exclusive-tab  active " onclick="changeBestSeller('women',this)">Nữ</li>
+                                                                        <li class="exclusive-tab " onclick="changeBestSeller('kids',this)">Trẻ Em</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="exclusive-content">
+                                                                    <div id="loading-bar-spinner" class="spinner">
+                                                                        <div class="spinner-icon"></div>
+                                                                    </div>
+                                                                    <div class="exclusive-inner " id="men">
+                                                                        <div class="row">
+                                                                            <div class="col l-12">
+                                                                                <table class="table-pc" style="width: 100%;">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <td class="title-table" colspan="7">
+                                                                                                SIZE ÁO
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong>STT</strong></td>
+                                                                                            <td><strong>TÊN GỌI/SIZE</strong></td>
+                                                                                            <td><strong>S</strong></td>
+                                                                                            <td><strong>M</strong></td>
+                                                                                            <td><strong>L</strong></td>
+                                                                                            <td><strong>XL</strong></td>
+                                                                                            <td><strong>XXL</strong></td>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>Cổ</td>
+                                                                                            <td>36</td>
+                                                                                            <td>38</td>
+                                                                                            <td>40</td>
+                                                                                            <td>42</td>
+                                                                                            <td>44</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>2</td>
+                                                                                            <td>Vai</td>
+                                                                                            <td>44</td>
+                                                                                            <td>45</td>
+                                                                                            <td>46</td>
+                                                                                            <td>47</td>
+                                                                                            <td>48</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>3</td>
+                                                                                            <td>Ngực</td>
+                                                                                            <td>90</td>
+                                                                                            <td>94</td>
+                                                                                            <td>98</td>
+                                                                                            <td>102</td>
+                                                                                            <td>106</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>4</td>
+                                                                                            <td>Eo</td>
+                                                                                            <td>88</td>
+                                                                                            <td>92</td>
+                                                                                            <td>96</td>
+                                                                                            <td>100</td>
+                                                                                            <td>104</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <td class="title-table" colspan="7">
+                                                                                                SIZE QUẦN
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong>STT</strong></td>
+                                                                                            <td><strong>TÊN GỌI/SIZE</strong></td>
+                                                                                            <td><strong>S(26)</strong></td>
+                                                                                            <td><strong>M(27)</strong></td>
+                                                                                            <td><strong>L(28)</strong></td>
+                                                                                            <td><strong>XL(29)</strong></td>
+                                                                                            <td><strong>XXL(30)</strong></td>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>Vòng Eo</td>
+                                                                                            <td>76</td>
+                                                                                            <td>80</td>
+                                                                                            <td>84</td>
+                                                                                            <td>86</td>
+                                                                                            <td>90</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>2</td>
+                                                                                            <td>Vòng Mông</td>
+                                                                                            <td>91</td>
+                                                                                            <td>95</td>
+                                                                                            <td>99</td>
+                                                                                            <td>104</td>
+                                                                                            <td>109</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>3</td>
+                                                                                            <td>Cân nặng (kg)</td>
+                                                                                            <td>62 - 68</td>
+                                                                                            <td>68 - 70</td>
+                                                                                            <td>70 - 74</td>
+                                                                                            <td>74 - 78</td>
+                                                                                            <td>78 - 82</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>4</td>
+                                                                                            <td>Chiều Cao (cm)</td>
+                                                                                            <td>162 - 168</td>
+                                                                                            <td>168 - 172</td>
+                                                                                            <td>172 - 176</td>
+                                                                                            <td>176 - 180</td>
+                                                                                            <td>180 - 184</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="exclusive-inner " id="women">
+                                                                        <div class="row">
+                                                                            <div class="col l-12">
+                                                                                <table class="table-pc" style="width: 100%;">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <td class="title-table" colspan="7">
+                                                                                                SIZE VÁY ÁO Nữ
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong>STT</strong></td>
+                                                                                            <td><strong>TÊN GỌI/SIZE</strong></td>
+                                                                                            <td><strong>S</strong></td>
+                                                                                            <td><strong>M</strong></td>
+                                                                                            <td><strong>L</strong></td>
+                                                                                            <td><strong>XL</strong></td>
+                                                                                            <td><strong>XXL</strong></td>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>Vai</td>
+                                                                                            <td>36</td>
+                                                                                            <td>37</td>
+                                                                                            <td>38</td>
+                                                                                            <td>39</td>
+                                                                                            <td>40</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>2</td>
+                                                                                            <td>Ngực</td>
+                                                                                            <td>82</td>
+                                                                                            <td>86</td>
+                                                                                            <td>90</td>
+                                                                                            <td>94</td>
+                                                                                            <td>98</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>3</td>
+                                                                                            <td>Eo</td>
+                                                                                            <td>64</td>
+                                                                                            <td>68</td>
+                                                                                            <td>72</td>
+                                                                                            <td>76</td>
+                                                                                            <td>80</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>4</td>
+                                                                                            <td>Hông</td>
+                                                                                            <td>88</td>
+                                                                                            <td>92</td>
+                                                                                            <td>96</td>
+                                                                                            <td>100</td>
+                                                                                            <td>104</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <td class="title-table" colspan="7">
+                                                                                                SIZE QUẦN
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong>STT</strong></td>
+                                                                                            <td><strong>TÊN GỌI/SIZE</strong></td>
+                                                                                            <td><strong>S(26)</strong></td>
+                                                                                            <td><strong>M(27)</strong></td>
+                                                                                            <td><strong>L(28)</strong></td>
+                                                                                            <td><strong>XL(29)</strong></td>
+                                                                                            <td><strong>XXL(30)</strong></td>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>Vòng Eo</td>
+                                                                                            <td>64</td>
+                                                                                            <td>68</td>
+                                                                                            <td>72</td>
+                                                                                            <td>76</td>
+                                                                                            <td>80</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>2</td>
+                                                                                            <td>Vòng Mông</td>
+                                                                                            <td>88</td>
+                                                                                            <td>92</td>
+                                                                                            <td>96</td>
+                                                                                            <td>100</td>
+                                                                                            <td>104</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>3</td>
+                                                                                            <td>Vòng Bụng</td>
+                                                                                            <td>68</td>
+                                                                                            <td>72</td>
+                                                                                            <td>76</td>
+                                                                                            <td>80</td>
+                                                                                            <td>84</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>4</td>
+                                                                                            <td>Dài Quần</td>
+                                                                                            <td>96</td>
+                                                                                            <td>97</td>
+                                                                                            <td>99</td>
+                                                                                            <td>100</td>
+                                                                                            <td>101</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="exclusive-inner " id="kids">
+                                                                        <div class="row">
+                                                                            <div class="col l-12">
+                                                                                <table class="table-pc" style="width: 100%;">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <td class="title-table" colspan="7">
+                                                                                                SIZE VÁY ÁO Trẻ em
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><strong>STT</strong></td>
+                                                                                            <td><strong>CỠ / TUỔI</strong></td>
+                                                                                            <td><strong>4-5</strong></td>
+                                                                                            <td><strong>6-7</strong></td>
+                                                                                            <td><strong>8-9</strong></td>
+                                                                                            <td><strong>10-11</strong></td>
+                                                                                            <td><strong>12-13</strong></td>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>CHIẾU CAO (CM)</td>
+                                                                                            <td>110</td>
+                                                                                            <td>122</td>
+                                                                                            <td>133</td>
+                                                                                            <td>150</td>
+                                                                                            <td>155</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>2</td>
+                                                                                            <td>CÂN NẶNG (KG)</td>
+                                                                                            <td>15-20</td>
+                                                                                            <td>20-25</td>
+                                                                                            <td>23-29</td>
+                                                                                            <td>28-35</td>
+                                                                                            <td>34-43</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>3</td>
+                                                                                            <td style="">RỘNG VAI</td>
+                                                                                            <td>29</td>
+                                                                                            <td>30</td>
+                                                                                            <td>31</td>
+                                                                                            <td>32</td>
+                                                                                            <td>33</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>4</td>
+                                                                                            <td>VÒNG NGỰ</td>
+                                                                                            <td>59</td>
+                                                                                            <td>65</td>
+                                                                                            <td>68</td>
+                                                                                            <td>74</td>
+                                                                                            <td>79</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>5</td>
+                                                                                            <td>VÒNG BỤNG</td>
+                                                                                            <td>54</td>
+                                                                                            <td>59</td>
+                                                                                            <td>62</td>
+                                                                                            <td>65</td>
+                                                                                            <td>69</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>6</td>
+                                                                                            <td>VÒNG MÔNG</td>
+                                                                                            <td>61</td>
+                                                                                            <td>66</td>
+                                                                                            <td>70</td>
+                                                                                            <td>75</td>
+                                                                                            <td>80</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>7</td>
+                                                                                            <td>DÀI TAY</td>
+                                                                                            <td>40</td>
+                                                                                            <td>43</td>
+                                                                                            <td>47</td>
+                                                                                            <td>50</td>
+                                                                                            <td>53</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>8</td>
+                                                                                            <td>CHIỀU DÀI TỪ ĐŨNG ĐẾN ỐNG</td>
+                                                                                            <td>42</td>
+                                                                                            <td>52</td>
+                                                                                            <td>59</td>
+                                                                                            <td>66</td>
+                                                                                            <td>72</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td colspan="6"><b>* Số đo trong "BẢNG THÔNG SỐ" là số đo cơ thể không phải số đo quần áo</b></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                             <div class="buy_now">
                                                 <span>Số lượng</span>
                                                 <div class="home-product-item-size_quantity">
@@ -149,8 +515,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <span>Giá</span>
                                                 <span><?php echo number_format($result_Details['price'], 0, ',', '.') . "" . "đ"  ?></span>
                                             </div>
-                                            <div style="text-align: center;/* display: flex; */margin: 40px;align-items: center;/* justify-content: stretch; */display: flex;justify-content: center;">
+                                            <div style="text-align: center;padding: 40px;align-items: center; display: flex; justify-content: center;     border-bottom: 1px solid #ccc;">
                                                 <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                            </div>
+                                            <div class="app_content">
+                                                <div class="home-title">
+                                                    <h4 class="home-title-all">CHI TIẾT SẢN PHẨM</h4>
+                                                    <span><?php echo $result_Details['product_desc'] ?></span>
+                                                </div>
                                             </div>
 
                                         </form>
@@ -172,47 +544,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
                         </div>
                     </div>
-
-                    <div class="app_content">
-                        <div class="home-title">
-                            <h4 class="home-title-all">CHI TIẾT SẢN PHẨM</h4>
-                            <span><?php echo $result_Details['product_desc'] ?></span>
-                        </div>
-                    </div>
             <?php
                 }
             }
             ?>
-            <div>
+            <div class="related_products">
                 <h3>Sản phẩm liên quan</h1>
                     <div class="row">
-                       
-                            <?php
-                                $get_productRelatetionship = $product->getProduct_Relationship($br,$id);
-                                if ($get_productRelatetionship) {
-                                    while ($result = $get_productRelatetionship->fetch_assoc()) {
-                            ?> 
-                            <div class="col l-2-4">
-                                                    <a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId']?>&&type=<?php echo $result['type']?>">
-                                                        <div class="home-product-item">
-                                                            <img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
-                                                            <h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
-                                                            <div class="home-product-item_price">
-                                                                <span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                            </div>
-                            <?php
-                                    }
-                                }
-                            ?>
-                        
+                        <?php
+                        $get_productRelatetionship = $product->getProduct_Relationship($br, $id);
+                        if ($get_productRelatetionship) {
+                            while ($result = $get_productRelatetionship->fetch_assoc()) {
+                        ?>
+                                <div class="col l-2-4">
+                                    <a href="chitietsanpham.php?productId=<?php echo $result['productId'] ?>&&brandId=<?php echo $result['brandId'] ?>&&type=<?php echo $result['type'] ?>">
+                                        <div class="home-product-item">
+                                            <img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
+                                            <h4 class="home-product-item_name"><?php echo $result['productName'] ?></h4>
+                                            <div class="home-product-item_price">
+                                                <span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+
                     </div>
             </div>
         </div>
     </div>
     <?php include './inc/footer.php' ?>
     <script src="./assets/js/chitietsp.js"></script>
+    <script>
+        async function resgiter(e) {
+            e.preventDefault();
+            document.querySelector(".modal").style.display = 'flex';
+            document.querySelector("#table-size-product").style.display = 'block';
+        };
+        document.querySelector('.modal__overlay') = function() {
+            document.querySelector(".modal").style.display = 'none';
+        };
+        document.querySelector('.modal__overlay') = function() {
+            document.querySelector(".modal").style.display = 'none';
+        }
+    </script>
+
 </body>
+
 </html>

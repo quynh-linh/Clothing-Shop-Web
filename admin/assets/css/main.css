@@ -276,7 +276,7 @@ main {
 
 .activity-grid {
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 100%;
     grid-column-gap: 1.5rem;
 }
 

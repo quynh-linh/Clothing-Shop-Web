@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                         <thead>
                                             <tr>
                                                 <th>Sản phẩm</th>
+                                                <th>Ảnh</th>
                                                 <th>Số lượng bán ra</th>
                                                 <th>Giá</th>
                                                 <th>Thành tiền</th>
@@ -122,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <tbody>
                                                     <tr>
                                                         <td><?php echo $result_dtngay['productName'] ?></td>
+                                                        <td><img src="upload/<?php echo $result_dtngay['image'] ?>" alt="" style="width: 100px;"></td>
                                                         <td><?php echo  $result_dtngay['value_count'] ?></td>
                                                         <td><?php echo number_format($result_dtngay['price'], 0, ',', '.') . " " . "đ";   ?></td>
                                                         <td><?php echo number_format($result_dtngay['value_sumTT'], 0, ',', '.') . " " . "đ"; ?></td>
@@ -145,48 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                     ?>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <!-- // thống kế ngày sinh nhật hoặc thành viên -->
-                    <div class="summary">
-                        <div class="summary-card">
-                            <div class="summary-single">
-                                <span class="ti-id-badge"></span>
-                                <div>
-                                    <h5>196.000</h5>
-                                    <small>Số lượng người truy cập</small>
-                                </div>
-                            </div>
-                            <div class="summary-single">
-                                <span class="ti-calendar"></span>
-                                <div>
-                                    <h5>10.000</h5>
-                                    <small>Số lượng vừa mới thoát</small>
-                                </div>
-                            </div>
-                            <div class="summary-single">
-                                <span class="ti-face-smile"></span>
-                                <div>
-                                    <h5>198</h5>
-                                    <small>Số lượng thành viên</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bday-card">
-                            <div class="bday-flex">
-                                <div class="bday-img"></div>
-                                <div class="bday-info">
-                                    <h5>My is Linh</h5>
-                                    <small>Birthday Today</small>
-
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button><span class="ti-gift"></span>
-                                    Wish him
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>

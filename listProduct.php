@@ -68,8 +68,7 @@
                                 </div>
                                 <div class="home-foward">
                                    <?php
-                                            if(isset($_GET['idBrand'])) {
-                                                
+                                            if(isset($_GET['idBrand'])) {   
                                                 $number_page = $product->getproductbyBrandId_number_page($_GET['idBrand']);
                                                 $current_page = !empty($_GET['trang'])?$_GET['trang']:1;                    
                                                 $product_count = mysqli_num_rows($number_page);

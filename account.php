@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     $update_user = $user->update_user($idUser, $_POST);
 }
 ?>
+
 <body>
     <div class="content">
         <div class="grid">
@@ -149,8 +150,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
                                                 <div class="infotmation-save">
                                                     <input type="submit" name="save" value="Lưu thay đổi">
                                                 </div>
+
+
                                             <?php } ?>
                                         </form>
+                                        <!-- <div class="">
+                                            <a class="back-history" href="javascript:window.history.back();">
+                                                <span class="ti-arrow-left" style="padding: 0 10px;">
+
+                                                </span>
+
+                                            </a>
+                                        </div> -->
                                 </div>
                             </div>
                             <div class="col l-5">

@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										<div style="display: flex;align-items: center;justify-content: space-around;">										
 											<input id="slider_pr" type="range" name="price" min="0" max="100000000" value="0" >
 											<span id="max" style="font-family: var(--font-family-sans-serif);"></span>
-											VNĐ
+											đ
 										</div>
 									</div>
 									<!--  -->
@@ -241,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 																<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 																<span class="home-product-item_name"><?php echo $result['productName'] ?></span>
 																<div class="home-product-item_price">
-																	<span class="home-product-item_price"><?php echo number_format($result['price'],0,',','.')." " ."VNĐ" ?></span>
+																	<span class="home-product-item_price"><?php echo number_format($result['price'],0,',','.')." " ."đ" ?></span>
 																</div>
 															</div>
 														</a>
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 													<img src="./admin/upload/<?php echo $result['image'] ?>" alt="" class="home-product-item_img">
 													<span class="home-product-item_name"><?php echo $result['productName'] ?></span>
 													<div class="home-product-item_price">
-														<span class="home-product-item_price"><?php  echo number_format($result['price'],0,',','.')." "."VNĐ" ?></span>
+														<span class="home-product-item_price"><?php  echo number_format($result['price'],0,',','.')." "."đ" ?></span>
 													</div>
 												</div>
 											</a>
