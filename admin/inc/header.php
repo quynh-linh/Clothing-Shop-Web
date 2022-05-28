@@ -25,7 +25,8 @@
             </span>
             <?php 
             if(isset($_GET['action']) && $_GET['action'] == 'logout'){
-                Session::destroy();
+                header('Location:login.php');
+                Session::set('adminLogin',false);
             } 
             ?>
             <span class="logout-btn">

@@ -311,12 +311,14 @@ td {
     font-size: 0.85rem;
     padding: 1rem 0.5rem;
     color: var(--color-dark);
+    text-align: center;
 }
 
 th {
     font-size: 1rem;
     padding: 1rem 0.5rem;
     color: #fff;
+    text-align: center;
 }
 
 tr {

@@ -175,7 +175,7 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                             <tr>
                                     <th>Đơn hàng: <?php echo $count;?></th>
                                     <th colspan="2">Account: <?php echo $username;?></th>
-                                    <th colspan="5">Ngày đặt: <?php echo $date_order;?></th>
+                                    <th colspan="5">Ngày giao: <?php echo $date_order;?></th>
                                     <th colspan="2" class="toggle">Xem chi tiết</th>
                             </tr>
                             </thead>
@@ -272,7 +272,7 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                             <tr>
                                     <th>Đơn hàng: <?php echo $count;?></th>
                                     <th colspan="2">Account: <?php echo $username;?></th>
-                                    <th colspan="5">Ngày đặt: <?php echo $date_order;?></th>
+                                    <th colspan="5">Ngày hủy: <?php echo $date_order;?></th>
                                     <th colspan="2" class="toggle">Xem chi tiết</th>
                             </tr>
                             </thead>

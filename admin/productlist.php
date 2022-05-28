@@ -43,6 +43,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
                                     <th>Giá sản phẩm</th>
                                     <th>Ảnh sản phẩm</th>
                                     <th>Kiểu sản phâm</th>
@@ -65,6 +66,7 @@
                             <tr>
                                 <td><?php echo $i ?></td>
                                 <td><?php echo $result['productName'] ?></td>
+                                <td><?php echo $result['quantity'] ?></td>
                                 <td><?php echo $result['price'] ?></td>
                                 <td><img src="upload/<?php echo $result['image'] ?>" style="width: 50px; height: 50px;" ></td>
                                 <td><?php echo $result['typeProductName'] ?></td>

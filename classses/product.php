@@ -24,6 +24,7 @@ class product
         $product_desc = mysqli_real_escape_string($this->db->link, $data["product_desc"]);
         $price = mysqli_real_escape_string($this->db->link, $data["price"]);
         $type = mysqli_real_escape_string($this->db->link, $data["type"]);
+        $quantity = mysqli_real_escape_string($this->db->link, $data["productQuantity"]);
 
         //kiểm tra hình ảnh và lấy hình ảnh cho vào folder uploads
         $permited = array('jpg', 'jpeg', 'png', 'gif');
@@ -36,20 +37,36 @@ class product
         $unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
         $uploaded_image = "upload/" . $unique_image;
 
-        if ($productName == "" ||  $brand == "" || $typeProduct == "" ||  $category == "" ||  $product_desc == "" ||  $price == "" ||  $type == "" ||  $file_name == "") {
+        if ($productName == "" ||  $brand == "" || $typeProduct == "" ||  $category == "" ||  $product_desc == "" ||  $price == "" ||  $type == "" ||  $file_name == "" || $quantity == "") {
             $alert = "Không được bỏ trống";
             return $alert;
-        } else {
-            move_uploaded_file($file_temp, $uploaded_image);
-            $query = "INSERT INTO tbl_product(productName,brandId,catId,product_desc,price,type,image,typeProductId) VALUES('$productName',
-                '$brand','$category','$product_desc','$price','$type','$unique_image','$typeProduct')";
-            $result = $this->db->insert($query);
-            if ($result) {
-                $alert = "<span class='success'> Thêm thành công  </span>";
-                return $alert;
-            } else {
-                $alert = "<span class='error'> Thêm không thành công  </span>";
-                return $alert;
+        } elseif($quantity < 0){
+            return "Số lượng không được âm";
+        }elseif($price <0){
+            return "Giá không được âm";
+        }else{
+            $sql_check_name = "SELECT * FROM tbl_product WHERE productName = '$productName'";
+            $result_check_name = $this->db->select($sql_check_name);
+
+            // $sql_check_img = "SELECT * FROM tbl_product WHERE image = '$unique_image'";
+            // $result_check_img = $this->db->select($sql_check_img);
+
+            if($result_check_name){
+                return "Tên sản phẩm đã tồn tại";
+            // }elseif($result_check_img){
+            //     return "Ảnh sản phẩm đã tồn tại";
+            }else{
+                move_uploaded_file($file_temp, $uploaded_image);
+                $query = "INSERT INTO tbl_product(productName,brandId,catId,product_desc,price,type,quantity,image,typeProductId) VALUES('$productName',
+                    '$brand','$category','$product_desc','$price','$type','$quantity','$unique_image','$typeProduct')";
+                $result = $this->db->insert($query);
+                if ($result) {
+                    $alert = "<span class='success'> Thêm thành công  </span>";
+                    return $alert;
+                } else {
+                    $alert = "<span class='error'> Thêm không thành công  </span>";
+                    return $alert;
+                }
             }
         }
     }
@@ -133,6 +150,7 @@ class product
         $product_desc = mysqli_real_escape_string($this->db->link, $data["product_desc"]);
         $price = mysqli_real_escape_string($this->db->link, $data["price"]);
         $type = mysqli_real_escape_string($this->db->link, $data["type"]);
+        $addQuantity = mysqli_real_escape_string($this->db->link, $data["addQuantity"]);
 
         //kiểm tra hình ảnh và lấy hình ảnh cho vào folder uploads
         $permited = array('jpg', 'jpeg', 'png', 'gif');
@@ -144,6 +162,22 @@ class product
         $file_ext = strtolower(end($div));
         $unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
         $uploaded_image = "upload/" . $unique_image;
+
+        //Kiểm tra tên sản phẩm có trùng hay không
+        $sql_check_name = "SELECT * FROM tbl_product WHERE productName = '$productName' AND productId NOT IN ('$id')";
+        $result_check_name = $this->db->select($sql_check_name);
+
+        if($result_check_name){
+            return "Tên sản phẩm đã tồn tại";
+        }
+
+        if($addQuantity < 0){
+            return "Số lượng không được âm";
+        }elseif($price < 0 ){
+            return "Giá không được âm";
+        }
+        
+
         if (!empty($file_name)) {
             // Nếu người dùng chọn ảnh
             if ($file_size > 20480) {
@@ -158,6 +192,7 @@ class product
                         brandId = '$brand',
                         catId = '$category',
                         type = '$type',
+                        quantity = '$addQuantity'+quantity,
                         price = '$price',
                         image = '$unique_image',
                         product_desc = '$product_desc',
@@ -169,6 +204,7 @@ class product
                         brandId = '$brand',
                         catId = '$category',
                         type = '$type',
+                        quantity = '$addQuantity'+quantity,
                         price = '$price',
                         product_desc = '$product_desc',
                         typeProductId = '$typeProduct'

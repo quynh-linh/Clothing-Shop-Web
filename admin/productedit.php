@@ -56,6 +56,22 @@
                         <input type="text" name="productName" value="<?php echo $result_product['productName'] ?>" placeholder="Nhập tên sản phẩm" class="medium" />
                     </td>
                 </tr>
+                <tr>
+                    <td class="form_title">
+                        <label>Số lượng còn</label>
+                    </td>
+                    <td>
+                        <input type="button" name="productQuantity" value="<?php echo $result_product['quantity'] ?>" placeholder="Nhập số lượng" class="medium" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form_title">
+                        <label>Thêm số lượng</label>
+                    </td>
+                    <td>
+                        <input type="text" name="addQuantity" value="0" placeholder="Nhập số lượng" class="medium" />
+                    </td>
+                </tr>
 				<tr>
                     <td class="form_title">
                         <label>Danh mục sản phẩm</label>

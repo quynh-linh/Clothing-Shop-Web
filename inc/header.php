@@ -2,7 +2,7 @@
     <?php
         if (isset($_GET['action']) && $_GET['action']){
             header('Location:index.php');
-            Session::destroy();
+            Session::set('user_login',false);
         }
     ?>
     <ul>

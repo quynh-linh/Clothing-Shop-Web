@@ -46,6 +46,14 @@
                         <input type="text" name="productName" placeholder="Nhập tên sản phẩm" class="medium" />
                     </td>
                 </tr>
+                <tr>
+                    <td class="form_title">
+                        <label>Số lượng</label>
+                    </td>
+                    <td>
+                        <input type="text" name="productQuantity" placeholder="Nhập số lượng" class="medium" />
+                    </td>
+                </tr>
 				<tr>
                     <td class="form_title">
                         <label>Danh mục sản phẩm</label>
