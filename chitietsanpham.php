@@ -140,8 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             </div>
                                             <input type="hidden" id="btn_sizes" name="size" value="">
                                             <!-- Kiểm tra kích cỡ size -->
-
-
                                             <div class="overFlow"></div>
                                             <div class="modal">
                                                 <div class="modal__overlay">
@@ -508,6 +506,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                     <input type="text" id="input_quantity" value="1" name="quantity">
                                                     <input type="button" class="btn_quantity" value="+" onclick="up()">
                                                 </div>
+                                            </div>
+                                            <div style="padding: 20px 0;color: black;">
+                                                <span>Sản phẩm còn lại ( <?php echo $result_Details['quantity']?> sản phẩm )</span>
+                                                
                                             </div>
                                             <div class="price-product">
                                                 <span>Giá</span>
