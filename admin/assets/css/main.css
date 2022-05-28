@@ -271,7 +271,8 @@ main {
 /* PHẦN BẢNG HOẠT ĐỘNG */
 
 .table-responsive {
-    overflow-x: auto;
+    overflow: scroll;
+    height: auto;
 }
 
 .activity-grid {

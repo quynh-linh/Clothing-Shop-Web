@@ -16,13 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $getTongDoanhThuTheoNGay = $statistical1->gettongSPTheoNgay($_POST);
 }
 ?>
+
 <body>
     <?php include './inc/sidebar.php' ?>
     <div class="main-content">
         <?php include './inc/header.php' ?>
         <main>
             <h2 class="dash-title">Tổng Quan</h2>
-            
+
             <div class="dash-cards">
                 <div class="card-single">
                     <div class="card-body">
@@ -93,15 +94,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         <div>
                             <form method="POST" action="">
                                 <div class="activity-card-calendar">
-                                    <div class="input-group mb-3">
-                                        <input id="datePickerId" value="2021-01-01" name="date1" type="date" data-date-inline-picker="true" />
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <input id="datePickerId" value="2022-12-30" name="date2" type="date" data-date-inline-picker="true" />
-                                    </div>
-                                    <div class="input-group1 mb-3">
-                                        <input id="submit" name="submit" type="submit" value="Tìm kiếm">
-                                    </div>
+                                   
+                                        <div class="input-group mb-3">
+                                            <input id="datePickerId" value="2021-01-01" name="date1" type="date" data-date-inline-picker="true" />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="datePickerId" value="2022-12-30" name="date2" type="date" data-date-inline-picker="true" />
+                                        </div>
+                                        <div class="input-group1 mb-3">
+                                            <input id="submit" name="submit" type="submit" value="Tìm kiếm">
+                                        </div>
+                                   
                                 </div>
                                 <div class="table-responsive">
                                     <table>
@@ -109,41 +112,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             <tr>
                                                 <th>Sản phẩm</th>
                                                 <th>Ảnh</th>
-                                                <th>Số lượng bán ra</th>
                                                 <th>Giá</th>
+                                                <th>Số lượng bán ra</th>
                                                 <th>Thành tiền</th>
                                             </tr>
                                         </thead>
                                         <?php
-                                        // $totalquantity =0;
                                         if (isset($getTongDoanhThuTheoNGay) && $getTongDoanhThuTheoNGay) {
+                                            $totalquantity = 0;
+                                            $sumDT = 0;
                                             while ($result_dtngay = $getTongDoanhThuTheoNGay->fetch_assoc()) {
-                                                // $totalquantity += $result_dtngay['quantity'];
+                                                $totalquantity += $result_dtngay['value_count'];
+                                                $sumDT += $result_dtngay['value_sumTT'];
                                         ?>
                                                 <tbody>
                                                     <tr>
                                                         <td><?php echo $result_dtngay['productName'] ?></td>
                                                         <td><img src="upload/<?php echo $result_dtngay['image'] ?>" alt="" style="width: 100px;"></td>
-                                                        <td><?php echo  $result_dtngay['value_count'] ?></td>
                                                         <td><?php echo number_format($result_dtngay['price'], 0, ',', '.') . " " . "đ";   ?></td>
+                                                        <td><?php echo  $result_dtngay['value_count'] ?></td>
+
                                                         <td><?php echo number_format($result_dtngay['value_sumTT'], 0, ',', '.') . " " . "đ"; ?></td>
                                                     </tr>
-                                                </tbody>
-                                        <?php
+
+                                                <?php
                                             }
-                                        }else{
-                                        ?>
+                                                ?>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    Số lượng sản phẩm bán ra : <?php echo $totalquantity ?>
+                                                </td>
+                                                <td>
+                                                    Tổng tiền bán ra : <?php echo number_format($sumDT, 0, ',', '.') . " " . "đ"; ?>
+                                                </td>
+                                                </tbody>
+                                            <?php
+                                        } else {
+                                            ?>
                                                 <tbody>
                                                     <tr>
                                                         <td colspan="4" style="text-align:center">Không có sản phẩm nào trong mốc thời gian này</td>
                                                     </tr>
                                                 </tbody>
-                                        <?php
-                                            }
-                                        ?>
+                                            <?php
+                                        }
+                                            ?>
                                     </table>
                                     <?php
-                                     //}
+                                    //}
                                     ?>
                                 </div>
                             </form>
@@ -249,4 +267,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         ]
     });
 </script>
+
 </html>
