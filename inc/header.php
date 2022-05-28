@@ -562,6 +562,10 @@
                             </li>
                             <li class="nav-user_menu-item">
                                 <a style="color: #ffffff;  font-size: 14px; font-weight: 600; text-decoration: none; font-family: var(--font-family-monospace);
+                                " href="doimatkhau.php">Đổi mật khẩu</a>
+                            </li>
+                            <li class="nav-user_menu-item">
+                                <a style="color: #ffffff;  font-size: 14px; font-weight: 600; text-decoration: none; font-family: var(--font-family-monospace);
                                 " href="giohang.php">Giỏ hàng</a>
                             </li>
                             <li class="nav-user_menu-item">

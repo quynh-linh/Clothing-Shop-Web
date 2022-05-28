@@ -176,5 +176,19 @@ class user
             }
         }
     }
+    //doi mat khau
+    public function doimatkhau($taikhoan,$matkhaucu){
+        $taikhoan = $_POST['username'];
+        $matkhaucu = md5($_POST['password_cu']);
+        $sql = "SELECT * FROM tbl_uer WHERE username= '$taikhoan' AND userPassword = '$matkhaucu'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    //update mat khau
+    public function updatedoimatkhau($matkhaumoi){
+        $matkhaumoi = md5($_POST['password_moi']);
+        $sql_update = $this->db->update("UPDATE tbl_uer SET userPassword= '$matkhaumoi' ");
+        return $sql_update;
+    }   
 }
 ?>
