@@ -17,7 +17,7 @@
     <title>Đổi mật khẩu người dùng </title>
 </head>
 <?php
-if (isset($_POST['doimatkhau'])) {
+if (isset($_POST['doimatkhau']) && $_POST['password_cu']!="" && $_POST['password_moi'] != "") {
     $taikhoan = $_POST['username'];
     $matkhaucu = md5($_POST['password_cu']);
     $matkhaumoi = md5($_POST['password_moi']);
@@ -30,7 +30,11 @@ if (isset($_POST['doimatkhau'])) {
     if ($count > 0) {
         $up = $user->updatedoimatkhau($matkhaumoi);
         
-    } 
+    } else{
+        $up = '<span class="Update_pass">Nhập sai mật khẩu, mời nhập lại !</span>';
+    }
+}else{
+    $up = '<span class="Update_pass">Bạn chưa nhập mật khẩu ?</span>';
 }
 ?>
 
@@ -73,6 +77,7 @@ if (isset($_POST['doimatkhau'])) {
                                                 }
                                             ?>
                                         </div>
+                                        
                                     <div style="display: flex;justify-content: end;" class="infotmation-save">
                                         
                                         <input type="submit" name="doimatkhau" value="Lưu thay đổi">
