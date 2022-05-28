@@ -16,6 +16,7 @@
     $brand = new brand();
     $user = new user();
     $order = new order();
+    $sendMail = new Mail();
 ?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");
