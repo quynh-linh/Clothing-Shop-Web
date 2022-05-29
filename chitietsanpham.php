@@ -41,13 +41,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (Session::get('user_login') == false) {
     } else {
         $quantity = $_POST['quantity'];
-        if ($_POST['size'] != "") {
-            $size = $_POST['size'];
-            $addToCart = $cat->addProduct_cart($id, $quantity, $size, Session::get('user_id'));
-        } else {
+        $checkQuantity = $product->checkQuantityProduct($_GET['productId']);
+        if ($_POST['size'] == "") {
             echo '<script type ="text/JavaScript">';
             echo 'alert("Bạn chưa chọn size")';
             echo '</script>';
+        } else if ($checkQuantity == false) {
+            echo '<script type ="text/JavaScript">';
+            echo 'alert("Sản phẩm đã hết hàng ,Mong quý khách quay lại sau !")';
+            echo '</script>';
+        } else {
+            $size = $_POST['size'];
+            $addToCart = $cat->addProduct_cart($id, $quantity, $size, Session::get('user_id'));
         }
     }
 }
@@ -508,26 +513,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 </div>
                                             </div>
                                             <div style="padding: 20px 0;color: black;">
-                                                <span>Sản phẩm còn lại ( <?php echo $result_Details['quantity']?> sản phẩm )</span>
-                                                
+                                                <span>Sản phẩm còn lại ( <?php echo $result_Details['quantity'] ?> sản phẩm )</span>
+
                                             </div>
                                             <div class="price-product">
                                                 <span>Giá</span>
                                                 <span><?php echo number_format($result_Details['price'], 0, ',', '.') . "" . "đ"  ?></span>
                                             </div>
+                                             <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
+                                             <div>
+                                                    <?php
+                                                    if (isset($addToCart)) {
+                                                        $size = $_POST['size'];
+                                                        $quantity = $_POST['quantity'];
+                                                        $updateCart = $cat->updateQuantityandSize($size, $quantity, $id, Session::get('user_id'));
+                                                        echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
+                                                    }
+                                                    ?>
+                                                </div>
                                             <div style="text-align: center;padding: 40px;align-items: center; display: flex; justify-content: center;     border-bottom: 1px solid #ccc;">
                                                 <?php
-                                                    if (Session::get('user_login') == false) {
+                                                if (Session::get('user_login') == false) {
                                                 ?>
-                                                <input type="button" value="Thêm sản phẩm" class="btn--primary" onclick="swal_login_false()"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                                    <input type="button" value="Thêm sản phẩm" class="btn--primary" onclick="swal_login_false()"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
                                                 <?php
-                                            }else{
+                                                } else {
                                                 ?>
-                                                <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary" ><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
+                                                    <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
                                                 <?php
 
-                                            }
-                                            ?>
+                                                }
+                                                ?>
+                                               
                                             </div>
                                             <div class="app_content">
                                                 <div class="home-title">
@@ -537,17 +554,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             </div>
 
                                         </form>
-                                        <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
-                                        <div>
-                                            <?php
-                                            if (isset($addToCart)) {
-                                                $size = $_POST['size'];
-                                                $quantity = $_POST['quantity'];
-                                                $updateCart = $cat->updateQuantityandSize($size, $quantity, $id, Session::get('user_id'));
-                                                echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
-                                            }
-                                            ?>
-                                        </div>
+
 
                                     </div>
                                 </div>
@@ -593,25 +600,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         function up() {
             let Quantity = document.getElementById('input_quantity').value
             <?php
-                    $get_productDetails = $product->getProduct_Details($id);
-                        while ($result_Details = $get_productDetails->fetch_assoc()) {
+            $get_productDetails = $product->getProduct_Details($id);
+            while ($result_Details = $get_productDetails->fetch_assoc()) {
             ?>
-            if(Quantity >= <?=$result_Details['quantity']?>){
-                Swal.fire({
-                      icon: 'warning',
-                      title: 'Oops...',
-                      text: 'Đã đạt số lượng tối đa',
+                if (Quantity >= <?= $result_Details['quantity'] ?>) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Đã đạt số lượng tối đa',
                     })
-            }else{
-               Quantity++ 
-            }
+                } else {
+                    Quantity++
+                }
             <?php
-        }
-        ?>
+            }
+            ?>
             document.getElementById('input_quantity').value = Quantity
-
         }
-
         async function resgiter(e) {
             e.preventDefault();
             document.querySelector(".modal").style.display = 'flex';

@@ -195,7 +195,7 @@
 													<div class="home-product-item_price">
 														<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
 													</div>
-														<span style="margin-left:200px;">Đã bán: <?=$result['quantitysales']?></span>
+														<span style="margin-left:200px;font-family: var(--font-family-sans-serif);font-weight: 600;">Đã bán: <?=$result['quantitysales']?></span>
 												</div>
 											</a>
 										</div>
@@ -234,7 +234,7 @@
 													<div class="home-product-item_price">
 														<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
 													</div>
-
+														<span style="margin-left:200px;font-family: var(--font-family-sans-serif);font-weight: 600;">Đã bán: <?=$result['quantitysales']?></span>
 												</div>
 											</a>
 										</div>
@@ -273,7 +273,7 @@
 													<div class="home-product-item_price">
 														<span class="home-product-item_price-current"><?php echo number_format($result['price'], 0, ',', '.') . "" . "đ" ?></span>
 													</div>
-
+														<span style="margin-left:200px;font-family: var(--font-family-sans-serif);font-weight: 600;">Đã bán: <?=$result['quantitysales']?></span>
 												</div>
 											</a>
 										</div>
