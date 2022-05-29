@@ -1,0 +1,218 @@
+:root {
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.underline {
+    border-right: 2px solid #ccc;
+}
+
+.category-all {
+    background-color: #fff;
+    height: 100%;
+    border-radius: 32px 0px;
+    border: 1px solid #e7e8e9;
+}
+
+.category-all ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.category-all li {
+    margin: 0px;
+}
+
+.category {
+    padding: 20px 5px;
+    display: flex;
+    align-items: center;
+    margin: 30px 10px;
+}
+
+.category a {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    padding-left: 4px;
+}
+
+.category span {
+    font-size: 20px;
+}
+
+.Update_pass {
+    color: green;
+}
+
+.ErrorUpdate_pass {
+    color: red;
+}
+
+.account-me {
+    border: 1px solid #ccc;
+    border-radius: 41px 7px;
+    margin-top: 24px;
+    max-width: 100%;
+    -webkit-margin-start: auto;
+    margin-inline-start: auto;
+    -webkit-margin-end: auto;
+    margin-inline-end: auto;
+}
+
+.account-tt {
+    text-align: center;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.account-title {
+    font-size: 25px;
+    text-transform: uppercase;
+    line-height: 24px;
+    font-weight: 900;
+    color: #333;
+    font-family: var(--font-family-monospace);
+}
+
+.information {
+    margin: 20px;
+}
+
+.information-name {
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    justify-content: space-between;
+}
+
+.information-name input {
+    height: 36px;
+    border-radius: 4px;
+    padding: 10px 12px;
+    line-height: 20px;
+    width: 70%;
+    outline: none;
+    border: 1px solid rgb(196, 196, 207);
+}
+
+.information-name label {
+    font-size: 16px;
+    max-width: 30%;
+    color: rgb(55, 63, 60);
+    padding-right: 25px;
+}
+
+.information-birthday {
+    margin: 40px 0;
+}
+
+.information-birthday label {
+    font-size: 16px;
+    padding-right: 25px;
+    color: rgb(55, 63, 60);
+}
+
+.information-birthday select {
+    width: 100px;
+    border: 1px solid rgb(204, 204, 204);
+    height: 34px;
+    padding: 6px 12px;
+    line-height: 34px;
+    outline: none;
+    border-radius: 4px;
+    margin: 0px 12px 0px 0px;
+    background: 0px center;
+    box-shadow: none;
+}
+
+.success {
+    color: green;
+    font-weight: 800;
+}
+
+.information-sex {
+    display: flex;
+}
+
+.information-sex label {
+    font-size: 16px;
+    padding-right: 25px;
+    color: rgb(55, 63, 60);
+}
+
+.infotmation-save input {
+    margin-top: 20px;
+    border: 0px;
+    width: 100%;
+    height: 40px;
+    border-radius: 16px 0px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    background-color: rgb(30 28 28);
+    cursor: pointer;
+}
+
+.form-upload__img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.account-tt-info-mobile,
+.account-tt-info-email,
+.account-tt-info-security,
+.account-tt-info-privacy {
+    margin: 18px 0px;
+}
+
+.account-tt-info-fb {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0px;
+}
+
+.account-tt-info-fb span {
+    display: flex;
+    align-items: center;
+}
+
+.account-tt-info-fb button {
+    border: none;
+    padding: 10px;
+    color: white;
+    background: #1e1c1c;
+    border-radius: 5px;
+}
+
+
+/* Footer */
+
+.account-footer {
+    background-color: #fbfbfb;
+}
+
+.account-footer_titel {
+    margin-top: 50px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .54);
+}
+
+.account-footer_list li {
+    margin: 20px 10px;
+}
+
+.account-footer_list a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .54);
+}
+
+.account-footer-security {
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(0, 0, 0, .54);
+}
