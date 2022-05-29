@@ -33,12 +33,6 @@ function down() {
 
 }
 
-function up() {
-    let Quantity = document.getElementById('input_quantity').value
-    Quantity++
-    document.getElementById('input_quantity').value = Quantity
-
-}
 
 function rederdata() {
     let tabs = document.getElementsByClassName('exclusive-tab');
@@ -76,7 +70,7 @@ function changeBestSeller(type, element) {
 
 function swal_login_false(){
     Swal.fire({
-              icon: 'error',
+              icon: 'warning',
               title: 'Oops...',
               text: 'Bạn phải đăng nhập mới được mua hàng.',
             })

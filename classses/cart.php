@@ -50,12 +50,11 @@
         // hiển thị  sản phẩm trong giỏ hàng
         public function getProductCart($userId){
             $sesId = session_id();
-            $query = "SELECT * FROM tbl_cart AS cart
-            INNER JOIN tbl_product AS pd ON cart.productId=pd.productId  
+            $query = "SELECT * FROM tbl_cart
             WHERE sessionId = '$sesId' AND userId='$userId'";
             $result = $this->db->select($query);
             return $result;
-        } 
+        }  
         /* Update quantity in cart*/
 		public function updateQuantity($cartId, $quantity,$userId){
 			$quantity = mysqli_real_escape_string($this->db->link, $quantity);
@@ -64,7 +63,7 @@
 			$query = "UPDATE tbl_cart SET quantity = '$quantity' WHERE cartID = '$id' AND userId='$userId'";
 			$result = $this->db->update($query);
 			if($result) {
-				$msg = "Cập nhập số lượng sản phẩm thành công";
+				$msg = "";
                 return $msg;
 			} else {
 				$msg = "<span class='error'>Cập nhật không thành công</span>";

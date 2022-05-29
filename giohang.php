@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<title>Giỏ hàng</title>
 </head>
 <?php
@@ -31,8 +32,10 @@ if (isset($_GET['cartID'])) {
 	$cartId = $_GET['cartID'];
 	$delProductCart = $cat->del_ProductCart($cartId, Session::get('user_id'));
 }
-if (!$_GET['id']) {
+if (!isset($_GET['id'])) {
 	echo "<meta http-equiv='refresh' content='0;URL=?id=live'>";
+}elseif($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])){
+	$id=$_POST['id'];
 }
 ?>
 
@@ -105,9 +108,22 @@ if (!$_GET['id']) {
 													<td>
 														<form action="" method="post">
 															<div class="quantity">
-																<input type="submit" class="btn" value="-" onclick="down(<?php echo $i; ?>)" name="click_-" style="width:40px;">
+																<input type="submit" class="btn" value="-" name="click_-" style="width:60px;">
 																<input type="hidden" name="cartId" value="<?php echo $result_ProductCat['cartID'] ?>" />
+																<?php
+																	$get_productDetails = $product->getProduct_Details($result_ProductCat['productId']);
+
+                        											while ($result_Details = $get_productDetails->fetch_assoc()) {
+                        												if($result_ProductCat['quantity']  < $result_Details['quantity']){
+																?>
 																<input type="hidden" name="quantity_+" value="<?= $result_ProductCat['quantity'] + 1 ?>" id="hidden_input<?php echo $i; ?>" />
+																<?php
+															}else{
+																?>
+																<input type="hidden" name="quantity_+" value="<?= $result_ProductCat['quantity'] ?>" id="hidden_input<?php echo $i; ?>" />
+																<?php
+															}}
+														?>
 
 																<?php if ($result_ProductCat['quantity'] == 1) { ?>
 																	<input type="hidden" name="quantity_-" value="<?= $result_ProductCat['quantity'] ?>" id="hidden_input<?php echo $i; ?>" />
@@ -118,9 +134,25 @@ if (!$_GET['id']) {
 																<?php
 																}
 																?>
+																<input type="hidden" name="id" value="<?= $result_ProductCat['productId']?>" id="hidden_input<?php echo $i; ?>" />
+																<input class="input" id="id<?php echo $i; ?>" type="text" value="<?= $result_ProductCat['quantity'] ?>" readonly="readonly" style="width:120px; text-align:center;">
 
-																<input class="input" id="id<?php echo $i; ?>" type="text" value="<?= $result_ProductCat['quantity'] ?>" style="width:80px; text-align:center;">
-																<input type="submit" class="btn" value="+" onclick="up(<?php echo $i; ?>)" name="click_+" style="width:40px;">
+																<?php
+																	$get_productDetails = $product->getProduct_Details($result_ProductCat['productId']);
+
+                        											while ($result_Details = $get_productDetails->fetch_assoc()) {
+                        												if($result_ProductCat['quantity']  < $result_Details['quantity']){
+																?>
+																<input type="submit" class="btn" value="+" name="click_+" style="width:60px;">
+																<?php
+															}else{
+																?>
+																<input type="button" onclick="warning()" class="btn" value="+" name="click_+" style="width:60px;">
+																<?php
+															}}
+															?>
+															
+
 															</div>
 														</form>
 													</td>
@@ -221,7 +253,15 @@ if (!$_GET['id']) {
 		</div>
 	</div>
 	<?php include './inc/footer.php' ?>
-	<script src="./assets/js/cart.js"></script>
+	<script type="text/javascript">
+		function warning(){
+		    Swal.fire({
+		              icon: 'warning',
+		              title: 'Oops...',
+		              text: 'Đã đạt số lượng tối đa',
+		            })
+		}
+	</script>
 </body>
 
 </html>

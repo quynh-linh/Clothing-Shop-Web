@@ -14,8 +14,17 @@
 $order=new order();
 if ( isset($_GET['order']) && $_GET['order']  && $_GET['userId']!=" ") {
         $userId=$_GET['userId'];
+        $username=$_GET['username'];
         $orderId="(".$_GET['order']."-1)";  
-    $update_status = $order->update_Status_Order($orderId,1,$userId);
+        $update_status = $order->update_Status_Order($orderId,1,$userId);
+        $str = substr($_GET['order'],0,-1);
+        $explore = explode(',',$str);
+        
+        foreach($explore as $ex){
+            $admin_confirm= $order ->admin_confirm_order($ex,$userId);
+        }
+        header('Location:chitietdonhang.php?userId='.$userId.'&action=0&username='.$username.'');
+
 }
 
 if ( isset($_GET['username'])  && $_GET['username']!=" ") {
@@ -25,28 +34,12 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
 <body>
     <?php include './inc/sidebar.php' ?>
     <div class="main-content">
-        <?php include './inc/header.php' ?>
+      <?php include './inc/header.php' ?>
         <main>
             <section class="recent">
             <div class="activity-grid">
                 <div class="activity-card">
-                        <div class="activity-select">
-                            <div class="activity-selec-1">
-                                <select name="" id="">
-                                    <option value="C1">Sắp xếp theo khoảng thời gian</option>
-                                    <option value="C1">Ban đầu</option>
-                                    <option value="C1">Gần đây nhất</option>
-                                </select>
-                            </div>
-                            <div class="activity-selec-2">
-                                <select name="" id="">
-                                    <option value="C1">Sắp xếp theo giá tiền</option>
-                                    <option value="C1">Từ thấp đến cao</option>
-                                    <option value="C1">Từ cao đến thấp</option>
-                                </select>
-                            </div>
-                        </div>
-
+                        
                         <!-- status=0 -->
                         <?php
                             $order=new order();
@@ -148,7 +141,7 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                             }
                                 } 
                             }
-                                ?> 
+                            ?>
                                 </tbody>
 
                         </table>

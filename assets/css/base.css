@@ -379,7 +379,7 @@
 .home-product-item_name {
     line-height: 1.8rem;
     font-size: 20px;
-    height: 3.6rem;
+    height: 3.2rem;
     font-family: var(--font-family-monospace);
     color: black;
     overflow: hidden;
@@ -396,6 +396,7 @@
     display: flex;
     justify-content: center;
     margin-left: 10px;
+    height: 3.2rem;
 }
 
 .home-product-item_price-old {

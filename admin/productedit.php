@@ -69,7 +69,7 @@
                         <label>Thêm số lượng</label>
                     </td>
                     <td>
-                        <input type="text" name="addQuantity" value="0" placeholder="Nhập số lượng" class="medium" />
+                        <input type="text" name="addQuantity" value="" placeholder="Nhập số lượng" class="medium" />
                     </td>
                 </tr>
 				<tr>

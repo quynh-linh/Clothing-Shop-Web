@@ -361,7 +361,10 @@ h2{
 }
 
 .ti-check{
-    color:white;    
+    background-color: #2a2b2c;
+    color:white;
+    padding: 10px; 
+    border: none;   
 }
 .ti-check:hover{
     color:red;    

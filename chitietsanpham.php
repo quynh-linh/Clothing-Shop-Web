@@ -503,7 +503,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <span>Số lượng</span>
                                                 <div class="home-product-item-size_quantity">
                                                     <input type="button" class="btn_quantity" value="-" onclick="down()">
-                                                    <input type="text" id="input_quantity" value="1" name="quantity">
+                                                    <input readonly="readonly" type="text" id="input_quantity" value="1" name="quantity">
                                                     <input type="button" class="btn_quantity" value="+" onclick="up()">
                                                 </div>
                                             </div>
@@ -590,6 +590,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     <?php include './inc/footer.php' ?>
     <script src="./assets/js/chitietsp.js"></script>
     <script>
+        function up() {
+            let Quantity = document.getElementById('input_quantity').value
+            <?php
+                    $get_productDetails = $product->getProduct_Details($id);
+                        while ($result_Details = $get_productDetails->fetch_assoc()) {
+            ?>
+            if(Quantity >= <?=$result_Details['quantity']?>){
+                Swal.fire({
+                      icon: 'warning',
+                      title: 'Oops...',
+                      text: 'Đã đạt số lượng tối đa',
+                    })
+            }else{
+               Quantity++ 
+            }
+            <?php
+        }
+        ?>
+            document.getElementById('input_quantity').value = Quantity
+
+        }
+
         async function resgiter(e) {
             e.preventDefault();
             document.querySelector(".modal").style.display = 'flex';

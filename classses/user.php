@@ -78,7 +78,7 @@ class user
                 Session::set('user_name', $value['name']);
                 header('Location:index.php');
             } else {
-                $alert = "<span class='error'> Tài khoản không tồn tại </span>";
+                $alert = "<span class='error'> Sai tài khoản hoặc mật khẩu </span>";
                 return $alert;
             }
         }
@@ -192,7 +192,7 @@ class user
             $alert = '<span class="Update_pass">Đổi mật khẩu thành công !</span>';
             return $alert;
         } else {
-            $alert = '<span class="ErrorUpdate_pass">Tên tài khoản hoặc mật khẩu không đúng</span>';
+            $alert = '<span class="ErrorUpdate_pass"> Mật khẩu cũ không đúng</span>';
             return $alert;
         }
     }   

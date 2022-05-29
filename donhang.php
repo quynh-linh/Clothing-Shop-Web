@@ -289,7 +289,7 @@ if (isset($_GET['orderID']) && $_GET['orderID']) {
                                                     echo $result_OrderHistory1['order_time'];
                                                     ?>
                                                 </td>
-                                                <td>Đã giao</td>
+                                                <td style="color:blue;">Đã giao</td>
                                             </tr>
                                             <?php
                                             

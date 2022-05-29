@@ -5,8 +5,4 @@ function down(i){
     btn_down--
     document.getElementById('id'+i).value=btn_down
 }
-function up(i){
-    let btn_up = document.getElementById('id'+i).value;
-    btn_up++
-    document.getElementById('id'+i).value=btn_up
-}
+

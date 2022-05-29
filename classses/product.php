@@ -102,7 +102,7 @@ class product
 
         $query = "SELECT pd.* , br.brandName 
         FROM tbl_product AS pd INNER JOIN tbl_brand AS br ON pd.brandId=br.brandId 
-        WHERE pd.brandId  = '$id' AND pd.type = '$type' LIMIT $product_start,$sp_tungtrang";
+        WHERE pd.brandId  = '$id' AND pd.type = '$type' AND quantity >0 LIMIT $product_start,$sp_tungtrang";
         $result = $this->db->select($query);
         return $result;
     }
@@ -119,7 +119,7 @@ class product
 
         $query = "SELECT pd.* , tpd.typeProductName 
         FROM tbl_product AS pd  INNER JOIN tbl_type_product AS tpd ON pd.typeProductId= tpd.typeProductID
-        WHERE pd.typeProductId  = '$id' AND pd.type = '$type' LIMIT $product_start,$sp_tungtrang";
+        WHERE pd.typeProductId  = '$id' AND pd.type = '$type' AND quantity >0 LIMIT $product_start,$sp_tungtrang";
         $result = $this->db->select($query);
         return $result;
     }
@@ -235,21 +235,33 @@ class product
     // hiện thị best seller quần áo nam
     public function getProduct_Men()
     {
-        $query = "SELECT * FROM tbl_product where type = '0'";
+        $query = "SELECT *,SUM(od.quantity) as quantitysales FROM tbl_product AS pd
+        INNER JOIN tbl_order AS od ON od.productId = pd.productId
+        where type = '0' AND od.status='1' 
+        GROUP BY od.productId
+        ORDER BY od.quantity DESC LIMIT 8 ";
         $result = $this->db->select($query);
         return $result;
     }
     // hiện thị best seller quần áo nữ
     public function getProduct_Women()
     {
-        $query = "SELECT * FROM tbl_product where type = '1'";
+        $query = "SELECT *,SUM(od.quantity) as quantitysales FROM tbl_product AS pd
+        INNER JOIN tbl_order AS od ON od.productId = pd.productId
+        where type = '1' AND od.status='1' 
+        GROUP BY od.productId
+        ORDER BY od.quantity DESC LIMIT 8 ";
         $result = $this->db->select($query);
         return $result;
     }
     // hiện thị best seller quần áo trẻ em
     public function getProduct_Kid()
     {
-        $query = "SELECT * FROM tbl_product where type = '2'";
+        $query = "SELECT *,SUM(od.quantity) as quantitysales FROM tbl_product AS pd
+        INNER JOIN tbl_order AS od ON od.productId = pd.productId
+        where type = '2' AND od.status='1' 
+        GROUP BY od.productId
+        ORDER BY od.quantity DESC LIMIT 8 ";
         $result = $this->db->select($query);
         return $result;
     }
@@ -259,21 +271,13 @@ class product
         $query = "SELECT pd.* , cat.catName , br.brandName
             FROM tbl_product AS pd INNER JOIN category AS cat ON pd.catId=cat.catId   
             INNER JOIN tbl_brand AS br ON pd.brandId=br.brandId
-            WHERE pd.productId = '$id'";
+            WHERE pd.productId = '$id' ";
         $result = $this->db->select($query);
         return $result;
     }
     // tìm kiếm sản phẩm theo tên
     public function searchProduct($productName)
     {
-        // manh
-        // $sp_tungtrang = 6;
-        // if(!isset($_GET['trang'])){
-        //     $trang = 1;
-        // }else{
-        //     $trang = $_GET['trang'];
-        // }
-        // $tungtrang = ($trang-1)*$sp_tungtrang;
         $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
         $current_page = !empty($_GET['page'])?$_GET['page']:1;
         $offsset = ($current_page-1)*$item_per_page;
@@ -344,7 +348,7 @@ class product
     }
     // get all product price
     public function get_all_product_price($rowprice){
-        $sql = "SELECT * FROM tbl_product WHERE price <= ($rowprice)";
+        $sql = "SELECT * FROM tbl_product WHERE price <= ($rowprice) ";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -353,7 +357,7 @@ class product
         $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
         $current_page = !empty($_GET['page'])?$_GET['page']:1;
         $offsset = ($current_page-1)*$item_per_page;
-        $sql = "SELECT * FROM tbl_product ORDER BY price $sort_option LIMIT $item_per_page OFFSET $offsset";
+        $sql = "SELECT * FROM tbl_product where quantity > 0 ORDER BY price $sort_option LIMIT $item_per_page OFFSET $offsset";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -373,7 +377,7 @@ class product
     }
     // all product
     public function get_all_product(){
-        $sql = "SELECT * FROM tbl_product";
+        $sql = "SELECT * FROM tbl_product where quantity > 0";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -401,27 +405,27 @@ class product
         if($search ==""){
 
             if($category == '(-1)' && $brand == '(-1)' && $price !=-1){
-                $sql = "SELECT * FROM tbl_product WHERE price <= '$price' LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product WHERE price <= '$price'  LIMIT $product_start,$sp_tungtrang";
             }elseif($category !='(-1)' && $brand =='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category  LIMIT $product_start,$sp_tungtrang";
             }elseif($category =='(-1)' && $brand !='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand  LIMIT $product_start,$sp_tungtrang";
             }elseif($category !='(-1)' && $brand !='(-1)' && $price ==-1){
-                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand  LIMIT $product_start,$sp_tungtrang";
             }elseif($category !='(-1)' && $brand =='(-1)' && $price !=-1){
-                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price' LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price'  LIMIT $product_start,$sp_tungtrang";
             }elseif($category =='(-1)' && $brand !='(-1)' && $price !=-1){
-                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price' LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price'  LIMIT $product_start,$sp_tungtrang";
             }elseif($category !='(-1)' && $brand !='(-1)' && $price !=-1){
-                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'  LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'   LIMIT $product_start,$sp_tungtrang";
             }elseif($category =='(-1)' && $brand =='(-1)' && $price ==-1){
-                $sql = "SELECT * FROM tbl_product LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product  LIMIT $product_start,$sp_tungtrang";
             }
 
         }else{
 
             if($category =='(-1)' && $brand =='(-1)' && $price ==-1)
-                $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%' LIMIT $product_start,$sp_tungtrang";
+                $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%'  LIMIT $product_start,$sp_tungtrang";
         }
 
         $result = $this->db->select($sql);
@@ -443,19 +447,19 @@ class product
             }elseif($category !='(-1)' && $brand !='(-1)' && $price ==-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand ";
             }elseif($category !='(-1)' && $brand =='(-1)' && $price !=-1){
-                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price' ";
+                $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND price <= '$price'  ";
             }elseif($category =='(-1)' && $brand !='(-1)' && $price !=-1){
-                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price' ";
+                $sql = "SELECT * FROM tbl_product WHERE brandId IN $brand AND price <= '$price'  ";
             }elseif($category !='(-1)' && $brand !='(-1)' && $price !=-1){
                 $sql = "SELECT * FROM tbl_product WHERE catId IN $category AND brandId IN $brand AND price <= '$price'  ";
             }elseif($category =='(-1)' && $brand =='(-1)' && $price ==-1){
-                $sql = "SELECT * FROM tbl_product";
+                $sql = "SELECT * FROM tbl_product ";
             }
 
         }else{
 
             if($category =='(-1)' && $brand =='(-1)' && $price ==-1)
-                $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%'";
+                $sql = "SELECT * FROM tbl_product WHERE productName like '%$search%' ";
         }
 
         $result = $this->db->select($sql);

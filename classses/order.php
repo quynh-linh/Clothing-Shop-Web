@@ -79,5 +79,24 @@
             $result = $this->db->select($query);
             return $result;
          }
+
+         // update số lượng khi admin xác nhận đơn hàng
+         public function admin_confirm_order($orderId, $userId){
+
+            $sql = "SELECT productId , quantity
+            FROM tbl_order 
+            WHERE userId='$userId' AND status='1' AND orderId = '$orderId'";
+            $result_SQL = $this->db->select($sql);
+
+            if($result_SQL)
+                while($product= $result_SQL->fetch_assoc()){
+                    $productId=$product['productId'];
+                    $quantity = $product['quantity'];
+                    $query= "UPDATE tbl_product SET quantity = quantity -'$quantity'   WHERE productId = '$productId'";
+                    $result = $this->db->update($query);
+                    if($result) return "ok";
+                    else return "no";
+                }else return "";
+         }
     }
 ?>

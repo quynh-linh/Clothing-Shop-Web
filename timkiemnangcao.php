@@ -345,7 +345,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 										$current_page = !empty($_GET['page'])?$_GET['page']:1;			
 										$product_all = $product->get_all_product();
 										$product_count = mysqli_num_rows($product_all);
-										$product_button = ceil($product_count/6);	
+										$product_button = ceil($product_count/6);
+										if($product_button > 1){
 										if($current_page > 1){
 											$prev_page = $current_page - 1;
 											?>										
@@ -377,7 +378,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 												</a>																						
 											<?php
 										}									
-								}
+								}}else echo ""
 									?>		
 							</div>	
 
