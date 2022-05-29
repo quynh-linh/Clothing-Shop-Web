@@ -188,13 +188,9 @@ class user
     public function updatedoimatkhau($matkhaumoi){
         $matkhaumoi = md5($_POST['password_moi']);
         $sql_update = $this->db->update("UPDATE tbl_uer SET userPassword= '$matkhaumoi' ");
-        if ($sql_update) {
+        if ($sql_update==true) {
             $alert = '<span class="Update_pass">Đổi mật khẩu thành công !</span>';
             return $alert;
-        } else {
-            $alert = '<span class="ErrorUpdate_pass"> Mật khẩu cũ không đúng</span>';
-            return $alert;
-        }
     }   
 }
 ?>
