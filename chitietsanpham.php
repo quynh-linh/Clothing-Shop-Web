@@ -515,6 +515,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                                 <span>Giá</span>
                                                 <span><?php echo number_format($result_Details['price'], 0, ',', '.') . "" . "đ"  ?></span>
                                             </div>
+                                                <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
+                                        <div style="margin-top:20px;">
+                                            <?php
+                                            if (isset($addToCart)) {
+                                                $size = $_POST['size'];
+                                                $quantity = $_POST['quantity'];
+                                                $updateCart = $cat->updateQuantityandSize($size, $quantity, $id, Session::get('user_id'));
+                                                echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
+                                            }
+                                            ?>
+                                        </div>
                                             <div style="text-align: center;padding: 40px;align-items: center; display: flex; justify-content: center;     border-bottom: 1px solid #ccc;">
                                                 <?php
                                                     if (Session::get('user_login') == false) {
@@ -528,6 +539,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
                                             }
                                             ?>
+
                                             </div>
                                             <div class="app_content">
                                                 <div class="home-title">
@@ -537,17 +549,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             </div>
 
                                         </form>
-                                        <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
-                                        <div>
-                                            <?php
-                                            if (isset($addToCart)) {
-                                                $size = $_POST['size'];
-                                                $quantity = $_POST['quantity'];
-                                                $updateCart = $cat->updateQuantityandSize($size, $quantity, $id, Session::get('user_id'));
-                                                echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
-                                            }
-                                            ?>
-                                        </div>
+                                        
 
                                     </div>
                                 </div>
