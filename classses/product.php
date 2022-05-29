@@ -357,7 +357,7 @@ class product
         $item_per_page = !empty($_GET['per_page'])?$_GET['per_page']:6;
         $current_page = !empty($_GET['page'])?$_GET['page']:1;
         $offsset = ($current_page-1)*$item_per_page;
-        $sql = "SELECT * FROM tbl_product where quantity > 0 ORDER BY price $sort_option LIMIT $item_per_page OFFSET $offsset";
+        $sql = "SELECT * FROM tbl_product  ORDER BY price $sort_option LIMIT $item_per_page OFFSET $offsset";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -377,7 +377,7 @@ class product
     }
     // all product
     public function get_all_product(){
-        $sql = "SELECT * FROM tbl_product where quantity > 0";
+        $sql = "SELECT * FROM tbl_product ";
         $result = $this->db->select($sql);
         return $result;
     }
