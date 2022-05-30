@@ -38,6 +38,7 @@ class Mail
             $sendMai = SendMail::send($title, $content, $account['name'], $account['email']);
             if ($sendMai) {
                 $hash = md5($randPassword);
+                echo $hash;
                 $sqlUpdate = "UPDATE tbl_uer SET userPassword= '$hash' WHERE userId = ". $account['userId'];
                 $this->db->update($sqlUpdate);
                 $alert = '<span class="successful_Email">Chúng tôi đã gửi cho bạn một email, vui lòng kiểm tra nó</span>';

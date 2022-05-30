@@ -1,7 +1,7 @@
 <?php
-    $filepath = realpath(dirname(__FILE__));
-    include_once($filepath . '/../lib/database.php');
-    include_once($filepath . '/../helpers/format.php');
+$filepath = realpath(dirname(__FILE__));
+include_once($filepath . '/../lib/database.php');
+include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
 class user
@@ -15,20 +15,22 @@ class user
         $this->fm = new Format();
     }
     // hien thi comment
-    public function display_comment($producId){
+    public function display_comment($producId)
+    {
         $sql = "SELECT * FROM tbl_comment WHERE productId= '$producId' ORDER BY id DESC ";
         $result = $this->db->select($sql);
         return $result;
     }
     // them comment vao db
-    public function insert_comments(){
+    public function insert_comments()
+    {
         $product_id = $_GET['productId'];
         $tenbinhluan = $_POST['tenbinhluan'];
         $date_comment = $_POST['date_comment'];
         $comment = $_POST['content'];
-        if($tenbinhluan == "" || $comment == "" || $comment == ' '){
+        if ($tenbinhluan == "" || $comment == "" || $comment == ' ') {
             $alert = "<span class='fix_bug'>Nhập đầy đủ thông tin</span>";
-        }else{
+        } else {
             $query = "INSERT INTO tbl_comment(namebl,comment,productId,dateComment) VALUES('$tenbinhluan','$comment',' $product_id','$date_comment')";
             $result = $this->db->insert($query);
             if ($result) {
@@ -41,19 +43,21 @@ class user
         }
     }
     // hien thi phan hoi
-    public function display_rep_comment(){
+    public function display_rep_comment()
+    {
         $sql = "SELECT tb.*, cm.namebl FROM  tbl_repcomment AS tb INNER JOIN tbl_comment AS cm ON tb.nameId=cm.id";
         $result = $this->db->select($sql);
         return $result;
     }
     // them rep conments vao db
-    public function insert_rep_comments(){
+    public function insert_rep_comments()
+    {
         $nameId = $_POST['nameId'];
         $name_rep = $_POST['name_rep'];
         $rep_comment = $_POST['rep_content'];
-        if($rep_comment == ""){
+        if ($rep_comment == "") {
             $alert = "<span class='fix_bug'>Nhập đầy đủ thông tin</span>";
-        }else{
+        } else {
             $query = "INSERT INTO tbl_repcomment(nameId,rep,namerep) VALUES('$nameId','$rep_comment',' $name_rep')";
             $result = $this->db->insert($query);
             if ($result) {
@@ -64,7 +68,6 @@ class user
                 return $alert;
             }
         }
-
     }
     // thêm user vào DB
     public function insert_user($data)
@@ -88,24 +91,31 @@ class user
             return $alert;
         } else {
             if ($password != $relyPassword) {
-                $alert = "<span class='success'> Mật khẩu nhập lại không trùng khớp </span>";
+                $alert = "<span class='error'> Mật khẩu nhập lại không trùng khớp </span>";
                 return $alert;
             } else {
-                $check_username = "SELECT * FROM tbl_uer WHERE username='$username' LIMIT 1";
+                $check_username = "SELECT * FROM tbl_uer WHERE username='$username' AND email='$email'  LIMIT 1";
                 $result_check = $this->db->select($check_username);
                 if ($result_check) {
-                    $alert = "<span class='success'> Tên bạn đăng ký đã tồn tại </span>";
+                    $alert = "<span class='error'> Tên đăng nhập của bạn đã tồn tại </span>";
                     return $alert;
                 } else {
-                    $query = "INSERT INTO tbl_uer(name,username,userPassword,email,gioiTinh,sdt,ngaySinh,diaChi,cauHoiBM) VALUES('$name','$username','$password'
-                        ,'$email','$sex','$phone','$date','$address','$cauHoiBiMat')";
-                    $result = $this->db->insert($query);
-                    if ($result) {
-                        $alert = "<span class='success'> Đăng ký thành công  </span>";
+                    $check_email = "SELECT * FROM tbl_uer WHERE email='$email'  LIMIT 1";
+                    $result_mail = $this->db->select($check_email);
+                    if ($result_mail) {
+                        $alert = "<span class='error'> Email của bạn đã được đăng ký </span>";
                         return $alert;
                     } else {
-                        $alert = "<span class='error'> Đăng ký thất bại  </span>";
-                        return $alert;
+                        $query = "INSERT INTO tbl_uer(name,username,userPassword,email,gioiTinh,sdt,ngaySinh,diaChi,cauHoiBM) VALUES('$name','$username','$password'
+                        ,'$email','$sex','$phone','$date','$address','$cauHoiBiMat')";
+                        $result = $this->db->insert($query);
+                        if ($result) {
+                            $alert = "<span class='success'> Đăng ký thành công  </span>";
+                            return $alert;
+                        } else {
+                            $alert = "<span class='error'> Đăng ký thất bại  </span>";
+                            return $alert;
+                        }
                     }
                 }
             }
@@ -229,7 +239,8 @@ class user
         }
     }
     //doi mat khau
-    public function doimatkhau($taikhoan,$matkhaucu){
+    public function doimatkhau($taikhoan, $matkhaucu)
+    {
         $taikhoan = $_POST['username'];
         $matkhaucu = md5($_POST['password_cu']);
         $sql = "SELECT * FROM tbl_uer WHERE username= '$taikhoan' AND userPassword = '$matkhaucu'";
@@ -237,15 +248,16 @@ class user
         return $result;
     }
     //update mat khau
-    public function updatedoimatkhau($matkhaumoi){
+    public function updatedoimatkhau($matkhaumoi)
+    {
         $matkhaumoi = md5($_POST['password_moi']);
 
         $sql_update = $this->db->update("UPDATE tbl_uer SET userPassword= '$matkhaumoi' ");
 
-        if ($sql_update==true) {
+        if ($sql_update == true) {
             $alert = '<span class="Update_pass">Đổi mật khẩu thành công !</span>';
             return $alert;
         }
-        }  
     }
+}
 ?>

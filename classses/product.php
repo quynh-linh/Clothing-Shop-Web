@@ -171,13 +171,11 @@ class product
             return "Tên sản phẩm đã tồn tại";
         }
 
-        if($addQuantity < 0){
+        if($addQuantity <=  0){
             return "Số lượng không được âm";
-        }elseif($price < 0 ){
+        }elseif($price <= 0){
             return "Giá không được âm";
         }
-        
-
         if (!empty($file_name)) {
             // Nếu người dùng chọn ảnh
             if ($file_size > 20480) {
@@ -237,7 +235,7 @@ class product
     {
         $query = "SELECT *,SUM(od.quantity) as quantitysales FROM tbl_product AS pd
         INNER JOIN tbl_order AS od ON od.productId = pd.productId
-        where type = '0' AND od.status='1' 
+        where type = '0' AND od.status='2' 
         GROUP BY od.productId
         ORDER BY od.quantity DESC LIMIT 8 ";
         $result = $this->db->select($query);
@@ -248,7 +246,7 @@ class product
     {
         $query = "SELECT *,SUM(od.quantity) as quantitysales FROM tbl_product AS pd
         INNER JOIN tbl_order AS od ON od.productId = pd.productId
-        where type = '1' AND od.status='1' 
+        where type = '1' AND od.status='2' 
         GROUP BY od.productId
         ORDER BY od.quantity DESC LIMIT 8 ";
         $result = $this->db->select($query);
@@ -259,7 +257,7 @@ class product
     {
         $query = "SELECT *,SUM(od.quantity) as quantitysales FROM tbl_product AS pd
         INNER JOIN tbl_order AS od ON od.productId = pd.productId
-        where type = '2' AND od.status='1' 
+        where type = '2' AND od.status='2' 
         GROUP BY od.productId
         ORDER BY od.quantity DESC LIMIT 8 ";
         $result = $this->db->select($query);

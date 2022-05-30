@@ -56,7 +56,7 @@ class statistical
     public function gettongSPTheoNam($data)
     {
         $query = "SELECT SUM(thanhtien) AS value_sumTT , SUM(quantity) AS value_count FROM tbl_order
-                    WHERE YEAR(order_time) = '$data' AND status=1 ";
+                    WHERE YEAR(order_time) = '$data' AND status=2 ";
         $result = $this->db->select($query);
         return $result;
     }

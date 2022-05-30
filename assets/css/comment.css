@@ -2,37 +2,44 @@
     --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-.comment {
-    
-}
-.comment-title{
+
+.comment {}
+
+.comment-title {
     color: black;
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 50px;
 }
-.comment-ipname{
-    width: 100%;
-    height: 50px;
-    margin-bottom: 20px;
+
+.comment-ipname {
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+    border-radius: 50%;
     text-align: center;
     color: #999;
 }
-.comment-ipname:focus{
+
+.comment-ipname:focus {
     outline: none;
 }
+
 .comment-tacontent {
     width: 100%;
+    text-align: center;
     height: 120px;
-    margin-bottom: 10px;
-    resize: none; 
+    border-radius: 10px;
+    border: 1px solid #ccc;
 }
-.comment-tacontent:focus{
+
+.comment-tacontent:focus {
     outline: none;
 }
-.comment-ipsubmit{
-    margin-bottom: 30px;
-    width: 100px;
+
+.comment-ipsubmit {
+    margin-top: 30px;
+    width: 150px;
     padding: 5px 24px;
     border-radius: 16px 0px;
     font-size: 16px;
@@ -44,17 +51,17 @@
     font-family: var(--font-family-sans-serif);
     font-weight: 500;
 }
-.sort_comment{
-    font-size: 10px;
-    font-weight: 800;
+
+.sort_comment {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
     color: black;
-    float: right;
+    display: flex;
+    align-items: center;
 }
-.display_coment {
-   display: flex;
-   margin-bottom: 10px;
-}
-.display_coment-icon{
+
+.display_coment-icon {
     list-style: none;
     font-size: 30px;
     margin-right: 10px;
@@ -62,56 +69,69 @@
     border-radius: 100px;
     background-color: rgb(194, 200, 200);
 }
-.display_coment-name{
+
+.display_coment-content {
+    padding-left: 60px;
+    font-family: var(--font-family-sans-serif);
+}
+
+.display_coment-name {
     font-size: 20px;
-    margin: 10px 0 0 0 ;
     font-weight: 600;
 }
-.display_coment-date{
-    font-size: 8px;
-    margin: 25px 0 0 5px;
+
+.display_coment-date {
+    font-size: 15px;
     font-weight: 200;
+    font-style: oblique;
+    color: #a8a6a6;
+    padding-left: 10px;
 }
-.display_coment-content{
-    font-size: 16px;
-    text-align: center;
-    /* border-bottom: 1px solid rgb(237, 235, 235); */
-    margin-bottom: 5px;
-    text-align: center;
-}
-.fix{
+
+.fix {
     color: rgb(14, 207, 133);
 }
-.fix_bug{
+
+.fix_bug {
     color: red;
 }
-.rep{
-    width: 80%;
-    border: none;
+
+.rep {
+    height: 100px;
+    border: 1px solid #ccc;
     font-size: 16px;
     font-weight: 300;
     margin-top: 10px;
     text-align: center;
+    border-radius: 10px;
+    width: 100%;
 }
-.rep:focus{
+
+.rep:focus {
     outline: none;
 }
-.ok{
+
+.ok {
     border: none;
     font-size: 16px;
     font-weight: 300;
     background-color: white;
     color: rgb(41, 150, 217);
     cursor: pointer;
+    padding-left: 60px;
+    padding-top: 10px;
+    width: 13%;
 }
+
 .display_rep_coment {
     display: flex;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-top: 10px;
     position: absolute;
- }
- .display_rep_coment-icon{
+}
+
+.display_rep_coment-icon {
     list-style: none;
     font-size: 10px;
     margin-right: 10px;
@@ -119,39 +139,33 @@
     border-radius: 100px;
     background-color: rgb(191, 197, 197);
     margin-top: 5px;
-   
- }
- .display_rep_coment-name{
+}
+
+.display_rep_coment-name {
     font-size: 10px;
     font-weight: 600;
     margin-top: 10px;
- }
- .display_rep_coment-content{
+}
+
+.display_rep_coment-content {
     font-size: 10px;
     margin-bottom: 5px;
-    width: 200px; 
+    width: 200px;
     padding-bottom: 20px;
     position: absolute;
     margin-top: 10px;
     margin-left: 80px;
-    /* border-bottom: 1px solid #e6e7e8; */
-    /* word-break: break-word; */
     margin-right: 10px;
     line-height: 1rem;
     height: 2rem;
-    overflow: hidden;
-    /* display: block; */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
- }
- .display_rep_coment-content:hover{
+}
+
+.display_rep_coment-content:hover {
     overflow: visible;
     display: block;
- }
- .background_comment{
-    background-color: rgb(248, 248, 248);
+}
+
+.background_comment {
     height: 60px;
-    width: 50%;
-    margin-left: 280px;
- }
+    padding-left: 60px;
+}
