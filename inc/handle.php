@@ -17,6 +17,7 @@
     $user = new user();
     $order = new order();
     $sendMail = new Mail();
+    $discount = new discount();
 ?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");

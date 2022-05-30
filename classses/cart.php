@@ -24,7 +24,6 @@
             $sesId = session_id();
             $query = "SELECT * FROM  tbl_product WHERE productId = '$id'";
             $result =  $this->db->select($query)->fetch_assoc();
-
             // kiểm tra sản phẩm đã tồn tại trong giỏ hàng hay chưa
             $check_cart = "SELECT * FROM tbl_cart WHERE productId = $id AND sessionId ='$sesId' AND userId='$userId'";
 			$result_check_cart = $this->db->select($check_cart);

@@ -43,14 +43,6 @@ $tongSPNam2022 = $result2022['value_count'];
 $doanhThuNam2022 = $result2022['value_sumTT'];
 
 ?>
-<?php
-// Năm 2021 
-$statistical = new statistical();
-$getTong2021 = $statistical->gettongSPTheoNam(2021);
-$result2021 = $getTong2021->fetch_assoc();
-$tongSPNam2021 = $result2021['value_count'];
-$doanhThuNam2021 = $result2021['value_sumTT'];
-?>
 <style>
     #stacked,
     #pie-chart {
