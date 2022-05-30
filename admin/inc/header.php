@@ -1,4 +1,5 @@
 <?php 
+ob_start();
     include('../lib/session.php'); 
     Session::checkSession();
 ?>

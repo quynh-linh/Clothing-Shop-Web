@@ -17,7 +17,9 @@
 </head>
 <?php
 if (isset($_GET['orderid']) && $_GET['orderid'] == 'order') {
-    $inserOder = $order->insertOder(Session::get('user_id'));
+    date_default_timezone_set("Asia/Ho_Chi_Minh");
+    $date=date('Y-m-d H:i:s');
+    $inserOder = $order->insertOder(Session::get('user_id'),$date);
     $delCart = $cat->del_Cart(Session::get('user_id'));
     header('Location:donhang.php');
 }

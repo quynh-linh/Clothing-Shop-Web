@@ -107,8 +107,8 @@ if (!isset($_GET['id'])) {
 													</td>
 													<td>
 														<form action="" method="post">
-															<div class="quantity">
-																<input type="submit" class="btn" value="-" name="click_-" style="width:60px;">
+															<div class="quantity" style="display: flex;">
+																<input type="submit" class="btn" value="-" name="click_-" style="width:30px;">
 																<input type="hidden" name="cartId" value="<?php echo $result_ProductCat['cartID'] ?>" />
 																<?php
 																	$get_productDetails = $product->getProduct_Details($result_ProductCat['productId']);
@@ -135,7 +135,7 @@ if (!isset($_GET['id'])) {
 																}
 																?>
 																<input type="hidden" name="id" value="<?= $result_ProductCat['productId']?>" id="hidden_input<?php echo $i; ?>" />
-																<input class="input" id="id<?php echo $i; ?>" type="text" value="<?= $result_ProductCat['quantity'] ?>" readonly="readonly" style="width:120px; text-align:center;">
+																<input class="input" id="id<?php echo $i; ?>" type="text" value="<?= $result_ProductCat['quantity'] ?>" readonly="readonly" style="width:50px; text-align:center;">
 
 																<?php
 																	$get_productDetails = $product->getProduct_Details($result_ProductCat['productId']);
@@ -143,11 +143,11 @@ if (!isset($_GET['id'])) {
                         											while ($result_Details = $get_productDetails->fetch_assoc()) {
                         												if($result_ProductCat['quantity']  < $result_Details['quantity']){
 																?>
-																<input type="submit" class="btn" value="+" name="click_+" style="width:60px;">
+																<input type="submit" class="btn" value="+" name="click_+" style="width:30px;">
 																<?php
 															}else{
 																?>
-																<input type="button" onclick="warning()" class="btn" value="+" name="click_+" style="width:60px;">
+																<input type="button" onclick="warning()" class="btn" value="+" name="click_+" style="width:30px;">
 																<?php
 															}}
 															?>

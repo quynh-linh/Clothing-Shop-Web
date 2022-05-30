@@ -47,7 +47,7 @@ class statistical
         $data2 = mysqli_real_escape_string($this->db->link,$data['date2']);
         $query = "SELECT od.* , SUM(thanhtien) AS value_sumTT , SUM(od.quantity) AS value_count , pd.productName
         FROM tbl_order AS od INNER JOIN tbl_product AS pd ON od.productId =pd.productId
-        WHERE order_time BETWEEN '$data1' AND '$data2'
+        WHERE ( order_time BETWEEN '$data1' AND '$data2' ) AND od.status=2
         GROUP BY  od.productId
         ORDER BY od.productId";
         $result = $this->db->select($query);
@@ -56,7 +56,7 @@ class statistical
     public function gettongSPTheoNam($data)
     {
         $query = "SELECT SUM(thanhtien) AS value_sumTT , SUM(quantity) AS value_count FROM tbl_order
-                    WHERE YEAR(order_time) = '$data'";
+                    WHERE YEAR(order_time) = '$data' AND status=1 ";
         $result = $this->db->select($query);
         return $result;
     }

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="assets/css/grid.css">
-    <link rel="stylesheet" href="assets/css/test1.css">
+    <link rel="stylesheet" href="assets/css/changePassWord.css">
     <link rel="stylesheet" href="assets/css/main.css">
 
     <link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
@@ -31,10 +31,10 @@ if (isset($_POST['doimatkhau']) && $_POST['password_cu']!="" && $_POST['password
         $up = $user->updatedoimatkhau($matkhaumoi);
         
     } else{
-        $up = '<span class="Update_pass">Nhập sai mật khẩu, mời nhập lại !</span>';
+        $up = '<span class="ErrorUpdate_pass">Nhập sai mật khẩu, mời nhập lại !</span>';
     }
 }else{
-    $up = '<span class="Update_pass">Bạn chưa nhập mật khẩu ?</span>';
+    $up = '<span class="ErrorUpdate_pass">Bạn chưa nhập mật khẩu ?</span>';
 }
 ?>
 

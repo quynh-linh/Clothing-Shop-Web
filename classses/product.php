@@ -292,6 +292,13 @@ class product
         $result = $this->db->select($sql);
         return $result;
     }
+     // từ id kiểm tra số lượng sản phẩm còn < 0 hay không ?
+     public function checkQuantityProduct($id)
+     {
+         $sql = "SELECT * FROM tbl_product WHERE productId = '$id' AND quantity > 0 ";
+         $result = $this->db->select($sql);
+         return $result;
+     }
     // tìm kiếm sản phẩm theo khoảng giá
     public function searchProductRangePrice($data)
     {

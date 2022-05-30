@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="assets/css/grid.css">
-    <link rel="stylesheet" href="assets/css/test1.css">
+    <link rel="stylesheet" href="assets/css/account.css">
     <link rel="stylesheet" href="assets/css/main.css">
-
     <link rel="shortcut icon" href="assets/img/favicon_created_by_logaster.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">

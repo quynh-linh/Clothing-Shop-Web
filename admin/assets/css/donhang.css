@@ -329,6 +329,7 @@ td{
     width: 33.333%;
     border-radius: 32px 0px;
     border: 1px solid #e7e8e9;
+    cursor: pointer;
 }
 table{
     width:100%;
@@ -352,7 +353,9 @@ h2{
     text-align:center;
     margin-bottom:10px;
 }
-.table_0 thead tr th{
+.table_0 thead tr th,
+.table_3 thead tr th,
+.table_4 thead tr th{
     width:27.07%;
 }
 .table_1 thead tr th,

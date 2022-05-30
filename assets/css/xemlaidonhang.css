@@ -190,9 +190,11 @@ td {
 .toggle:hover{
     color:red;
 }
-.huy_don a{
+.huy_don a,
+.confirm a{
     color:white;
 }
-.huy_don:hover a{
+.huy_don:hover a,
+.confirm:hover a{
     color:red;
 }

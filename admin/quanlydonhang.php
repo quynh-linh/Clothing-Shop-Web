@@ -37,7 +37,9 @@
 
                         <ul style="display:flex;">
                                 <li class="QLdonhang">Chờ xác nhận</li>
+                                <li class="QLdonhang">Đang giao</li>
                                 <li class="QLdonhang">Đã giao</li>
+                                <li class="QLdonhang">Trả hàng</li>
                                 <li class="QLdonhang">Đã hủy</li>
                         </ul>
 
@@ -54,7 +56,7 @@
                             <tbody>
                                 <?php
                                     $order=new order();
-                                    $getOrderHistory0 = $order->admin_getOrder(0);
+                                    $getOrderHistory0 = $order->admin_getOrder('(0)');
                                     if ($getOrderHistory0) {
                                         $i = 0;
                                         while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
@@ -88,7 +90,7 @@
                             <tbody>
                                 <?php
                                     $order=new order();
-                                    $getOrderHistory1 = $order->admin_getOrder(1);
+                                    $getOrderHistory1 = $order->admin_getOrder('(1)');
                                     $total1 = 0;
                                     if ($getOrderHistory1) {
                                         $i = 0;
@@ -123,7 +125,7 @@
                             <tbody>
                                 <?php
                                     $order=new order();
-                                    $getOrderHistory2 = $order->admin_getOrder(-1);
+                                    $getOrderHistory2 = $order->admin_getOrder('(2,5)');
                                     $total2 = 0;
                                     if ($getOrderHistory2) {
                                         $i = 0;
@@ -136,7 +138,77 @@
                                         <?= $result_OrderHistory2['username']; ?>
                                     </td>
                                     <td>
-                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory2['userId']?>&action=-1&username=<?php echo $result_OrderHistory2['username'];?> ">Xem chi tiết</a>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory2['userId']?>&action=2&username=<?php echo $result_OrderHistory2['username'];?> ">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                </tbody>
+                        </table>
+
+
+                        <table class="table table_3" >
+                            <thead >
+                                <tr >
+                                    <th>STT</th>
+                                    <th>Tên khách hàng</th>
+                                    <th >Tài khoản</th>
+                                    <th colspan="2">Xem chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $order=new order();
+                                    $getOrderHistory0 = $order->admin_getOrder('(3)');
+                                    if ($getOrderHistory0) {
+                                        $i = 0;
+                                        while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
+                                ?>
+                                
+                                <tr>
+                                    <td><?= ($i = $i + 1); ?></td>
+                                    <td><?= $result_OrderHistory0['name']; ?></td>
+                                    <td>
+                                        <?= $result_OrderHistory0['username']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory0['userId']?>&action=3&username=<?php echo $result_OrderHistory0['username'];?> ">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                </tbody>
+                        </table>
+
+                        <table class="table table_4">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Tài khoản</th>
+                                    <th style="width:450px;">Xem chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $order=new order();
+                                    $getOrderHistory0 = $order->admin_getOrder('(-1,4)');
+                                    if ($getOrderHistory0) {
+                                        $i = 0;
+                                        while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
+                                ?>
+                                <tr>
+                                    <td><?= ($i = $i + 1); ?></td>
+                                    <td><?= $result_OrderHistory0['name']; ?></td>
+                                    <td>
+                                        <?= $result_OrderHistory0['username']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="chitietdonhang.php?userId=<?php echo $result_OrderHistory0['userId']?>&action=4&username=<?php echo $result_OrderHistory0['username'];?> ">Xem chi tiết</a>
                                     </td>
                                 </tr>
                                 <?php
