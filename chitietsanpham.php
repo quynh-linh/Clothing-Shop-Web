@@ -60,9 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 ?>
 <?php
     if(isset($_POST['comments']) && $_POST['content'] !=""){
-    if (Session::get('user_login') == false) {
-        $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
-    }else{
+    if (Session::get('user_login')) {
         $binhluan = $user->insert_comments(); 
     }
 }elseif(isset($_POST['comments']) && $_POST['content'] ==""){
@@ -657,7 +655,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                             </section>
                            
                             <section>
-                                <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi" >   
+                                <?php 
+                                    if(Session::get('user_login')){
+                                ?>
+                                <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi" >
+                                <?php 
+                                }else{
+                                ?>
+                                   <input class="comment-ipsubmit" type="button" name="comments" value="Gửi" onclick="swal_comment()" >
+                                <?php } ?>
                             </section>                          
                         </form>                       
                     </section>
@@ -675,9 +681,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 ?>
                                 <div  class="display_coment">
                                     <li class="ti-user display_coment-icon"></li>
-                                    <span class="display_coment-name"><? echo $result['namebl']?></span>                                   
+                                    <span class="display_coment-name"><?php echo $result['namebl']?></span>                                   
                                 </div>
-                                <section  class="display_coment-content"><? echo $result['comment']?></section>
+                                <section  class="display_coment-content"><?php echo $result['comment']?></section>
                                 <?php                                   
                                    
                                     // $nameID = $_POST['nameId'];
@@ -689,9 +695,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                             ?>
                                             <div  class="display_rep_coment">
                                                 <li class="ti-user display_rep_coment-icon"></li>
-                                                <span class="display_rep_coment-name"><? echo $result_rep['namerep']?></span>                                               
+                                                <span class="display_rep_coment-name"><?php echo $result_rep['namerep']?></span>                                               
                                             </div>
-                                            <section  class="display_rep_coment-content"><? echo $result_rep['rep']?></section>
+                                            <section  class="display_rep_coment-content"><?php echo $result_rep['rep']?></section>
                                             <?php     
                                             }else{
                                                 echo "";
@@ -786,6 +792,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         icon: 'warning',
                         title: 'Oops...',
                         text: 'Sản phẩm đã hết hàng ,Mong quý khách quay lại sau !',
+                    })
+        }
+
+        function swal_comment(){
+            Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Bạn phải đăng nhập !',
                     })
         }
         async function resgiter(e) {
