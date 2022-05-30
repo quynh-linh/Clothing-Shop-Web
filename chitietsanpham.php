@@ -6,6 +6,7 @@
     <title>Chi tiết sản phẩm</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/comment.css">
     <link rel="stylesheet" href="assets/css/chitietsp.css">
     <link rel="stylesheet" href="assets/css/grid.css">
     <link rel="stylesheet" href="assets/css/base.css">
@@ -57,7 +58,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     }
 }
 ?>
-
+<?php
+    if(isset($_POST['comments']) && $_POST['content'] !=""){
+    if (Session::get('user_login') == false) {
+        $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
+    }else{
+        $binhluan = $user->insert_comments(); 
+    }
+}elseif(isset($_POST['comments']) && $_POST['content'] ==""){
+    $tb = '<span class="fix_bug">Bạn chưa nhập bình luận ?</span>';
+}
+  
+?>
+<?php
+    if(isset($_POST['rep_submit']) && $_POST['rep_content'] !=""){
+        if (Session::get('user_login') == false) {
+            $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
+        }else{
+            $binhluan = $user->insert_rep_comments(); 
+        }
+    }elseif(isset($_POST['rep_submit']) && $_POST['rep_content'] ==""){
+        $tb = '<span class="fix_bug">Bạn chưa nhập phản hồi ?</span>';
+    }else{
+        echo "";
+    }
+?>
 <body>
     <div class="grid">
         <section class="app">
@@ -583,6 +608,127 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                 }
             }
             ?>
+            <div class="col l-6">
+                <div class="comment">
+                    <section>
+                        <?php
+                            $p = $_GET['productId'];
+                            $count_comment = $user->display_comment($p);
+                            if(empty($count_comment)){
+                                $count_comment = 0;
+                            }else{
+                                $count_comment = mysqli_num_rows($count_comment);
+                            }
+                        ?>
+                        <h2 class="comment-title">Comment: có tất cả(<? echo $count_comment?>)</h2>
+                        <?php
+                            if(isset($binhluan)){
+                                echo $binhluan;
+                               
+                            }else{
+                                echo "";
+                            }
+                            if(isset($tb)){
+                                echo $tb;
+                               
+                            }else{
+                                echo "";
+                            }
+                        ?>                      
+                        <form action="" method="post">
+                            <?php 
+                            if (Session::get('user_login') == false) {
+                                ?>
+                                <section><input class="comment-ipname" readonly="readonly" type="text" name="tenbinhluan" placeholder="username" style="width: 100%;" value=""></section>
+
+                                <?php
+                            }else{
+                                $userId = Session::get('user_id');
+                                $infor_user = $user->show_User($userId);
+                                while ($result_infor_user = $infor_user->fetch_assoc()) {
+                                    ?>
+                                        <section><input class="comment-ipname" readonly="readonly" type="text" name="tenbinhluan" placeholder="username"  value="<?php echo $result_infor_user['username'] ?>"></section>
+                                    <?php
+                                }
+                            }
+                            ?>
+                            <section>
+                                <textarea class="comment-tacontent"  name="content" id="" cols="30" rows="5" placeholder="Nhập nội dung bình luận..."></textarea>
+                            </section>
+                           
+                            <section>
+                                <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi" >   
+                            </section>                          
+                        </form>                       
+                    </section>
+                    <!-- display comments -->
+                    <section class="sort_comment">Bình luận mới nhất
+                        <span class="ti-align-left"></span>
+                    </section>
+                    <?php
+                        // $nameID = $_POST['nameId'];
+                        $productId =$_GET['productId'];
+                        $displaycomments = $user->display_comment($productId);
+                        if($displaycomments){
+                            while($result = $displaycomments->fetch_assoc()){
+                                // echo  $result['id'];
+                                ?>
+                                <div  class="display_coment">
+                                    <li class="ti-user display_coment-icon"></li>
+                                    <span class="display_coment-name"><? echo $result['namebl']?></span>                                   
+                                </div>
+                                <section  class="display_coment-content"><? echo $result['comment']?></section>
+                                <?php                                   
+                                   
+                                    // $nameID = $_POST['nameId'];
+                                    // echo $nameID;
+                                    $displayrepcomments = $user->display_rep_comment();
+                                    if($displayrepcomments){
+                                        while($result_rep = $displayrepcomments->fetch_assoc()){
+                                            if($result['id']==$result_rep['nameId']){
+                                            ?>
+                                            <div  class="display_rep_coment">
+                                                <li class="ti-user display_rep_coment-icon"></li>
+                                                <span class="display_rep_coment-name"><? echo $result_rep['namerep']?></span>                                               
+                                            </div>
+                                            <section  class="display_rep_coment-content"><? echo $result_rep['rep']?></section>
+                                            <?php     
+                                            }else{
+                                                echo "";
+                                            }
+                                        }
+                                    }
+                                ?>
+                                <section></section>                              
+                                <form action="" method="post">
+                                <?php 
+                                if (Session::get('user_login') == false) {
+                                    ?>
+                                    <input class="comment-ipname" type="hidden" name="name_rep">
+                                    <?php
+                                }else{
+                                    // $nameID = $_POST['nameId'];
+                                    $userId = Session::get('user_id');
+                                    $infor_user = $user->show_User($userId);
+                                    while ($result_infor_user = $infor_user->fetch_assoc()) {
+                                        ?>
+                                            <input class="comment-ipname"  type="hidden" name="name_rep" value="<?php echo $result_infor_user['username'] ?>">
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                    <section>
+                                        <input class=""  type="hidden" name="nameId" value="<?php echo $result['id']?>">
+                                        <textarea name="rep_content" class="rep" name="" id="" cols="10" rows="1" placeholder="....."></textarea>
+                                        <input name="rep_submit" class="ok" type="submit" value="Phản hồi">
+                                    </section>
+                                </form>                               
+                                <?php                               
+                            }
+                        }
+                    ?>
+                </div>
+           </div>
             <div class="related_products">
                 <h3>Sản phẩm liên quan</h1>
                     <div class="row">

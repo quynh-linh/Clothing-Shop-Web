@@ -14,6 +14,57 @@ class user
         $this->db = new Database();
         $this->fm = new Format();
     }
+    // hien thi comment
+    public function display_comment($producId){
+        $sql = "SELECT * FROM tbl_comment WHERE productId= '$producId' ORDER BY id DESC ";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // them comment vao db
+    public function insert_comments(){
+        $product_id = $_GET['productId'];
+        $tenbinhluan = $_POST['tenbinhluan'];
+        $comment = $_POST['content'];
+        if($tenbinhluan == "" || $comment == ""){
+            $alert = "<span class='fix_bug'>Nhập đầy đủ thông tin</span>";
+        }else{
+            $query = "INSERT INTO tbl_comment(namebl,comment,productId) VALUES('$tenbinhluan','$comment',' $product_id')";
+            $result = $this->db->insert($query);
+            if ($result) {
+                $alert = "<span class='fix'>Cảm ơn bạn đã góp ý !</span>";
+                return $alert;
+            } else {
+                $alert = "<span class='fix_bug'> Bình luận thất bại !</span>";
+                return $alert;
+            }
+        }
+    }
+    // hien thi phan hoi
+    public function display_rep_comment(){
+        $sql = "SELECT tb.*, cm.namebl FROM  tbl_repcomment AS tb INNER JOIN tbl_comment AS cm ON tb.nameId=cm.id";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    // them rep conments vao db
+    public function insert_rep_comments(){
+        $nameId = $_POST['nameId'];
+        $name_rep = $_POST['name_rep'];
+        $rep_comment = $_POST['rep_content'];
+        if($rep_comment == ""){
+            $alert = "<span class='fix_bug'>Nhập đầy đủ thông tin</span>";
+        }else{
+            $query = "INSERT INTO tbl_repcomment(nameId,rep,namerep) VALUES('$nameId','$rep_comment',' $name_rep')";
+            $result = $this->db->insert($query);
+            if ($result) {
+                $alert = "<span class='fix'>Phản hổi thành công !</span>";
+                return $alert;
+            } else {
+                $alert = "<span class='fix_bug'> Lỗi !</span>";
+                return $alert;
+            }
+        }
+
+    }
     // thêm user vào DB
     public function insert_user($data)
     {

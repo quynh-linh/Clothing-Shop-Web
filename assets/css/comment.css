@@ -1,0 +1,118 @@
+:root {
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.comment {
+    
+}
+.comment-title{
+    color: black;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+.comment-ipname{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #999;
+}
+.comment-ipname:focus{
+    outline: none;
+}
+.comment-tacontent {
+    width: 100%;
+    resize: none; 
+}
+.comment-tacontent:focus{
+    outline: none;
+}
+.comment-ipsubmit{
+    margin-bottom: 30px;
+    width: 100px;
+    padding: 5px 24px;
+    border-radius: 16px 0px;
+    font-size: 16px;
+    line-height: 24px;
+    background-color: #221f20;
+    color: #f7f8f9;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-family: var(--font-family-sans-serif);
+    font-weight: 500;
+}
+.sort_comment{
+    font-size: 10px;
+    font-weight: 800;
+    color: black;
+    float: right;
+}
+.display_coment {
+   display: flex;
+   margin-bottom: 10px;
+}
+.display_coment-icon{
+    list-style: none;
+    font-size: 30px;
+    margin-right: 10px;
+}
+.display_coment-name{
+    font-size: 16px;
+    margin: 10px 0 0 0 ;
+    font-weight: 600;
+}
+.display_coment-content{
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 1px solid rgb(237, 235, 235);
+    margin-bottom: 5px;
+}
+.fix{
+    color: rgb(14, 207, 133);
+}
+.fix_bug{
+    color: red;
+}
+.rep{
+    width: 80%;
+    border: none;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    text-align: center;
+}
+.rep:focus{
+    outline: none;
+}
+.ok{
+    border: none;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: white;
+    color: rgb(41, 150, 217);
+    cursor: pointer;
+}
+.display_rep_coment {
+    display: flex;
+    margin-bottom: 10px;
+    margin-left: 300px;
+    margin-top: 10px;
+ }
+ .display_rep_coment-icon{
+    list-style: none;
+    font-size: 10px;
+    margin-right: 10px;
+   
+ }
+ .display_rep_coment-name{
+    font-size: 10px;
+    font-weight: 600;
+ }
+ .display_rep_coment-content{
+    font-size: 10px;
+    text-align: center;
+    margin-left: 300px;
+    margin-bottom: 5px;
+    width: 200px; 
+ }
