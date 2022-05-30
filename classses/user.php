@@ -24,11 +24,12 @@ class user
     public function insert_comments(){
         $product_id = $_GET['productId'];
         $tenbinhluan = $_POST['tenbinhluan'];
+        $date_comment = $_POST['date_comment'];
         $comment = $_POST['content'];
-        if($tenbinhluan == "" || $comment == ""){
+        if($tenbinhluan == "" || $comment == "" || $comment == ' '){
             $alert = "<span class='fix_bug'>Nhập đầy đủ thông tin</span>";
         }else{
-            $query = "INSERT INTO tbl_comment(namebl,comment,productId) VALUES('$tenbinhluan','$comment',' $product_id')";
+            $query = "INSERT INTO tbl_comment(namebl,comment,productId,dateComment) VALUES('$tenbinhluan','$comment',' $product_id','$date_comment')";
             $result = $this->db->insert($query);
             if ($result) {
                 $alert = "<span class='fix'>Cảm ơn bạn đã góp ý !</span>";

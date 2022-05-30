@@ -59,31 +59,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 }
 ?>
 <?php
-if (isset($_POST['comments']) && $_POST['content'] != "") {
-    if (Session::get('user_login') == false) {
-        $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
-    } else {
-        $binhluan = $user->insert_comments();
+    if(isset($_POST['comments']) && $_POST['content'] !="" && $_POST['date_comment'] !=""){
+        if (Session::get('user_login') == false) {
+            $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
+        }else{
+            $binhluan = $user->insert_comments(); 
+        }
+    }elseif(isset($_POST['comments']) && $_POST['content'] == ""){
+        $tb = '<span class="fix_bug">Bạn chưa nhập bình luận ?</span>';
     }
-} elseif (isset($_POST['comments']) && $_POST['content'] == "") {
-    $tb = '<span class="fix_bug">Bạn chưa nhập bình luận ?</span>';
-}
-
+  
 ?>
 <?php
-if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
-    if (Session::get('user_login') == false) {
-        $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
-    } else {
-        $binhluan = $user->insert_rep_comments();
+    if(isset($_POST['rep_submit']) && $_POST['rep_content'] !=""){
+        if (Session::get('user_login') == false) {
+            $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
+        }else{
+            $binhluan = $user->insert_rep_comments(); 
+        }
+    }elseif(isset($_POST['rep_submit']) && $_POST['rep_content'] ==""){
+        $tb = '<span class="fix_bug">Bạn chưa nhập phản hồi ?</span>';
+    }elseif(isset($_POST['comments']) && isset($_POST['rep_content']) == ' '){
+        $tb = '<span class="fix_bug">kí tự không hợp lệ !</span>';
+    }else{
+        echo "";
     }
-} elseif (isset($_POST['rep_submit']) && $_POST['rep_content'] == "") {
-    $tb = '<span class="fix_bug">Bạn chưa nhập phản hồi ?</span>';
-} else {
-    echo "";
-}
 ?>
-
 <body>
     <div class="grid">
         <section class="app">
@@ -463,7 +464,7 @@ if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>3</td>
-                                                                                            <td style="">RỘNG VAI</td>
+                                                                                            <td>RỘNG VAI</td>
                                                                                             <td>29</td>
                                                                                             <td>30</td>
                                                                                             <td>31</td>
@@ -538,56 +539,39 @@ if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
                                                     <input type="button" class="btn_quantity" value="+" onclick="up()">
                                                 </div>
                                             </div>
-                                            <?php
-                                            if ($result_Details['quantity'] > 0) {
-                                            ?>
-                                                <div style="padding: 20px 0;color: black;">
-                                                    <span>Sản phẩm còn lại ( <?php echo $result_Details['quantity'] ?> sản phẩm )</span>
+                                            <div style="padding: 20px 0;color: black;">
+                                                <span>Sản phẩm còn lại ( <?php echo $result_Details['quantity'] ?> sản phẩm )</span>
 
-                                                </div>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <div style="padding: 20px 0;color: red;">
-                                                    <span>Sản phẩm đã hết hàng</span>
-
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
+                                            </div>
                                             <div class="price-product">
                                                 <span>Giá</span>
                                                 <span><?php echo number_format($result_Details['price'], 0, ',', '.') . "" . "đ"  ?></span>
                                             </div>
-                                            <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
-                                            <div>
-                                                <?php
-                                                if (isset($addToCart)) {
-                                                    $size = $_POST['size'];
-                                                    $quantity = $_POST['quantity'];
-                                                    $updateCart = $cat->updateQuantityandSize($size, $quantity, $id, Session::get('user_id'));
-                                                    echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
-                                                }
-                                                ?>
-                                            </div>
+                                             <!-- hiên thị thông báo sản phẩm đã được cập nhật nếu đã có trong giỏ hàng -->
+                                             <div>
+                                                    <?php
+                                                    if (isset($addToCart)) {
+                                                        $size = $_POST['size'];
+                                                        $quantity = $_POST['quantity'];
+                                                        $updateCart = $cat->updateQuantityandSize($size, $quantity, $id, Session::get('user_id'));
+                                                        echo '<span style="color:red;">Sản phẩm đã tồn tại trong giỏ hàng, size và số lượng đã được cập nhật </span>';
+                                                    }
+                                                    ?>
+                                                </div>
                                             <div style="text-align: center;padding: 40px;align-items: center; display: flex; justify-content: center;     border-bottom: 1px solid #ccc;">
                                                 <?php
-                                                if (Session::get('user_login') == false && $result_Details['quantity'] > 0) {
+                                                if (Session::get('user_login') == false) {
                                                 ?>
                                                     <input type="button" value="Thêm sản phẩm" class="btn--primary" onclick="swal_login_false()"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
                                                 <?php
-                                                } elseif ($result_Details['quantity'] <= 0) {
-                                                ?>
-                                                    <input type="button" name="submit" value="Thêm sản phẩm" class="btn--primary" onclick="swal_quantity()"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
-                                                <?php
-
-                                                } elseif (Session::get('user_login') == True && $result_Details['quantity'] > 0) {
+                                                } else {
                                                 ?>
                                                     <input type="submit" name="submit" value="Thêm sản phẩm" class="btn--primary"><i class="fas fa-cart-plus" style="margin-left:10px; font-size:48px;"></i></input>
                                                 <?php
+
                                                 }
                                                 ?>
-
+                                               
                                             </div>
                                             <div class="app_content">
                                                 <div class="home-title">
@@ -613,121 +597,136 @@ if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
                 <div class="comment">
                     <section>
                         <?php
-                        $p = $_GET['productId'];
-                        $count_comment = $user->display_comment($p);
-                        if (empty($count_comment)) {
-                            $count_comment = 0;
-                        } else {
-                            $count_comment = mysqli_num_rows($count_comment);
-                        }
+                            $p = $_GET['productId'];
+                            $count_comment = $user->display_comment($p);
+                            if(empty($count_comment)){
+                                $count_comment = 0;
+                            }else{
+                                $count_comment = mysqli_num_rows($count_comment);
+                            }
                         ?>
-                        <h2 class="comment-title">Comment: có tất cả(<?php echo $count_comment ?>)</h2>
+                        <div style="display: flex;">
+                            <li style="list-style:none; font-size: 30px; margin:5px 5px 0 0;" class="ti-comment"></li>
+                            <h2 class="comment-title">Bình luận: <? echo $count_comment?> comments</h2>
+                        </div>
                         <?php
-                        if (isset($binhluan)) {
-                            echo $binhluan;
-                        } else {
-                            echo "";
-                        }
-                        if (isset($tb)) {
-                            echo $tb;
-                        } else {
-                            echo "";
-                        }
-                        ?>
+                            if(isset($binhluan)){
+                                echo $binhluan;
+                               
+                            }else{
+                                echo "";
+                            }
+                            if(isset($tb)){
+                                echo $tb;
+                               
+                            }else{
+                                echo "";
+                            }
+                        ?>                      
                         <form action="" method="post">
-                            <?php
+                            <?php 
                             if (Session::get('user_login') == false) {
-                            ?>
+                                ?>
                                 <section><input class="comment-ipname" readonly="readonly" type="text" name="tenbinhluan" placeholder="username" style="width: 100%;" value=""></section>
 
                                 <?php
-                            } else {
+                            }else{
                                 $userId = Session::get('user_id');
                                 $infor_user = $user->show_User($userId);
                                 while ($result_infor_user = $infor_user->fetch_assoc()) {
-                                ?>
-                                    <section><input class="comment-ipname" readonly="readonly" type="text" name="tenbinhluan" placeholder="username" value="<?php echo $result_infor_user['username'] ?>"></section>
-                            <?php
+                                    ?>
+                                        <section><input class="comment-ipname" readonly="readonly" type="text" name="tenbinhluan" placeholder="username"  value="<?php echo $result_infor_user['username'] ?>"></section>
+                                    <?php
                                 }
                             }
                             ?>
                             <section>
-                                <textarea class="comment-tacontent" name="content" id="" cols="30" rows="5" placeholder="Nhập nội dung bình luận..."></textarea>
+                                <input pattern="\S+.*" autocomplete = "off" class="comment-tacontent"  name="content"  placeholder="Nhập nội dung bình luận..."></input>
                             </section>
-
+                            <input type="hidden" name="date_comment" value="<?php $today = date("d/m/Y");echo $today;?>">
                             <section>
-                                <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi">
-                            </section>
-                        </form>
+                                <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi" >   
+                            </section>                          
+                        </form>                       
                     </section>
                     <!-- display comments -->
                     <section class="sort_comment">Bình luận mới nhất
                         <span class="ti-align-left"></span>
                     </section>
                     <?php
-                    // $nameID = $_POST['nameId'];
-                    $productId = $_GET['productId'];
-                    $displaycomments = $user->display_comment($productId);
-                    if ($displaycomments) {
-                        while ($result = $displaycomments->fetch_assoc()) {
-                            // echo  $result['id'];
-                    ?>
-                            <div class="display_coment">
-                                <li class="ti-user display_coment-icon"></li>
-                                <span class="display_coment-name"><?php echo $result['namebl'] ?></span>
-                            </div>
-                            <section class="display_coment-content"><?php echo $result['comment'] ?></section>
-                            <?php
-
-                            // $nameID = $_POST['nameId'];
-                            // echo $nameID;
-                            $displayrepcomments = $user->display_rep_comment();
-                            if ($displayrepcomments) {
-                                while ($result_rep = $displayrepcomments->fetch_assoc()) {
-                                    if ($result['id'] == $result_rep['nameId']) {
-                            ?>
-                                        <div class="display_rep_coment">
-                                            <li class="ti-user display_rep_coment-icon"></li>
-                                            <span class="display_rep_coment-name"><?php echo $result_rep['namerep'] ?></span>
-                                        </div>
-                                        <section class="display_rep_coment-content"><?php echo $result_rep['rep'] ?></section>
-                            <?php
-                                    } else {
-                                        echo "";
-                                    }
-                                }
-                            }
-                            ?>
-                            <section></section>
-                            <form action="" method="post">
-                                <?php
-                                if (Session::get('user_login') == false) {
+                        // $nameID = $_POST['nameId'];
+                        $productId =$_GET['productId'];
+                        $displaycomments = $user->display_comment($productId);
+                        if($displaycomments){
+                            while($result = $displaycomments->fetch_assoc()){
+                                // echo  $result['id'];
                                 ?>
+                                <div  class="display_coment">
+                                    <li class="ti-user display_coment-icon"></li>
+                                    <span class="display_coment-name"><?php echo $result['namebl']?></span>  
+                                    <span class="display_coment-date"><?php echo $result['dateComment']?></span>                              
+                                </div>
+                                <section  class="display_coment-content"><?php echo $result['comment']?></section>
+                                <?php                                   
+                                   
+                                    // $nameID = $_POST['nameId'];
+                                    // echo $nameID;
+                                    $displayrepcomments = $user->display_rep_comment();
+                                    if($displayrepcomments){
+                                        while($result_rep = $displayrepcomments->fetch_assoc()){
+                                            if($result['id']==$result_rep['nameId']){
+                                            ?>
+                                            
+                                            <div class="background_comment">
+                                                <div  class="display_rep_coment">
+                                                    <li class="ti-user display_rep_coment-icon"></li>
+                                                    <span class="display_rep_coment-name"><?php echo $result_rep['namerep'] .":"?></span> 
+                                                    <section  class="display_rep_coment-content"><?php echo $result_rep['rep']?></section>                                              
+                                                </div>
+                                                
+                                            </div>
+                                            <?php     
+                                            }else{
+                                                echo "";
+                                            }
+                                        }
+                                    }
+                                ?>
+                                <section></section>                              
+                                <form action="" method="post">
+                                <?php 
+                                if (Session::get('user_login') == false) {
+                                    ?>
                                     <input class="comment-ipname" type="hidden" name="name_rep">
                                     <?php
-                                } else {
+                                }else{
                                     // $nameID = $_POST['nameId'];
                                     $userId = Session::get('user_id');
                                     $infor_user = $user->show_User($userId);
                                     while ($result_infor_user = $infor_user->fetch_assoc()) {
-                                    ?>
-                                        <input class="comment-ipname" type="hidden" name="name_rep" value="<?php echo $result_infor_user['username'] ?>">
-                                <?php
+                                        ?>
+                                            <input class="comment-ipname"  type="hidden" name="name_rep" value="<?php echo $result_infor_user['username'] ?>">
+                                        <?php
                                     }
                                 }
                                 ?>
-                                <section>
-                                    <input class="" type="hidden" name="nameId" value="<?php echo $result['id'] ?>">
-                                    <textarea name="rep_content" class="rep" name="" id="" cols="10" rows="1"></textarea>
-                                    <input name="rep_submit" class="ok" type="submit" value="Phản hồi">
-                                </section>
-                            </form>
-                    <?php
+                                    <section style="display: flex;">
+                                        <input class=""  type="hidden" name="nameId" value="<?php echo $result['id']?>">
+                                        <input pattern="\S+.*" autocomplete = "off" name="rep_content" class="rep" placeholder="........">
+                                        <li style="list-style: none; color:rgb(41, 150, 217); margin-top: 5px;" class="ti-face-smile"></li>
+                                        <input name="rep_submit" class="ok" type="submit" value="Phản hồi"></input>
+                                    </section>
+                                </form>                               
+                                <?php                               
+                            }
                         }
-                    }
                     ?>
                 </div>
-            </div>
+                <span style="display: flex;">Hiện thêm
+                    <li style="list-style: none;" class="ti-angle-down"></li>
+                </span>
+
+           </div>
             <div class="related_products">
                 <h3>Sản phẩm liên quan</h1>
                     <div class="row">
@@ -778,22 +777,6 @@ if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
             }
             ?>
             document.getElementById('input_quantity').value = Quantity
-        }
-
-        function swal_quantity() {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Sản phẩm đã hết hàng ,Mong quý khách quay lại sau !',
-            })
-        }
-
-        function swal_comment(){
-            Swal.fire({
-                        icon: 'warning',
-                        title: 'Oops...',
-                        text: 'Bạn phải đăng nhập !',
-                    })
         }
         async function resgiter(e) {
             e.preventDefault();
