@@ -65,7 +65,7 @@
 
          // hiển thị  sản phẩm ra trang admin
         public function admin_getOrder_waiting($userId,$status,$date){
-            $query = "SELECT od.* , pd.productName ,username,us.userId , name,us.diaChi,us.name
+            $query = "SELECT od.* , pd.productName ,username,us.userId , name,us.diaChi,us.name,pd.brandId,pd.typeProductId
             FROM tbl_order AS od
             INNER JOIN tbl_product AS pd ON od.productId =pd.productId
             INNER JOIN tbl_uer AS us ON od.userId =us.userId
@@ -104,16 +104,16 @@
                 }else{
                     $sql = "SELECT productId , quantity
                     FROM tbl_order 
-                    WHERE userId='$userId' AND status='3' AND orderId = '$orderId'";
+                    WHERE userId='$userId' AND status='4' AND orderId = '$orderId'";
                     $result_SQL = $this->db->select($sql);
 
                     if($result_SQL)
                         while($product= $result_SQL->fetch_assoc()){
                             $productId=$product['productId'];
                             $quantity = $product['quantity'];
+                            echo $productId;
                             $query= "UPDATE tbl_product SET quantity = quantity +'$quantity'   WHERE productId = '$productId'";
                             $result = $this->db->update($query);
-                            return "a";
                         }
                 }
             

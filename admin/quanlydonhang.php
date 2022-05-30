@@ -153,9 +153,9 @@
                             <thead >
                                 <tr >
                                     <th>STT</th>
-                                    <th>Tên khách hàng</th>
+                                    <th >Tên khách hàng</th>
                                     <th >Tài khoản</th>
-                                    <th colspan="2">Xem chi tiết</th>
+                                    <th >Xem chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -166,7 +166,7 @@
                                         $i = 0;
                                         while ($result_OrderHistory0 = $getOrderHistory0->fetch_assoc()) {
                                 ?>
-                                
+
                                 <tr>
                                     <td><?= ($i = $i + 1); ?></td>
                                     <td><?= $result_OrderHistory0['name']; ?></td>

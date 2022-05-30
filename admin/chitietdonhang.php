@@ -29,7 +29,7 @@ if ( isset($_GET['order']) && $_GET['order']  && $_GET['userId']!=" ") {
 }
 // xác nhận trả hàng sẽ cộng dồn số lượng của đơn hàng vào sản phẩm
 if ( isset($_GET['orderID']) && $_GET['orderID']  && $_GET['userId']!=" " && $_GET['status']== 3) {
-    echo "oh";
+    
         $userId=$_GET['userId'];
         $username=$_GET['username'];
         $orderId="(".$_GET['orderID']."-1)";  
@@ -42,16 +42,16 @@ if ( isset($_GET['orderID']) && $_GET['orderID']  && $_GET['userId']!=" " && $_G
         }
         header('Location:chitietdonhang.php?userId='.$userId.'&action=3&username='.$username.'');
 
-}else echo "â";
+}
 
 if ( isset($_GET['username'])  && $_GET['username']!=" ") {
     $username=$_GET['username'];
 }
 ?>
 <body>
-   <!-- <?php include './inc/sidebar.php' ?> -->
+   <?php include './inc/sidebar.php' ?>
     <div class="main-content">
-     <!-- <?php include './inc/header.php' ?> -->
+     <?php include './inc/header.php' ?>
         <main>
             <section class="recent">
             <div class="activity-grid">
@@ -119,7 +119,7 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                                     <td><?= ($i = $i + 1); ?></td>
                                     <td><?= $result_getOrder_waiting['name']; ?></td>
                                     <td>
-                                        <a href="../chitietsanpham.php?productId=<?php echo $result_getOrder_waiting['productId']?>">
+                                        <a href="../chitietsanpham.php?productId=<?php echo $result_getOrder_waiting['productId']?>&&brandId=<?php echo $result_getOrder_waiting['brandId'] ?>">
                                         <img style="width:100px;" src="../admin/upload/<?= $result_getOrder_waiting['image']; ?>"></a>
                                     </td>
                                     <td>
@@ -474,9 +474,12 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                                 <h2>ĐƠN HÀNG ĐÃ HỦY</h2>
 
                         <?php
-                                $count=0;
-                                while($result_date=$date->fetch_assoc()){
-                                    $count+=1;
+                            if($date==NULL){
+
+                                }else{
+                                    $count=0;
+                                    while($result_date=$date->fetch_assoc()){
+                                        $count+=1;
                                 //foreach($result_date as $date_order){
                         ?>
                         <table >
@@ -539,7 +542,15 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                                     <td style="width:250px;">
                                         <?= $result_getOrder_waiting['diaChi']; ?>
                                     </td>
+                                    <?php
+                                    if($result_getOrder_waiting['status']==-1){
+                                    ?>
                                     <td style="color:red;cursor:pointer">Đã hủy</td>
+                                    <?php 
+                                }else{
+                                    ?>
+                                    <td style="color:red;cursor:pointer">Đã trả hàng</td>
+                                <?php }?>
                                 </tr>
                                 <?php
                                             
@@ -549,6 +560,7 @@ if ( isset($_GET['username'])  && $_GET['username']!=" ") {
                                     <?php
                                     }
                                 }
+                            }
                             
                                 ?>
                                 </tbody>

@@ -102,7 +102,7 @@ class product
 
         $query = "SELECT pd.* , br.brandName 
         FROM tbl_product AS pd INNER JOIN tbl_brand AS br ON pd.brandId=br.brandId 
-        WHERE pd.brandId  = '$id' AND pd.type = '$type' AND quantity >0 LIMIT $product_start,$sp_tungtrang";
+        WHERE pd.brandId  = '$id' AND pd.type = '$type'  LIMIT $product_start,$sp_tungtrang";
         $result = $this->db->select($query);
         return $result;
     }
@@ -119,7 +119,7 @@ class product
 
         $query = "SELECT pd.* , tpd.typeProductName 
         FROM tbl_product AS pd  INNER JOIN tbl_type_product AS tpd ON pd.typeProductId= tpd.typeProductID
-        WHERE pd.typeProductId  = '$id' AND pd.type = '$type' AND quantity >0 LIMIT $product_start,$sp_tungtrang";
+        WHERE pd.typeProductId  = '$id' AND pd.type = '$type' LIMIT $product_start,$sp_tungtrang";
         $result = $this->db->select($query);
         return $result;
     }

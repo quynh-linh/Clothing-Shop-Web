@@ -628,7 +628,15 @@ if (isset($_GET['status']) && $_GET['status'] == 2 ) {
                                                     echo $result_OrderHistory2['order_time'];
                                                     ?>
                                                 </td>
-                                                <td style="color:RED;cursor:pointer">Đã hủy đơn</td>
+                                                <?php
+                                                    if($result_OrderHistory2['status']==-1){
+                                                    ?>
+                                                    <td style="color:red;cursor:pointer">Đã hủy đơn</td>
+                                                    <?php 
+                                                }else{
+                                                    ?>
+                                                    <td style="color:red;cursor:pointer">Đã trả hàng</td>
+                                                <?php }?>
 
                                             </tr>
                                             <?php  
