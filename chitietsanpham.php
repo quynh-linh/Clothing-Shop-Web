@@ -59,17 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 }
 ?>
 <?php
-<<<<<<< HEAD
 if (isset($_POST['comments']) && $_POST['content'] != "") {
     if (Session::get('user_login') == false) {
         $tb = '<span class="fix_bug">Yêu cầu đăng nhập !</span>';
     } else {
         $binhluan = $user->insert_comments();
-=======
-    if(isset($_POST['comments']) && $_POST['content'] !=""){
-    if (Session::get('user_login')) {
-        $binhluan = $user->insert_comments(); 
->>>>>>> 262402466a65f2035cc3adc0c6789954742d2bcd
     }
 } elseif (isset($_POST['comments']) && $_POST['content'] == "") {
     $tb = '<span class="fix_bug">Bạn chưa nhập bình luận ?</span>';
@@ -662,30 +656,15 @@ if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
                             </section>
 
                             <section>
-<<<<<<< HEAD
                                 <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi">
                             </section>
                         </form>
-=======
-                                <?php 
-                                    if(Session::get('user_login')){
-                                ?>
-                                <input class="comment-ipsubmit" type="submit" name="comments" value="Gửi" >
-                                <?php 
-                                }else{
-                                ?>
-                                   <input class="comment-ipsubmit" type="button" name="comments" value="Gửi" onclick="swal_comment()" >
-                                <?php } ?>
-                            </section>                          
-                        </form>                       
->>>>>>> 262402466a65f2035cc3adc0c6789954742d2bcd
                     </section>
                     <!-- display comments -->
                     <section class="sort_comment">Bình luận mới nhất
                         <span class="ti-align-left"></span>
                     </section>
                     <?php
-<<<<<<< HEAD
                     // $nameID = $_POST['nameId'];
                     $productId = $_GET['productId'];
                     $displaycomments = $user->display_comment($productId);
@@ -715,39 +694,6 @@ if (isset($_POST['rep_submit']) && $_POST['rep_content'] != "") {
                             <?php
                                     } else {
                                         echo "";
-=======
-                        // $nameID = $_POST['nameId'];
-                        $productId =$_GET['productId'];
-                        $displaycomments = $user->display_comment($productId);
-                        if($displaycomments){
-                            while($result = $displaycomments->fetch_assoc()){
-                                // echo  $result['id'];
-                                ?>
-                                <div  class="display_coment">
-                                    <li class="ti-user display_coment-icon"></li>
-                                    <span class="display_coment-name"><?php echo $result['namebl']?></span>                                   
-                                </div>
-                                <section  class="display_coment-content"><?php echo $result['comment']?></section>
-                                <?php                                   
-                                   
-                                    // $nameID = $_POST['nameId'];
-                                    // echo $nameID;
-                                    $displayrepcomments = $user->display_rep_comment();
-                                    if($displayrepcomments){
-                                        while($result_rep = $displayrepcomments->fetch_assoc()){
-                                            if($result['id']==$result_rep['nameId']){
-                                            ?>
-                                            <div  class="display_rep_coment">
-                                                <li class="ti-user display_rep_coment-icon"></li>
-                                                <span class="display_rep_coment-name"><?php echo $result_rep['namerep']?></span>                                               
-                                            </div>
-                                            <section  class="display_rep_coment-content"><?php echo $result_rep['rep']?></section>
-                                            <?php     
-                                            }else{
-                                                echo "";
-                                            }
-                                        }
->>>>>>> 262402466a65f2035cc3adc0c6789954742d2bcd
                                     }
                                 }
                             }
