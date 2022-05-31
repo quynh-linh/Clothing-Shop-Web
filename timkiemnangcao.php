@@ -9,7 +9,8 @@ else
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	$showSearch = $product->searchProductRangePrice($_POST);
 }
-
+$str_cate="";
+$str_br="";
 ?>
 
 <!DOCTYPE html>
@@ -162,8 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 									<?php	
 
 										//Chuyển mảng thành chuỗi
-										$str_cate="";
-										$str_br="";
+										
 										if(isset($_GET['category']) && is_string($_GET['category']) && $_GET['category']!=""){
 											$category =explode(',',$_GET['category']) ;
 											$str = "";
@@ -293,6 +293,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 							<div class="home-foward">
 		<!-- 	Phân trang tìm kiếm -->
 											<?php
+											if(isset($_GET['search']))
+												$search=$_GET['search'];
+											else
+												$search = "";
 											if(!isset($_GET['select']) && $product_ct) {
 												
 												$number_page = $product->number_page($category,$brand,$price,$search);
@@ -303,7 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 													if($current_page > 1){
 														$prev_page = $current_page - 1;
 														?>										
-															 <a href="?trang=<?=$prev_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>">
+															 <a href="?trang=<?=$prev_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>&search=<?php echo $search?>">
 																<span class="ti-angle-left"></span>
 															</a>	
 														<?php
@@ -316,7 +320,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 																
 														?>
 														 <span style="margin: 0 15px ;" class="foward-btn">
-															<a href="?trang=<?=$num?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>"><?=$num ?></a>				
+															<a href="?trang=<?=$num?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>&search=<?php echo $search?>"><?=$num ?></a>				
 														</span>
 														<?php
 															}
@@ -329,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 													if($current_page < $product_button){
 														$next_page = $current_page + 1;
 														?>										
-															<a href="?trang=<?=$next_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>">
+															<a href="?trang=<?=$next_page?>&price=<?=$_GET['price']?>&category=<?=$str_cate?>&brand=<?=$str_br?>&search=<?php echo $search?>">
 																<span class="ti-angle-right"></span>
 															</a>																						
 												<?php
