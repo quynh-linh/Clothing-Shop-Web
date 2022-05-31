@@ -30,7 +30,6 @@ class SendMail
                     'allow_self_signed' => true
                 )
             );
-
             //Recipients
             $mail->setFrom('asuoplinh@gmail.com', 'Forgot Password');
             $mail->addAddress($mTo, $nTo);     // Add a recipient

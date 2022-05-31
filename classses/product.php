@@ -36,7 +36,6 @@ class product
         $file_ext = strtolower(end($div));
         $unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
         $uploaded_image = "upload/" . $unique_image;
-
         if ($productName == "" ||  $brand == "" || $typeProduct == "" ||  $category == "" ||  $product_desc == "" ||  $price == "" ||  $type == "" ||  $file_name == "" || $quantity == "") {
             $alert = "Không được bỏ trống";
             return $alert;
@@ -47,14 +46,8 @@ class product
         }else{
             $sql_check_name = "SELECT * FROM tbl_product WHERE productName = '$productName'";
             $result_check_name = $this->db->select($sql_check_name);
-
-            // $sql_check_img = "SELECT * FROM tbl_product WHERE image = '$unique_image'";
-            // $result_check_img = $this->db->select($sql_check_img);
-
             if($result_check_name){
                 return "Tên sản phẩm đã tồn tại";
-            // }elseif($result_check_img){
-            //     return "Ảnh sản phẩm đã tồn tại";
             }else{
                 move_uploaded_file($file_temp, $uploaded_image);
                 $query = "INSERT INTO tbl_product(productName,brandId,catId,product_desc,price,type,quantity,image,typeProductId) VALUES('$productName',

@@ -17,7 +17,7 @@ class statistical
     // thêm user vào DB
     public function gettongDoanhThu()
     {
-        $query = "SELECT * FROM tbl_order";
+        $query = "SELECT * FROM tbl_order WHERE status = 2";
         $result = $this->db->select($query);
         return $result;
     }

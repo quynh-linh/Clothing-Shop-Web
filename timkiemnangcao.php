@@ -55,7 +55,7 @@ $str_br="";
 									<div class="khoanggia">
 										<h4 class="h4">Theo khoảng giá</h4>
 										<div style="display: flex;align-items: center;justify-content: space-around;">										
-											<input id="slider_pr" type="range" name="price" min="0" max="100000000" value="0" >
+											<input id="slider_pr" type="range" name="price" min="0" max="30000000" value="0" >
 											<span id="max" style="font-family: var(--font-family-sans-serif);"></span>
 											đ
 										</div>
