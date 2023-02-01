@@ -24,18 +24,22 @@ Database:
 ```
 ## Website Functions:
 For users:
+```bash
 * Login / registration function
 * Function to add products to cart
 * Product search/category function
 * User function can view/edit personal information
 * User function can manage orders (pending / confirmed / shipped / canceled) when admin has accepted
 * User password change function
+```
 For admins:
+```bash
 * Admin can add/edit/delete products
 * Admin can manage orders (confirm orders the user has placed)
 * Admin can statistic the business situation of the store by month / quarter / year
 * Admin can manage registered customer information
 * Admin can build promotional vouchers for new users or major holidays
+```
 ## Steps to run the website:
 1. Clone from github and add to htdocs folder in xampp
 2. Launch the application and go to the directory config -> config.php , change the names according to your Mysql
