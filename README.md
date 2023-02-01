@@ -2,11 +2,11 @@
 
 ## Team  Members:
 ```bash
-    Saigon University ,Faculty of Information Technology ,Major in Software Engineering
-    ID          | Full Name
-    3120410278    Nguyen Thanh Quynh Linh
-    3120410316    Quan  Van Manh
-    3120410300    Doan Thanh Loi
+Saigon University ,Faculty of Information Technology ,Major in Software Engineering
+ID          | Full Name
+3120410278    Nguyen Thanh Quynh Linh
+3120410316    Quan  Van Manh
+3120410300    Doan Thanh Loi
 ```
 ## Project Description:
 This is the website that the team did during the learning process, this is the age of technology, so users mainly shop through websites.
@@ -46,14 +46,17 @@ For admins:
 Home Page                   |                   Registration Page
 :---------------------------------:        |      :------------------------------:
 <img src="Screenshots/HomePage.png" height="200">  | <img src="Screenshots/RegistrtionPage.png" height="200">
+
 Login Page                   |                   Description Product Page
 :---------------------------------:        |      :------------------------------:
 <img src="Screenshots/LoginPage.png" height="200">  | <img src="Screenshots/DesProduct.png" height="200">
+
 Cart Page                   |                   Order Management Page
 :---------------------------------:        |      :------------------------------:
 <img src="Screenshots/CartPage.png" height="200">  | <img src="Screenshots/OderPage.png" height="200">
+
 Admin Page                   |                   Revenue Statistics page
 :---------------------------------:        |      :------------------------------:
 <img src="Screenshots/AdminPage.png" height="200">  | <img src="Screenshots/Statistics.png" height="200">
 ### Make sure to star the repository if you find it helpful!
-<a href="https://github.com/Quynh-Linh-IT/Clothing-Shop-Web/stargazers"><img src="https://img.shields.io/github/stars/vrii14/Land-Registration-with-Blockchain?color=yellow" alt="Stars Badge"/></a>
+<a href="https://github.com/Quynh-Linh-IT/Clothing-Shop-Web/stargazers"><img src="https://img.shields.io/github/stars/Quynh-Linh-IT/Clothing-Shop-Web?color=yellow" alt="Stars Badge"/></a>
