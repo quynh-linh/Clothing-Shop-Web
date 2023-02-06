@@ -45,7 +45,7 @@ For admins:
 2. Launch the application and go to the directory config -> config.php , change the names according to your Mysql
 3. Add doanweb.sql in Database folder to Mysql
 4. Then launch the website
-## [Project Demo Link](https://youtu.be/6VLaAa8GNDc)
+## [Project Demo Link](https://www.youtube.com/watch?v=fe7uRrCEjwE)
 ## Some features of the site:
 Home Page                   |                   Registration Page
 :---------------------------------:        |      :------------------------------:
